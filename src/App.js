@@ -5,6 +5,7 @@ import NaveBar from "./component/home/NaveBar";
 import ServiceItem from "./component/home/services/ServiceItem";
 import Services from "./component/home/services/Services";
 import Video from "./component/home/video/Video";
+import { AuthProvider } from "./contexts/AuthContext";
 import DesginProjects from "./pages/findwork/DesginProjects";
 import SingleService from "./pages/services/SingleService";
 import SingleStory from "./pages/stories/SingleStory";
@@ -16,7 +17,9 @@ import routes from "./routes/routes";
 function App() {
   return (
     <div>
-      <RouterProvider router={routes} />
+      <AuthProvider>
+        <RouterProvider router={routes} />
+      </AuthProvider>
 
       {/* <NaveBar /> */}
       {/* <Video /> */}

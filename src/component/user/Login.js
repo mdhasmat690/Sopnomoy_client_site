@@ -1,8 +1,11 @@
 import React from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
+import { CirclesWithBar } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Login(props) {
+  const { signInPassword, isLoading } = useAuth();
   const {
     register,
     formState: { errors },
@@ -12,7 +15,9 @@ function Login(props) {
 
   const term = useWatch({ control, name: "term" });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    signInPassword(data.mail, data.password);
+  };
 
   const navigate = useNavigate();
 
@@ -89,12 +94,32 @@ function Login(props) {
                     />
                   </div>
 
-                  <button
-                    className={`text-white rounded-md w-[270px] mt-5 bg-[#ea4c89] p-2 cursor-pointer}`}
-                    type="submit"
-                  >
-                    Login
-                  </button>
+                  {!isLoading ? (
+                    <button
+                      className={`text-white rounded-md w-[270px] mt-5 bg-[#ea4c89] p-2 cursor-pointer}`}
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  ) : (
+                    <button
+                      className={`text-white rounded-md w-[200px] mt-5 bg-[#ea4c89] p-2 hover:bg-[#f082ac] flex justify-center`}
+                      type="submit"
+                    >
+                      <CirclesWithBar
+                        height="40"
+                        width="40"
+                        color="#4fa94d"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        outerCircleColor=""
+                        innerCircleColor=""
+                        barColor=""
+                        ariaLabel="circles-with-bar-loading"
+                      />
+                    </button>
+                  )}
                 </form>
 
                 <div className="mt-5">

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import NaveDrop from "./NaveDrop";
 import { FiArrowRightCircle } from "react-icons/fi";
+import { MdLocalPostOffice } from "react-icons/md";
 import Video from "./video/Video";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const NaveBar = () => {
+  const { user, logOut, reDir } = useAuth();
+  // console.log(user);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
   return (
     <nav className="bg-[white] xl:container mx-auto">
       <div className="flex items-center font-medium justify-between">
@@ -27,23 +32,47 @@ const NaveBar = () => {
         </div>
 
         <div className="md:block hidden">
-          <div className="flex items-center text-[#6e6d7a]">
-            <span className="">
-              <FiArrowRightCircle />
-            </span>
-            <button
-              onClick={() => navigate(`/signUp`)}
-              className="ml-5 text-[#6a6d7a]"
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => navigate(`/login`)}
-              className="ml-5 text-white rounded-lg bg-[#ea4c89] p-2 "
-            >
-              Sign Up
-            </button>
-          </div>
+          {!user?.email ? (
+            <>
+              <div className="flex items-center text-[#6e6d7a]">
+                <span className="mr-[-15px]">
+                  <FiArrowRightCircle className="w-12" />
+                </span>
+                <button
+                  onClick={() => navigate(`/login`)}
+                  className="ml-5 text-[#6a6d7a]"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => navigate(`/signUp`)}
+                  className="ml-5 text-white rounded-lg bg-[#ea4c89] p-2 "
+                >
+                  Sign Up
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center text-[#6e6d7a]">
+                <span onClick={() => logOut()} className="cursor-pointer ml-4">
+                  <img src="https://i.ibb.co/6F1fbGJ/svgexport-31.png" alt="" />
+                </span>
+
+                <img
+                  className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
+                  src={reDir?.image}
+                  alt=""
+                />
+                <button
+                  onClick={() => navigate(`/login`)}
+                  className="ml-5 text-white rounded-lg bg-[#ea4c89] p-2 "
+                >
+                  Upload
+                </button>
+              </div>
+            </>
+          )}
         </div>
         {/* Mobile nav */}
         <ul

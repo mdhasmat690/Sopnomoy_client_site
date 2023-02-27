@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { CirclesWithBar } from "react-loader-spinner";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 function SignUp() {
+  const { signInWithGoogle, createUserWithUserEmail, isLoading, user } =
+    useAuth();
   const {
     register,
     formState: { errors },
     handleSubmit,
     control,
+    reset,
   } = useForm();
 
   const term = useWatch({ control, name: "term" });
 
-  const onSubmit = (data) => console.log(data);
+  const [reDir, setReDir] = useState();
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setReDir(data.data));
+  }, [user.email]);
+
+  const location = useLocation();
   const navigate = useNavigate();
+
+  /*   const re = () => {
+    if (reDir) {
+      console.log(reDir.location);
+      navigate(reDir?.location ? "/getStart" : location?.state?.from || "/");
+    }
+  }; */
+
+  const googleLogin = () => {
+    signInWithGoogle(location, navigate, reDir);
+  };
+
+  const onSubmit = (data) => {
+    const name = data.firstName + " " + data.lastName;
+    createUserWithUserEmail(data.mail, data.password, name, location, navigate);
+    reset();
+  };
 
   return (
     <div>
@@ -41,8 +70,11 @@ function SignUp() {
               <h1 className="text-[#f2d184] text-[30px] leading-[23px] font-[700] mb-9">
                 Sign up to Dribbble
               </h1>
-              <div className="mt-4 w-[270px] bg-[#1a73e8] rounded-sm">
-                <button className=" flex items-center justify-start ">
+              <div className="mt-4 w-[270px] bg-[#1a73e8] hover:bg-[rgba(0,0,0,0.30)] rounded-sm">
+                <button
+                  onClick={googleLogin}
+                  className=" flex items-center justify-start "
+                >
                   <img
                     className="w-[36px] m-[2px] p-1 bg-white"
                     src="https://i.ibb.co/3pbVY1G/googleimg.png"
@@ -62,19 +94,19 @@ function SignUp() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="font-bold ">Name</label>
+                      <label className="font-bold">First Name</label>
                       <input
                         className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
-                        {...register("name")}
+                        {...register("firstName")}
                         required
                       />
                     </div>
 
                     <div>
-                      <level className="font-bold mb-2">Username</level>
+                      <level className="font-bold mb-2">Last Name</level>
                       <input
                         className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
-                        {...register("userName")}
+                        {...register("lastName")}
                         required
                       />
                     </div>
@@ -123,15 +155,37 @@ function SignUp() {
                     </div>
                   </div>
 
-                  <button
-                    disabled={!term}
-                    className={`text-white rounded-md w-[270px] mt-5 bg-[#ea4c89] p-2   ${
-                      !term ? "cursor-not-allowed" : "cursor-pointer"
-                    }`}
-                    type="submit"
-                  >
-                    Sign Up
-                  </button>
+                  <div className="flex items-center">
+                    {!isLoading ? (
+                      <button
+                        disabled={!term}
+                        className={`text-white rounded-md w-[270px] mt-5 bg-[#ea4c89] p-2 hover:bg-[#f082ac]  ${
+                          !term ? "cursor-not-allowed" : "cursor-pointer"
+                        }`}
+                        type="submit"
+                      >
+                        Sign Up
+                      </button>
+                    ) : (
+                      <button
+                        className={`text-white rounded-md w-[200px] mt-5 bg-[#ea4c89] p-2 hover:bg-[#f082ac] flex justify-center`}
+                        type="submit"
+                      >
+                        <CirclesWithBar
+                          height="40"
+                          width="40"
+                          color="#4fa94d"
+                          wrapperStyle={{}}
+                          wrapperClass=""
+                          visible={true}
+                          outerCircleColor=""
+                          innerCircleColor=""
+                          barColor=""
+                          ariaLabel="circles-with-bar-loading"
+                        />
+                      </button>
+                    )}
+                  </div>
                 </form>
 
                 <div className="mt-5">

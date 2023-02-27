@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TiMessages } from "react-icons/ti";
 import Services from "../../component/home/services/Services";
 import Modal from "react-modal";
+import { useAuth } from "../../contexts/AuthContext";
+
+import Drawer from "react-modern-drawer";
+
+//import styles 👇
+import "react-modern-drawer/dist/index.css";
+import { BrowserRouter, useParams } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -14,16 +21,28 @@ const customStyles = {
   },
 };
 
-function SingleService() {
+function SingleService({ id }) {
+  const [service, setService] = useState();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  // const parms = useParams();
+
+  const { user, reDir } = useAuth();
+  // const [reDir, setReDir] = useState();
+  // console.log(user);
+
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  /*  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
-  }
+  } */
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
+    //  references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
   }
 
@@ -31,15 +50,28 @@ function SingleService() {
     setIsOpen(false);
   }
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/tools/postProject/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setService(data?.data);
+      });
+  }, [id]);
+  console.log(service);
+
+  if (!user.emailVerified) {
+    return <>Please Verify your email</>;
+  }
+
   return (
     <div>
       <div>
         <Modal
-          isOpen={modalIsOpen}
+        /* isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
+          contentLabel="Example Modal" */
         >
           <div className="w-200px">
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
@@ -60,19 +92,21 @@ function SingleService() {
         <div className="flex">
           {" "}
           <img
-            src="https://i.ibb.co/z8S8RST/about.jpg"
+            src={reDir?.image}
             alt="logo"
             className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%]"
           />
           <div className="ml-5">
-            <h1 className="text-[17px] font-[500] leading-[22px]">Ladies</h1>
+            <h1 className="text-[17px] font-[500] leading-[22px]">
+              {service?.productName}
+            </h1>
             <div className="flex justify-evenly md:flex-wrap">
               <h1 className="text-[#3d3d4e] text-[14] font-[400] leading-[20px]">
-                Folio Illustration Agency
+                {service?.agencyName}
               </h1>
               <h1 className="text-[#3d3d4e] ml-5">• Follow</h1>
               <h1
-                onClick={openModal}
+                // onClick={openModal}
                 className="ml-5 text-[#ea4c89] font-[400] hover:text-[#f082ac] cursor-pointer"
               >
                 • Hire Me
@@ -93,7 +127,7 @@ function SingleService() {
 
       <div className="w-[80%] mx-auto">
         <img
-          src="https://cdn.dribbble.com/userupload/4246985/file/original-cb55c5a005c69c640f6333991697e1f4.png?compress=1&resize=752x"
+          src={service?.imgUrl}
           className="md:cursor-pointer h-[100%] w-[100%] rounded-[2%] mt-4"
           alt=""
         />
@@ -101,32 +135,30 @@ function SingleService() {
           <h1 className="font-[400] text-[20px] mt-9 ml-10">
             Artist:{" "}
             <span className=" text-[#ea4c89] font-[400] hover:text-[#f082ac]">
-              Batch
+              {service?.artist}
             </span>
           </h1>
           <div className="w-[67%] mx-auto">
             <h1 className="text-[20px] font-[400] leading-[32px] my-8">
-              Hello everyone!
+              {service?.Tittle}
             </h1>
             <h2 className="text-[20px] font-[400] leading-[32px] my-8">
-              This is a collection of typography based logos. They are designed
-              either with a custom lettering or using customized font. In both
-              cases one of their elements can be used as a standalone symbol.
+              {service?.description}
             </h2>
             <h1 className="text-[20px] font-[400] leading-[32px] my-8">
-              Let me know which one catches your eyes the most!
+              {service?.Details}
             </h1>
             <h1 className="text-[20px] font-[400] leading-[32px] my-8">
               ________
             </h1>
             <h1 className="text-[20px] font-[400] leading-[32px]  my-1">
-              Contact us to get your logo design or branding project done:{" "}
+              {service?.contact}
             </h1>
             <h1 className="text-[20px] font-[400] leading-[32px] mb-8 text-[#ea4c89]">
-              lepisovbranding@gmail.com
+              {service?.email}
             </h1>
             <h2 className="text-[20px] font-[400] leading-[32px] text-[#ea4c89]">
-              Instagram
+              {service?.link}
             </h2>
           </div>
 
@@ -146,13 +178,13 @@ function SingleService() {
         <div>
           <h1 className="text-[20px] font-[500] leading-[30px] text-center mt-10">
             {" "}
-            Folio Illustration Agency
+            {service?.agencyName}
           </h1>
           <h2 className="text-[#3d3d4e] text-center mb-3 mt-1">
             Representing exceptional artists around the world.
           </h2>
           <button className="text-white bg-[#ea4c89] hover:bg-[#f082ac] h-[40px] w-[100px] rounded-[8px] text-[14px] font-[500] leading-[20px] mx-auto flex items-center p-1">
-            <span className="mr-3">
+            <span className="mr-3 text-[19px]">
               <TiMessages />
             </span>
             Hire Me
@@ -163,7 +195,7 @@ function SingleService() {
       <div>
         <div className="flex ite justify-between w-[80%] mx-auto mt-10">
           <h1 className="text-[16px] font-[700] leading-[24px]">
-            More by Folio Illustration Agency
+            More by {service?.agencyName}
           </h1>
 
           <h2 className=" text-[#ea4c89] font-[400] hover:text-[#f082ac]">
@@ -171,18 +203,14 @@ function SingleService() {
             View profile
           </h2>
         </div>
-        <div className="mt-3">
-          <Services />
-        </div>
+        <div className="mt-3">{/* <Services /> */}</div>
 
         <div>
           <div className="border-t-2 border-indigo-[#f3f3f4] w-[100%] mt-5"></div>
           <h1 className="text-[16px] font-[700] leading-[24px] text-center mt-16">
             You might also like
           </h1>
-          <div>
-            <Services />
-          </div>
+          <div>{/* <Services /> */}</div>
         </div>
       </div>
     </div>
