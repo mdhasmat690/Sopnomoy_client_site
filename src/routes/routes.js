@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../component/home/Home";
 import Services from "../component/home/services/Services";
+import ServicesByEmail from "../component/home/services/ServicesByEmail";
 import Video from "../component/home/video/Video";
 import PrivetRoute from "../component/privetRoute/PrivetRoute";
 import ForgetPassword from "../component/user/ForgetPassword";
@@ -53,6 +54,7 @@ const routes = createBrowserRouter([
       { path: "/hiringWorkType", element: <HiringWorkType /> },
       { path: "/hiringFreelance", element: <HiringFreelance /> },
       { path: "/emptyCreateAccout", element: <EmptyCreateAccout /> },
+      { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
     ],
   },
 ]);

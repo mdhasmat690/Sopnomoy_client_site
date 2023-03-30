@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillFileAdd } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
@@ -10,37 +10,51 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import SingleService from "../../../pages/services/SingleService";
 import PostFrelance from "../../../pages/hireDesginer/PostFrelance";
+import TestService from "../../../pages/services/TestService";
 
 function ServiceItem({ service }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
+    <TestService
+      isOpen={isOpen}
+      toggleDrawer={toggleDrawer}
+      // id={service._id}
+    />;
+  };
+  // console.log(service);
+
+  const [opened, setOpened] = useState(false);
+
+  const controlModal = () => {
+    setOpened((prevState) => !prevState);
   };
 
   const navigate = useNavigate();
   return (
     <div>
-      <>
-        <Drawer
-          open={isOpen}
-          onClose={toggleDrawer}
-          direction="bottom"
-          size={"95%"}
-          className="bla bla bla "
-          style={{ overflow: "auto" }}
-        >
-          <div>
-            <div className="w-[90%] my-2 flex justify-end">
-              <button onClick={toggleDrawer}>
-                <AiOutlineClose className="font-bold" />
-              </button>
+      {/* <>
+        {isOpen && (
+          <Drawer
+            open={isOpen}
+            onClose={toggleDrawer}
+            direction="bottom"
+            size={"95%"}
+            className="bla bla bla "
+            style={{ overflow: "auto" }}
+          >
+            <div>
+              <div className="w-[90%] my-2 flex justify-end">
+                <button onClick={toggleDrawer}>
+                  <AiOutlineClose className="font-bold" />
+                </button>
+              </div>
+              <SingleService id={service._id} />
             </div>
-            <SingleService id={service._id} />
-          </div>
-        </Drawer>
-      </>
-
+          </Drawer>
+        )}
+      </> */}
       <div className="relative flex items-center justify-center w-[100%] mx-auto   shadow-xl shadow-gray-400 rounded-xl group hover:bg-gradient-to-t from-[#335db8]  via-transparent to-transparent">
         <div>
           {/* <Link to={`/singleProduct/${service._id}`}> */}
@@ -75,7 +89,6 @@ function ServiceItem({ service }) {
           </div>
         </div>
       </div>
-
       <div className="flex justify-between mt-4 w-[70%] mx-auto">
         <div className="flex justify-around">
           <img
@@ -90,6 +103,19 @@ function ServiceItem({ service }) {
           <span>456</span>
         </div>
       </div>
+      <TestService
+        isOpen={isOpen}
+        toggleDrawer={toggleDrawer}
+        // id={service._id}
+      />
+      {/* {isOpen && (
+        <TestService
+          isOpen={isOpen}
+          toggleDrawer={toggleDrawer}
+          // id={service._id}
+        />
+      )} */}
+      {/* <SingleService open={isOpen} onClose={toggleDrawer} id={service._id} /> */}
     </div>
   );
 }

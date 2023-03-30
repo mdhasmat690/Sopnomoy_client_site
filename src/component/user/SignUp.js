@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { CirclesWithBar } from "react-loader-spinner";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { createUser, googleLogin } from "../../features/auth/authSlice";
 
 function SignUp() {
-  const { signInWithGoogle, createUserWithUserEmail, isLoading, user } =
-    useAuth();
+  const dispatch = useDispatch();
+  const { isLoading, success } = useSelector((state) => state.auth);
+
+  const {
+    signInWithGoogle,
+    createUserWithUserEmail,
+    isLoading: loading,
+    user,
+  } = useAuth();
   const {
     register,
     formState: { errors },
@@ -19,11 +28,11 @@ function SignUp() {
 
   const [reDir, setReDir] = useState();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
       .then((res) => res.json())
       .then((data) => setReDir(data.data));
-  }, [user.email]);
+  }, [user.email]); */
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,15 +44,20 @@ function SignUp() {
     }
   }; */
 
-  const googleLogin = () => {
-    signInWithGoogle(location, navigate, reDir);
+  const googleLoginHandle = () => {
+    dispatch(googleLogin());
   };
 
   const onSubmit = (data) => {
     const name = data.firstName + " " + data.lastName;
-    createUserWithUserEmail(data.mail, data.password, name, location, navigate);
+    console.log(data);
+    dispatch(createUser({ email: data.mail, password: data.password, name }));
     reset();
   };
+
+  if (success) {
+    navigate("/getStart");
+  }
 
   return (
     <div>
@@ -72,7 +86,7 @@ function SignUp() {
               </h1>
               <div className="mt-4 w-[270px] bg-[#1a73e8] hover:bg-[rgba(0,0,0,0.30)] rounded-sm">
                 <button
-                  onClick={googleLogin}
+                  onClick={googleLoginHandle}
                   className=" flex items-center justify-start "
                 >
                   <img
@@ -134,7 +148,7 @@ function SignUp() {
                   <div className="my-5 flex">
                     <div>
                       <input
-                        class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#4f3cc9] checked:border-blue-600 focus:outline-none   transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-[#4f3cc9]"
+                        className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#4f3cc9] checked:border-blue-600 focus:outline-none   transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-[#4f3cc9]"
                         value=""
                         type="checkbox"
                         {...register("term")}

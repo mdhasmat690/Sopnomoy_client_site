@@ -1,49 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useGetJobQuery } from "../../../features/services/servicesApi";
 import ServiceItem from "./ServiceItem";
-import { AiFillFileAdd } from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
-
-import Drawer from "react-modern-drawer";
-
-//import styles 👇
-import "react-modern-drawer/dist/index.css";
-import { Link } from "react-router-dom";
 
 function Services() {
-  const [services, setServices] = useState([]);
+  const { data, isError } = useGetJobQuery();
+  const services = data?.data;
 
-  const [isOpen, setIsOpen] = React.useState(false);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/tools/postProject")
-      .then((res) => res.json())
-      .then((data) => setServices(data?.data));
-  }, []);
-
-  if (!services.length) {
+  if (!services?.length) {
     return <>Loading</>;
   }
 
   return (
     <>
-      {/*  <>
-        <Drawer
-          open={isOpen}
-          onClose={toggleDrawer}
-          direction="bottom"
-          size={"95%"}
-          className="bla bla bla "
-          style={{ overflow: "auto" }}
-        >
-          <div>
-            <SingleService />
-          </div>
-        </Drawer>
-      </> */}
-
       <div id="projects" className="w-[90%] mx-auto">
         <div className=" w-[90%] mx-auto  py-5">
           <button>Popular</button>
@@ -51,7 +19,7 @@ function Services() {
         <div className="  mx-auto px-2 py-5">
           <div className="grid md:grid-cols-4 gap-6">
             {services?.map((service, index) => (
-              <ServiceItem service={service} />
+              <ServiceItem key={index} service={service} />
             ))}
           </div>
           <div className="flex items-center justify-center mt-10 mx-auto">

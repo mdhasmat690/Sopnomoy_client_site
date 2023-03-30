@@ -49,7 +49,7 @@ function PostFrelance() {
 
       .catch((err) => console.log("this is an error", err));
   };
-  console.log("object");
+  // console.log("object");
 
   return (
     <>

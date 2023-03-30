@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import Footer from "./component/home/Footer";
@@ -6,6 +8,8 @@ import ServiceItem from "./component/home/services/ServiceItem";
 import Services from "./component/home/services/Services";
 import Video from "./component/home/video/Video";
 import { AuthProvider } from "./contexts/AuthContext";
+import { checkAuthState } from "./features/auth/authSlice";
+import { useGetJobQuery } from "./features/services/servicesApi";
 import DesginProjects from "./pages/findwork/DesginProjects";
 import SingleService from "./pages/services/SingleService";
 import SingleStory from "./pages/stories/SingleStory";
@@ -15,6 +19,12 @@ import WarmUp from "./pages/warmUp/WarmUp";
 import routes from "./routes/routes";
 
 function App() {
+  const dispatch = useDispatch();
+  // const data = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
   return (
     <div>
       <AuthProvider>

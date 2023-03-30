@@ -34,7 +34,7 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        saveUser(user.email, user.displayName, "PUT");
+        //  saveUser(user.email, user.displayName, "PUT");
         setAuthError("");
 
         if (reDir) {
@@ -60,7 +60,7 @@ const useFirebase = () => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
+        // console.log(userCredential);
         navigate("/getStart");
         const user = userCredential.user;
         setUser(user);
@@ -68,7 +68,7 @@ const useFirebase = () => {
         const newUser = { email, displayName: name };
         setUser(newUser);
         verifyEmail();
-        saveUser(email, name, "POST");
+        //  saveUser(email, name, "POST");
 
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -129,29 +129,29 @@ const useFirebase = () => {
   };
 
   /* Observer user state */
-  useEffect(() => {
-    const unsubscribed = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
+  // useEffect(() => {
+  //   const unsubscribed = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
 
-        fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
-          .then((res) => res.json())
-          .then((data) => setReDir(data?.data));
+  //       fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
+  //         .then((res) => res.json())
+  //         .then((data) => setReDir(data?.data));
 
-        // setAdminLoading(true);
-        // fetch(`https://jerins-server-side.vercel.app/users/${user.email}`)
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     //  setAdmin(data.admin);
-        //     //setAdminLoading(false);
-        //   });
-      } else {
-        setUser({});
-      }
-      setIsLoading(false);
-    });
-    return unsubscribed;
-  }, []);
+  //       // setAdminLoading(true);
+  //       // fetch(`https://jerins-server-side.vercel.app/users/${user.email}`)
+  //       //   .then((res) => res.json())
+  //       //   .then((data) => {
+  //       //     //  setAdmin(data.admin);
+  //       //     //setAdminLoading(false);
+  //       //   });
+  //     } else {
+  //       setUser({});
+  //     }
+  //     setIsLoading(false);
+  //   });
+  //   return unsubscribed;
+  // }, []);
 
   /* Log out */
   const logOut = () => {
@@ -166,7 +166,7 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  const saveUser = (email, displayName, method) => {
+  /*   const saveUser = (email, displayName, method) => {
     const user = { displayName, email };
     fetch("http://localhost:5000/api/v1/tools/users", {
       method: method,
@@ -176,12 +176,12 @@ const useFirebase = () => {
       body: JSON.stringify(user),
     }).then();
   };
-
-  useEffect(() => {
+ */
+  /*   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
       .then((res) => res.json())
       .then((data) => setUserLocation(data));
-  }, [user.email]);
+  }, [user.email]); */
 
   return {
     createUserWithUserEmail,

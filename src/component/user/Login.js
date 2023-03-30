@@ -1,25 +1,40 @@
 import React from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { CirclesWithBar } from "react-loader-spinner";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { googleLogin, loginUser } from "../../features/auth/authSlice";
 
 function Login(props) {
-  const { signInPassword, isLoading } = useAuth();
+  const { isLoading, success } = useSelector((state) => state.auth);
+  const { signInPassword, isLoading: ll } = useAuth();
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
     control,
+    reset,
   } = useForm();
 
   const term = useWatch({ control, name: "term" });
 
   const onSubmit = (data) => {
-    signInPassword(data.mail, data.password);
+    dispatch(loginUser({ email: data.mail, password: data.password }));
+    reset();
+  };
+
+  const googleLoginHandle = () => {
+    dispatch(googleLogin());
   };
 
   const navigate = useNavigate();
+
+  if (success) {
+    navigate("/getStart");
+  }
 
   return (
     <>
@@ -47,7 +62,10 @@ function Login(props) {
                 Sign in to Dribbble
               </h1>
               <div className="mt-4 w-[270px] bg-[#1a73e8] rounded-sm">
-                <button className=" flex items-center justify-start ">
+                <button
+                  onClick={googleLoginHandle}
+                  className=" flex items-center justify-start "
+                >
                   <img
                     className="w-[36px] m-[2px] p-1 bg-white"
                     src="https://i.ibb.co/3pbVY1G/googleimg.png"

@@ -8,8 +8,8 @@ function NaveDrop() {
   const navigate = useNavigate();
   return (
     <>
-      {links.map((link) => (
-        <div className="text-[#6e6d7a] font-[500]">
+      {links.map((link, index) => (
+        <div key={index} className="text-[#6e6d7a] font-[500]">
           <div className="md:cursor-pointer group">
             <li
               className="p-4 flex justify-between items-center md:pr-0 pr-10 group hover:text-[black]"
@@ -32,8 +32,8 @@ function NaveDrop() {
                 <div className="shadow-md p-3 absolute hidden group-hover:md:block hover:md:block ">
                   {/* <div className="bg-white grid grid-cols-2 float-right gap-10"> */}
                   <div className="bg-white w-[400px] h-[300px] px-4    rounded ">
-                    {link.sublinks.map((mysublinks) => (
-                      <div className="flex flex-col py-2 group">
+                    {link.sublinks.map((mysublinks, index) => (
+                      <div key={index} className="flex flex-col py-2 group">
                         <div className="flex  items-center justify-between">
                           <div className="text-left">
                             <h1 className="text-[16px] text-black">
@@ -63,8 +63,8 @@ function NaveDrop() {
           `}
           >
             {/* sublinks */}
-            {link.sublinks.map((slinks) => (
-              <div>
+            {link.sublinks.map((slinks, index) => (
+              <div key={index}>
                 <div>
                   <h1
                     onClick={() =>

@@ -5,12 +5,21 @@ import { MdLocalPostOffice } from "react-icons/md";
 import Video from "./video/Video";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../features/auth/authSlice";
 
 const NaveBar = () => {
-  const { user, logOut, reDir } = useAuth();
+  const { email: user } = useSelector((state) => state?.auth?.user);
+
+  // const { user, logOut: log, reDir } = useAuth();
+  const dispatch = useDispatch();
   // console.log(user);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const userLogOut = () => {
+    dispatch(logOut());
+  };
 
   return (
     <nav className="bg-[white] xl:container mx-auto">
@@ -32,7 +41,7 @@ const NaveBar = () => {
         </div>
 
         <div className="md:block hidden">
-          {!user?.email ? (
+          {!user ? (
             <>
               <div className="flex items-center text-[#6e6d7a]">
                 <span className="mr-[-15px]">
@@ -55,13 +64,13 @@ const NaveBar = () => {
           ) : (
             <>
               <div className="flex items-center text-[#6e6d7a]">
-                <span onClick={() => logOut()} className="cursor-pointer ml-4">
+                <span onClick={userLogOut} className="cursor-pointer ml-4">
                   <img src="https://i.ibb.co/6F1fbGJ/svgexport-31.png" alt="" />
                 </span>
 
                 <img
                   className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
-                  src={reDir?.image}
+                  src="{reDir?.image}"
                   alt=""
                 />
                 <button

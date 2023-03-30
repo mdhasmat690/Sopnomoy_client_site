@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
+import { useUserRegisterMutation } from "../../features/auth/authApi";
 
 function GetStart(props) {
-  const { user } = useAuth();
+  const { email, name } = useSelector((state) => state?.auth?.user);
+  const [userRegister, { isLoading, isSuccess, isError, error }] =
+    useUserRegisterMutation();
+  console.log(error?.error);
+  const { user: us } = useAuth();
   //  console.log(user.displayName, user.email);
   const {
     register,
@@ -18,7 +24,12 @@ function GetStart(props) {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    fetch(`http://localhost:5000/api/v1/tools/${user.email}`, {
+    data.email = email;
+    data.displayName = name;
+
+    const finalData = data;
+    userRegister(finalData);
+    /*   fetch(`http://localhost:5000/api/v1/tools/${user.email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -26,11 +37,15 @@ function GetStart(props) {
       body: JSON.stringify(data),
     }).then((data) => {
       if (data.status === 200) {
-        reset();
         navigate(`/welcome`);
       }
-    });
+    }); */
+    // reset();
   };
+
+  if (isSuccess) {
+    navigate(`/welcome`);
+  }
 
   return (
     <div className="container mx-auto my-5">
@@ -78,10 +93,15 @@ function GetStart(props) {
                   {...register("companyName", {})}
                   placeholder="your company name"
                 />
+                {isError && (
+                  <span className="text-red-500">{error?.error}</span>
+                )}
               </div>
 
               <button
+                type="submit"
                 className={`text-white rounded-md w-[200px]  bg-[#ea4c89] p-2 cursor-pointer}`}
+                disabled={isLoading}
               >
                 Next
               </button>
