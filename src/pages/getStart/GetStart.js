@@ -10,7 +10,7 @@ function GetStart(props) {
   const { email, name } = useSelector((state) => state?.auth?.user);
   const [userRegister, { isLoading, isSuccess, isError, error }] =
     useUserRegisterMutation();
-  console.log(error?.error);
+
   const { user: us } = useAuth();
   //  console.log(user.displayName, user.email);
   const {

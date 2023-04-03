@@ -7,10 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/auth/authSlice";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
+import { FiLogOut } from "react-icons/fi";
 
 const NaveBar = () => {
   const { email: user } = useSelector((state) => state?.auth?.user);
 
+  const { data } = useGetUserDataQuery(user);
+
+  const userData = data?.data;
   // const { user, logOut: log, reDir } = useAuth();
   const dispatch = useDispatch();
   // console.log(user);
@@ -64,15 +69,53 @@ const NaveBar = () => {
           ) : (
             <>
               <div className="flex items-center text-[#6e6d7a]">
-                <span onClick={userLogOut} className="cursor-pointer ml-4">
-                  <img src="https://i.ibb.co/6F1fbGJ/svgexport-31.png" alt="" />
+                <span
+                  onClick={userLogOut}
+                  className="cursor-pointer ml-4 text-[24px]"
+                >
+                  <FiLogOut />
                 </span>
+                <div className="group">
+                  {userData?.image ? (
+                    <img
+                      className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
+                      src={userData.image}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
+                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      alt=""
+                    />
+                  )}
 
-                <img
-                  className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
-                  src="{reDir?.image}"
-                  alt=""
-                />
+                  {/*  */}
+                  <div>
+                    <div className="absolute top-15 hidden group-hover:md:block hover:md:block w-[100%] mr-30">
+                      <div className="py-2">
+                        <div
+                          className="w-4 h-4 left-9 mx-auto absolute 
+                         mt-1 rotate-45 bg-white  shadow-[-4px_-4px_3px_-3px_rgba(0,0,0,0.1)]"
+                        ></div>
+                      </div>
+                      {/* 
+                    --tw-shadow: 0 5px 16px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+                      
+                      */}
+                      <div
+                        style={{
+                          boxShadow:
+                            "0 5px 16px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+                        }}
+                        className="p-5 mr-10 bg-white"
+                      >
+                        <h1>eita amar shcool ei khane</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <button
                   onClick={() => navigate(`/login`)}
                   className="ml-5 text-white rounded-lg bg-[#ea4c89] p-2 "

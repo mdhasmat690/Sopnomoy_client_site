@@ -1,30 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { useSelector } from "react-redux";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
+import ServiceLodear from "../../pages/ui/ServiceLodear";
 
 const PrivetRoute = ({ children }) => {
-  const { user, isLoading } = useAuth();
+  const { email: userEmail } = useSelector((state) => state?.auth?.user);
+  const { isLoading } = useGetUserDataQuery(userEmail);
+
+  const isLogin = useAuth();
+
   let location = useLocation();
 
   if (isLoading) {
     return (
-      <div className="mt-4 mb-5">
-        {" "}
-        <ColorRing
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="blocks-loading"
-          wrapperStyle={{}}
-          wrapperClass="blocks-wrapper"
-          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-        />
+      <div>
+        <ServiceLodear />
       </div>
     );
   }
 
-  if (user.email) {
+  if (isLogin) {
     return children;
   }
 
