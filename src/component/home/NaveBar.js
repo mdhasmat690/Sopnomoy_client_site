@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import NaveDrop from "./NaveDrop";
 import { FiArrowRightCircle } from "react-icons/fi";
-import { MdLocalPostOffice } from "react-icons/md";
+import { BsSearch } from "react-icons/bs";
+import { AiFillFolderAdd, AiFillStar } from "react-icons/ai";
+import {
+  MdFavorite,
+  MdLocalPostOffice,
+  MdLogin,
+  MdShowChart,
+} from "react-icons/md";
 import Video from "./video/Video";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -49,8 +56,8 @@ const NaveBar = () => {
           {!user ? (
             <>
               <div className="flex items-center text-[#6e6d7a]">
-                <span className="mr-[-15px]">
-                  <FiArrowRightCircle className="w-12" />
+                <span className="mr-[-15px] cursor-pointer text-[20px]">
+                  <MdLogin className="w-12" />
                 </span>
                 <button
                   onClick={() => navigate(`/login`)}
@@ -90,27 +97,91 @@ const NaveBar = () => {
                     />
                   )}
 
-                  {/*  */}
-                  <div>
-                    <div className="absolute top-15 hidden group-hover:md:block hover:md:block w-[100%] mr-30">
+                  <div className=" ">
+                    <div className="absolute top-15 hidden group-hover:md:block hover:md:block ml-[-80px]">
                       <div className="py-2">
                         <div
-                          className="w-4 h-4 left-9 mx-auto absolute 
+                          className="w-4 h-4 left-28 mx-auto absolute 
                          mt-1 rotate-45 bg-white  shadow-[-4px_-4px_3px_-3px_rgba(0,0,0,0.1)]"
                         ></div>
                       </div>
-                      {/* 
-                    --tw-shadow: 0 5px 16px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-                      
-                      */}
                       <div
                         style={{
                           boxShadow:
                             "0 5px 16px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
                         }}
-                        className="p-5 mr-10 bg-white"
+                        className="p-5 mr-10 bg-white rounded-md w-[100%]"
                       >
-                        <h1>eita amar shcool ei khane</h1>
+                        <div className="border border-indigo-[#f3f3f4] rounded-lg p-6 w-[97%] mt-5 mx-auto shadow-lg text-center">
+                          <button className="bg-[#f3f3f4] w-[140px] p-1 text-[14px] text-[#4d44c6] uppercase font-[400] rounded-lg mb-3">
+                            Limited Account
+                          </button>
+                          <div className="w-[105%] mx-auto mb-1">
+                            <h1 className="text-[14px] text-[#3d3d4e] ">
+                              Get a free Designer Account to access all
+                              features.
+                            </h1>
+                          </div>
+                          <h3 className="text-[14px] font-[400] leading-[20px] text-[#ea4c89] underline cursor-pointer">
+                            Learn more
+                          </h3>
+                        </div>
+                        <div className="w-[90%] mx-auto">
+                          <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
+                            Profile
+                          </h1>
+                          <hr className="text-[#e7e7e9]" />
+                          <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
+                            Edit Profile
+                          </h1>
+                          <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
+                            Edit Work Preferences
+                          </h1>
+                          <hr className="text-[#e7e7e9]" />
+
+                          <div className="flex items-center cursor-pointer">
+                            <span className="mr-3 text-[#6e6d7a] text-[14px] font-bold">
+                              {" "}
+                              <MdShowChart />
+                            </span>
+                            <h1 className="text-[#6e6d7a] text-[14px] my-3">
+                              My Boosted Shots
+                            </h1>
+                          </div>
+
+                          <div className="flex items-center cursor-pointer">
+                            <span className="mr-3 text-[#6e6d7a] text-[18px] font-bold">
+                              <MdFavorite />
+                            </span>
+                            <h1 className="text-[#6e6d7a] text-[14px]">
+                              My Likes
+                            </h1>
+                          </div>
+                          <div className="flex items-center cursor-pointer">
+                            <span className="mr-3 text-[#6e6d7a] text-[18px] font-bold">
+                              <AiFillFolderAdd />
+                            </span>
+                            <h1 className="text-[#6e6d7a] text-[14px] my-3">
+                              My Collections
+                            </h1>
+                          </div>
+                          <div className="flex items-center cursor-pointer">
+                            <span className="mr-3 text-[#ea4c89] text-[18px] font-bold">
+                              <AiFillStar />
+                            </span>
+                            <h1 className="text-[#6e6d7a] text-[15px]">
+                              Go Pro
+                            </h1>
+                          </div>
+                          <hr className="text-[#e7e7e9] mb-3 mt-4" />
+                          <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
+                            Account Settings
+                          </h1>
+
+                          <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
+                            Sign Out
+                          </h1>
+                        </div>
                       </div>
                     </div>
                   </div>

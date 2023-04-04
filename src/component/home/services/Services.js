@@ -2,8 +2,11 @@ import React from "react";
 import { useGetServicesQuery } from "../../../features/services/servicesApi";
 import ServiceItem from "./ServiceItem";
 import ServiceLodear from "../../../pages/ui/ServiceLodear";
+import { useSelector } from "react-redux";
 
 function Services() {
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const { data, isLoading, isError } = useGetServicesQuery();
   const services = data?.data;
 
@@ -46,13 +49,17 @@ function Services() {
         <div className="mx-auto px-2 py-5">
           <div className="grid md:grid-cols-4 gap-6">{content}</div>
           <div className="flex items-center justify-center mt-10 mx-auto">
-            <button className="ml-5 w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
-              Sign Up To Continue
-            </button>
-
-            <button className="text-[#ea4c89] hover:text-[#f082ac] ml-10">
-              Or Sign In
-            </button>
+            {!user?.email && (
+              <>
+                {" "}
+                <button className="ml-5 w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
+                  Sign Up To Continue
+                </button>
+                <button className="text-[#ea4c89] hover:text-[#f082ac] ml-10">
+                  Or Sign In
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
