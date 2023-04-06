@@ -97,7 +97,7 @@ const NaveBar = () => {
                     />
                   )}
 
-                  <div className=" ">
+                  <div className="absolute  z-10">
                     <div className="absolute top-15 hidden group-hover:md:block hover:md:block ml-[-80px]">
                       <div className="py-2">
                         <div

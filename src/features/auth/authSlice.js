@@ -13,7 +13,7 @@ import auth from "../../firebase/firebase.config";
 
 const initialState = {
   user: { email: "", name: "" },
-  isLoading: false,
+  isLoading: true,
   // isError: false,
   success: false,
   error: "",
@@ -130,19 +130,23 @@ const authSlice = createSlice({
       })
 
       .addCase(checkAuthState.pending, (state) => {
+        state.isLoading = true;
         state.error = "";
       })
       .addCase(checkAuthState.fulfilled, (state, { payload }) => {
         if (payload) {
+          state.isLoading = false;
           state.user.email = payload.email;
           state.user.name = payload.displayName;
         } else {
+          state.isLoading = false;
           state.user.email = "";
           state.user.name = "";
         }
       })
       .addCase(checkAuthState.rejected, (state, action) => {
         state.error = action.error.message;
+        state.isLoading = false;
       })
 
       //

@@ -5,17 +5,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { createUser, googleLogin } from "../../features/auth/authSlice";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
 
 function SignUp() {
   const dispatch = useDispatch();
-  const { isLoading, success } = useSelector((state) => state.auth);
+  const { user, isLoading, success } = useSelector((state) => state.auth);
 
+  const userEmail = user?.email;
   const {
-    signInWithGoogle,
-    createUserWithUserEmail,
-    isLoading: loading,
-    user,
-  } = useAuth();
+    data,
+    isLoading: userFetchIsloading,
+    isSuccess,
+    fulfilledTimeStamp,
+    isFetching,
+  } = useGetUserDataQuery(userEmail);
+
+  // console.log(data, isLoading, isSuccess, fulfilledTimeStamp, isFetching);
+  /* {success: true, data: {…}} false true 1680769336709 false correct */
+  /*                  undefined false false undefined false */
   const {
     register,
     formState: { errors },
@@ -26,23 +33,8 @@ function SignUp() {
 
   const term = useWatch({ control, name: "term" });
 
-  const [reDir, setReDir] = useState();
-
-  /*   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/tools/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setReDir(data.data));
-  }, [user.email]); */
-
   const location = useLocation();
   const navigate = useNavigate();
-
-  /*   const re = () => {
-    if (reDir) {
-      console.log(reDir.location);
-      navigate(reDir?.location ? "/getStart" : location?.state?.from || "/");
-    }
-  }; */
 
   const googleLoginHandle = () => {
     dispatch(googleLogin());
@@ -50,13 +42,16 @@ function SignUp() {
 
   const onSubmit = (data) => {
     const name = data.firstName + " " + data.lastName;
-    console.log(data);
+
     dispatch(createUser({ email: data.mail, password: data.password, name }));
     reset();
   };
 
-  if (success) {
-    navigate("/getStart");
+  if (user?.email) {
+    if (isSuccess || data?.data || userFetchIsloading) {
+      navigate(!data ? "/getStart" : location?.state?.from || "/");
+      console.log(data);
+    }
   }
 
   return (

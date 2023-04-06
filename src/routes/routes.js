@@ -48,8 +48,19 @@ const routes = createBrowserRouter([
       { path: "/signUp", element: <SignUp /> },
       { path: "/login", element: <Login /> },
       { path: "/forgetPassword", element: <ForgetPassword /> },
-      { path: "/postFrelance", element: <PostFrelance /> },
-      { path: "/getStart", element: <GetStart /> },
+      {
+        path: "/postFrelance",
+        element: <PostFrelance />,
+      },
+      {
+        path: "/getStart",
+        element: (
+          <PrivetRoute>
+            {" "}
+            <GetStart />
+          </PrivetRoute>
+        ),
+      },
       { path: "/welcome", element: <Welcome /> },
       { path: "/hiringWorkType", element: <HiringWorkType /> },
       { path: "/hiringFreelance", element: <HiringFreelance /> },

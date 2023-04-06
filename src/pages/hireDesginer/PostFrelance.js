@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
 import EmptyCreateAccout from "../getStart/EmptyCreateAccout";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
+import { useSelector } from "react-redux";
 
 function PostFrelance() {
+  const { email } = useSelector((state) => state?.auth?.user);
+  const { data: user } = useGetUserDataQuery(email);
   const navigate = useNavigate();
-  const { reDir, user } = useAuth();
+  const { reDir } = useAuth();
   const {
     register,
     formState: { errors },
@@ -16,7 +20,7 @@ function PostFrelance() {
     reset,
   } = useForm();
 
-  if (!reDir?.location) {
+  if (!user) {
     return <EmptyCreateAccout />;
   }
 

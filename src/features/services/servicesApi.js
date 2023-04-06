@@ -7,6 +7,11 @@ const jobApi = apiSlice.injectEndpoints({
         url: "/postProject",
       }),
     }),
+    getGroupProjects: builder.query({
+      query: (name) => ({
+        url: `/getProjectType?name=${name}`,
+      }),
+    }),
     getSingleServices: builder.query({
       query: (id) => ({
         url: `/postProject/${id}`,
@@ -24,4 +29,5 @@ export const {
   useGetServicesQuery,
   useGetSingleServicesQuery,
   useGetRelatedServicesQuery,
+  useGetGroupProjectsQuery,
 } = jobApi;

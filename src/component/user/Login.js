@@ -2,14 +2,29 @@ import React from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { CirclesWithBar } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { googleLogin, loginUser } from "../../features/auth/authSlice";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
 
 function Login(props) {
-  const { isLoading, success } = useSelector((state) => state.auth);
-  const { signInPassword, isLoading: ll } = useAuth();
+  const { user, isLoading, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const userEmail = user?.email;
+
+  const {
+    data,
+    isLoading: userFetchIsloading,
+    isSuccess,
+    fulfilledTimeStamp,
+    isFetching,
+  } = useGetUserDataQuery(userEmail);
+
+  const location = useLocation();
+  let navigate = useNavigate();
+
+  // console.log(userFetchIsloading, isSuccess, "last try");
 
   const {
     register,
@@ -30,10 +45,10 @@ function Login(props) {
     dispatch(googleLogin());
   };
 
-  const navigate = useNavigate();
-
-  if (success) {
-    navigate("/getStart");
+  if (user?.email) {
+    if (isSuccess || data?.data || userFetchIsloading) {
+      navigate(!data?.data ? "/getStart" : location?.state?.from || "/");
+    }
   }
 
   return (

@@ -7,9 +7,10 @@ import { useGetUserDataQuery } from "../../features/auth/authApi";
 import ServiceLodear from "../../pages/ui/ServiceLodear";
 
 const PrivetRoute = ({ children }) => {
-  const { email: userEmail } = useSelector((state) => state?.auth?.user);
-  const { isLoading } = useGetUserDataQuery(userEmail);
-
+  const { user, isLoading } = useSelector((state) => state?.auth);
+  const userEmail = user?.email;
+  const { data } = useGetUserDataQuery(userEmail);
+  // console.log();
   const isLogin = useAuth();
 
   let location = useLocation();
@@ -22,7 +23,7 @@ const PrivetRoute = ({ children }) => {
     );
   }
 
-  if (isLogin) {
+  if (userEmail) {
     return children;
   }
 

@@ -8,8 +8,6 @@ import "react-modern-drawer/dist/index.css";
 import SingleService from "../../../pages/services/SingleService";
 
 function ServiceItem({ service }) {
-  console.log(service);
-
   return (
     <div>
       <div className="relative flex items-center justify-center w-[100%] mx-auto   shadow-xl shadow-gray-400 rounded-xl group hover:bg-gradient-to-t from-[#335db8]  via-transparent to-transparent">
