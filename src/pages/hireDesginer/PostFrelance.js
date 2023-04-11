@@ -6,8 +6,11 @@ import { useAuth } from "../../contexts/AuthContext";
 import EmptyCreateAccout from "../getStart/EmptyCreateAccout";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import { useSelector } from "react-redux";
+import { usePostProjectMutation } from "../../features/services/servicesApi";
 
 function PostFrelance() {
+  const [postProject, { isError, isLoading, isSuccess, error }] =
+    usePostProjectMutation();
   const { email } = useSelector((state) => state?.auth?.user);
   const { data: user } = useGetUserDataQuery(email);
   const navigate = useNavigate();
@@ -28,32 +31,24 @@ function PostFrelance() {
   const formattedDate = currentDate.toLocaleString();
 
   const onSubmit = (data) => {
-    console.log(data);
     data.time = formattedDate;
     const doc = data;
-    fetch("http://localhost:5000/api/v1/tools/postProject", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(doc),
-    })
-      .then((data) => {
-        if (data.status === 200) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your new service added",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          reset();
-        }
-      })
 
-      .catch((err) => console.log("this is an error", err));
+    postProject(doc);
+    reset();
   };
-  // console.log("object");
+
+  if (isSuccess) {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your new service added",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
+  console.log(error?.error);
 
   return (
     <>
@@ -70,7 +65,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Product Name</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("productName")}
                   required
                 />
@@ -78,7 +73,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Agency Name</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("agencyName")}
                   required
                 />
@@ -86,7 +81,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Image Url</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("imgUrl")}
                   required
                 />
@@ -95,7 +90,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Artist</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("artist")}
                   required
                 />
@@ -103,7 +98,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Description Tittle</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("Tittle")}
                   required
                 />
@@ -111,7 +106,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Post Description</label>
                 <textarea
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("description")}
                   required
                 />
@@ -119,14 +114,14 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">More Details</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("Details")}
                 />
               </div>
               <div className="my-6">
                 <label className="font-bold ">Contact Tittle</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid  focus:bg-white p-2 w-[100%]"
                   {...register("contact")}
                   required
                 />
@@ -134,7 +129,7 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Email</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("email")}
                   required
                 />
@@ -142,14 +137,14 @@ function PostFrelance() {
               <div className="my-6">
                 <label className="font-bold ">Links</label>
                 <input
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[100%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
                   {...register("link")}
                 />
               </div>
 
               <div>
                 <select
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid focus:border-[1px] border-[#ea4c89] focus:bg-white p-2 w-[35%]"
+                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[35%]"
                   {...register("projectType")}
                 >
                   <option value="web">Web Development</option>
@@ -158,13 +153,15 @@ function PostFrelance() {
                   <option value="Grapch Designer">Grapch Designer</option>
                 </select>
               </div>
-
+              <div className="mt-5 ">
+                {error && <h1 className="text-red-400">{error?.error}</h1>}
+              </div>
               <button
-                className={`text-white rounded-md w-[270px] mt-5 bg-[#ea4c89] p-2   
+                className={`text-white rounded-md w-[270px]  bg-[#ea4c89] p-2   
                     cursor-pointer`}
                 type="submit"
               >
-                Sign Up
+                Post Project
               </button>
             </form>
           </div>

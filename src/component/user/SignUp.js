@@ -48,9 +48,11 @@ function SignUp() {
   };
 
   if (user?.email) {
+    if (location?.state?.from) {
+      return navigate(location?.state?.from || "/");
+    }
     if (isSuccess || data?.data || userFetchIsloading) {
       navigate(!data ? "/getStart" : location?.state?.from || "/");
-      console.log(data);
     }
   }
 

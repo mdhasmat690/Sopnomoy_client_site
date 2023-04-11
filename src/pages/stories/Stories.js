@@ -58,15 +58,17 @@ function Stories() {
                   </p>
                 </div>
               </div>
-              <div className="border-t-2 border-indigo-[#f3f3f4] w-[100%] my-5"></div>
-              <div className=" flex">
+
+              <hr className="my-5" />
+              {/*  */}
+              <div className="grid md:grid-cols-5 gap-4">
                 <img
                   src="https://cdn.dribbble.com/uploads/43144/original/3c0b815faaccefbb2c55009848996fde.png?1670361214"
                   alt=""
-                  className="w-[35%] rounded-md mr-5"
+                  className="w-[100%] rounded-md col-span-1"
                 />
 
-                <div>
+                <div className="col-span-4">
                   <span className="text-[#dbdbde] text-[14] font-[500]">
                     DEC 13, 2022
                   </span>

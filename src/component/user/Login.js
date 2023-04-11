@@ -24,8 +24,6 @@ function Login(props) {
   const location = useLocation();
   let navigate = useNavigate();
 
-  // console.log(userFetchIsloading, isSuccess, "last try");
-
   const {
     register,
     formState: { errors },
@@ -45,9 +43,14 @@ function Login(props) {
     dispatch(googleLogin());
   };
 
+  console.log(location?.state?.from, "eita state");
+
   if (user?.email) {
+    if (location?.state?.from) {
+      return navigate(location?.state?.from || "/");
+    }
     if (isSuccess || data?.data || userFetchIsloading) {
-      navigate(!data?.data ? "/getStart" : location?.state?.from || "/");
+      navigate(!data ? "/getStart" : location?.state?.from || "/");
     }
   }
 
