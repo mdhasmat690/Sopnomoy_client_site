@@ -33,23 +33,28 @@ const conversationApi = apiSlice.injectEndpoints({
       },
     }),
 
-    /*  */
-    /*   addConversation: builder.mutation({
-      query: ({ sender, data }) => ({
-        url: "/conversations",
-        method: "POST",
+    editConversation: builder.mutation({
+      query: ({ id, data, sender }) => ({
+        url: `/createConverSion/${id}`,
+        method: "PATCH",
         body: data,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const conversation = await queryFulfilled;
-        if (conversation?.data?.id) {
-          silent entry to message table
-          const users = arg.data.users;
-          const senderUser = users.find((user) => user.email === arg.sender);
-          const receiverUser = users.find((user) => user.email !== arg.sender);
-            dispatch(
-            messagesApi.endpoints.addMessage.initiate({
-              conversationId: conversation?.data?.id,
+        const conversion = await queryFulfilled;
+        const { success } = conversion?.data;
+        // console.log(arg?.id);
+        if (success) {
+          const users = arg?.data?.users;
+          const senderUser = users.find(
+            (user) => user.email === arg?.sender?.email
+          );
+          const receiverUser = users.find(
+            (user) => user.email !== arg?.sender?.email
+          );
+
+          dispatch(
+            messagesApi.endpoints.postMessage.initiate({
+              conversationId: arg?.id,
               sender: senderUser,
               receiver: receiverUser,
               message: arg.data.message,
@@ -58,9 +63,8 @@ const conversationApi = apiSlice.injectEndpoints({
           );
         }
       },
-    }), */
-    /*  */
-
+    }),
+    /* 643520029b06bac449ac437b  643520029b06bac449ac437b */
     conversion: builder.query({
       query: ({ user, serviceUser }) => ({
         url: `/createConverSion?email=${user}-${serviceUser}`,
@@ -78,4 +82,5 @@ export const {
   useAddConversationMutation,
   useConversionQuery,
   useGetConversionsQuery,
+  useEditConversationMutation,
 } = conversationApi;

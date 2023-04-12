@@ -22,6 +22,8 @@ import SingleStory from "../pages/stories/SingleStory";
 import Stories from "../pages/stories/Stories";
 import LarnMore from "../pages/warmUp/LarnMore";
 import WarmUp from "../pages/warmUp/WarmUp";
+import Dashboard from "../component/chating/Dashboard";
+import ChatUi from "../component/chating/ChatUi";
 
 const routes = createBrowserRouter([
   {
@@ -38,6 +40,7 @@ const routes = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+
       { path: "/blog", element: <Stories /> },
       { path: "/blog/:id", element: <SingleStory /> },
       { path: "/warmUp", element: <WarmUp /> },
@@ -66,6 +69,18 @@ const routes = createBrowserRouter([
       { path: "/hiringFreelance", element: <HiringFreelance /> },
       { path: "/emptyCreateAccout", element: <EmptyCreateAccout /> },
       { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
+      // { path: "/message/:id", element: <Dashboard /> },
+    ],
+  },
+
+  {
+    element: <ChatUi />,
+    children: [
+      { path: "/", element: <Home /> },
+      {
+        path: "/message/:id",
+        element: <Dashboard />,
+      },
     ],
   },
 ]);

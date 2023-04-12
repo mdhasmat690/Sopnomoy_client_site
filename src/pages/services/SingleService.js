@@ -22,6 +22,7 @@ import { IoIosClose } from "react-icons/io";
 import {
   useAddConversationMutation,
   useConversionQuery,
+  useEditConversationMutation,
 } from "../../features/conversions/converionsApi";
 
 const customStyles = {
@@ -47,6 +48,8 @@ function SingleService() {
   const [addconversion, { isLoading: conversionLoading }] =
     useAddConversationMutation();
 
+  const [editConversation, {}] = useEditConversationMutation();
+
   const service = data?.data;
   const { data: loginUserData } = useGetUserDataQuery(user);
   const loginUser = loginUserData?.data;
@@ -58,6 +61,8 @@ function SingleService() {
     user: loginUser?.email,
     serviceUser: servicesUser?.email,
   });
+
+  console.log(conversionData?.result[0]?._id);
 
   const {
     register,
@@ -101,7 +106,17 @@ function SingleService() {
   const onSubmit = (message) => {
     if (loginUser?.email && servicesUser?.email) {
       if (conversionData?.result.length > 0) {
-        console.log(conversionData?.result.length);
+        console.log("edit post");
+        editConversation({
+          id: conversionData?.result[0]?._id,
+          sender: loginUser,
+          data: {
+            participants: `${loginUser?.email}-${servicesUser?.email}`,
+            users: [loginUser, servicesUser],
+            message: message?.message,
+            timestamp: new Date().getTime(),
+          },
+        });
       } else if (conversionData?.result.length === 0) {
         console.log("test case");
         addconversion({
