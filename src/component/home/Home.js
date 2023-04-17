@@ -7,7 +7,7 @@ function Home(props) {
   return (
     <div>
       <Video />
-      <ChatUi />
+
       <Services />
     </div>
   );

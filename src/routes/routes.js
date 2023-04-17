@@ -69,17 +69,15 @@ const routes = createBrowserRouter([
       { path: "/hiringFreelance", element: <HiringFreelance /> },
       { path: "/emptyCreateAccout", element: <EmptyCreateAccout /> },
       { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
-      // { path: "/message/:id", element: <Dashboard /> },
-    ],
-  },
-
-  {
-    element: <ChatUi />,
-    children: [
-      { path: "/", element: <Home /> },
+      { path: "/inbox", element: <ChatUi /> },
       {
-        path: "/message/:id",
-        element: <Dashboard />,
+        element: <ChatUi />,
+        children: [
+          {
+            path: "/message/:id",
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },

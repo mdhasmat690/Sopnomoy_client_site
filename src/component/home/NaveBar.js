@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NaveDrop from "./NaveDrop";
 import { FiArrowRightCircle } from "react-icons/fi";
-import { BsSearch } from "react-icons/bs";
+import { BiMessageAltDots } from "react-icons/bi";
 import { AiFillFolderAdd, AiFillStar } from "react-icons/ai";
 import {
   MdFavorite,
@@ -10,7 +10,7 @@ import {
   MdShowChart,
 } from "react-icons/md";
 import Video from "./video/Video";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/auth/authSlice";
@@ -157,6 +157,7 @@ const NaveBar = () => {
                               My Likes
                             </h1>
                           </div>
+
                           <div className="flex items-center cursor-pointer">
                             <span className="mr-3 text-[#6e6d7a] text-[18px] font-bold">
                               <AiFillFolderAdd />
@@ -165,6 +166,18 @@ const NaveBar = () => {
                               My Collections
                             </h1>
                           </div>
+
+                          <Link to="inbox">
+                            <div className="flex items-center cursor-pointer">
+                              <span className="mr-3 text-[#6e6d7a] text-[18px] font-bold">
+                                <BiMessageAltDots />
+                              </span>
+                              <h1 className="text-[#6e6d7a] text-[14px] mb-2">
+                                Inbox
+                              </h1>
+                            </div>
+                          </Link>
+
                           <div className="flex items-center cursor-pointer">
                             <span className="mr-3 text-[#ea4c89] text-[18px] font-bold">
                               <AiFillStar />

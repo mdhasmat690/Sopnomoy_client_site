@@ -2,6 +2,11 @@ import { apiSlice } from "../api/apiSlice";
 
 export const messagesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getMessages: builder.query({
+      query: (id) => ({
+        url: `/message/${id}`,
+      }),
+    }),
     postMessage: builder.mutation({
       query: (data) => ({
         url: "/message",
@@ -12,7 +17,7 @@ export const messagesApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { usePostMessageMutation } = messagesApi;
+export const { usePostMessageMutation, useGetMessagesQuery } = messagesApi;
 
 /* import { apiSlice } from "../api/apiSlice";
 

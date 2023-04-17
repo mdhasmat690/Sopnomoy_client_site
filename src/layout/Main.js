@@ -8,15 +8,6 @@ function Main(props) {
   return (
     <div>
       <NaveBar />
-      {/* <br />
-      <br />
-      <br />
-      <br />
-      <JobBoards />
-      <br />
-      <br />
-      <br />
-      <br /> */}
       <div>
         <Outlet />
       </div>

@@ -70,25 +70,25 @@ function ChatUi() {
 
   return (
     <>
-      <NaveBar />
+      {/* <NaveBar /> */}
       {/*   <br />
       <br />
       <br />
-      <br /> */}
-      <div className="bg-[pink]">
-        <div className="border-t border-indigo-[#f3f3f4] w-[100%]   mb-10 "></div>
+    <br /> */}
+      <div className="border-t border-indigo-[#f3f3f4] w-[100%]  "></div>
+      <div className="bg-[pink] py-5">
         <div className="w-[90%] mx-auto">
           <div className=" font-serif py-4 text-[29px] font-bold flex justify-center w-[90%]">
             <h1>Inbox</h1>
           </div>
           <div className="  flex lg:grid lg:grid-cols-3 rounded-md">
-            <div className="w-[100px]  lg:col-span-1 md:w-full bg-[#fffcfc]">
+            <div className="w-[100px]  lg:col-span-1 md:w-full ">
               <div className="overflow-auto h-[calc(100vh_-_129px)]">
                 {content}
               </div>
               {/* <Blank /> */}
             </div>
-            <div className="w-full lg:col-span-2 lg:block ">
+            <div className="w-full lg:col-span-2 lg:block border-l border-indigo-[#f3f3f4]">
               {/*  <div className="relative w-full h-[calc(100vh_-_197px)] p-6 overflow-y-auto flex flex-col-reverse bg-[pink]">
               <ul className="space-y-2">
                 <li className={`flex justify-end`}>
@@ -118,9 +118,9 @@ function ChatUi() {
             </div>
             {/*  */}
           </div>
-          <Footer />
         </div>
       </div>
+      {/* <Footer /> */}
     </>
   );
 }
