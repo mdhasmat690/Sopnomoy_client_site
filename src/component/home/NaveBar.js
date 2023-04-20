@@ -113,7 +113,7 @@ const NaveBar = () => {
                         className="p-5 mr-10 bg-white rounded-md w-[100%]"
                       >
                         <div className="border border-indigo-[#f3f3f4] rounded-lg p-6 w-[97%] mt-5 mx-auto shadow-lg text-center">
-                          <button className="bg-[#f3f3f4] w-[140px] p-1 text-[14px] text-[#4d44c6] uppercase font-[400] rounded-lg mb-3">
+                          <button className="bg-[rgba(77,68,198,0.1)] w-[140px] p-1 text-[14px] text-[#4d44c6] uppercase font-[400] rounded-lg mb-3">
                             Limited Account
                           </button>
                           <div className="w-[105%] mx-auto mb-1">

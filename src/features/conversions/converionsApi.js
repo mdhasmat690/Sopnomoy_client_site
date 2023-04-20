@@ -7,6 +7,7 @@ const conversationApi = apiSlice.injectEndpoints({
       query: (email) => ({
         url: `/createConverSions/allConversion?email=${email}`,
       }),
+      providesTags: ["conversionPost"],
     }),
     addConversation: builder.mutation({
       query: ({ sender, data }) => ({
@@ -45,20 +46,6 @@ const conversationApi = apiSlice.injectEndpoints({
         body: data,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        const patchRes = dispatch(
-          apiSlice.util.updateQueryData(
-            "getConversions",
-            arg.sender,
-
-            (draft) => {
-              console.log(draft);
-              const draftConversation = draft.find((c) => c.id == arg.id);
-              console.log(draftConversation);
-              draftConversation.message = arg.data.message;
-              draftConversation.timestamp = arg.data.timestamp;
-            }
-          )
-        );
         try {
           const conversion = await queryFulfilled;
           const { success } = conversion?.data;
@@ -71,7 +58,7 @@ const conversationApi = apiSlice.injectEndpoints({
               (user) => user.email !== arg?.sender?.email
             );
 
-            const res = dispatch(
+            dispatch(
               messagesApi.endpoints.postMessage.initiate({
                 conversationId: arg?.id,
                 sender: senderUser,
@@ -80,35 +67,21 @@ const conversationApi = apiSlice.injectEndpoints({
                 timestamp: arg.data.timestamp,
               })
             ).unwrap();
-
-            // update messages cache pessimistically start
-            dispatch(
-              apiSlice.util.updateQueryData(
-                "getMessages",
-                res.conversationId.toString(),
-                (draft) => {
-                  console.log(draft);
-                }
-              )
-            );
-            // update messages cache pessimistically end
           }
         } catch (error) {
-          patchRes.undo();
+          console.log(error);
+        } finally {
+          dispatch(
+            apiSlice.util.invalidateTags(["messagePost", "conversionPost"])
+          );
         }
       },
     }),
-    /* 643520029b06bac449ac437b  643520029b06bac449ac437b */
     conversion: builder.query({
       query: ({ user, serviceUser }) => ({
         url: `/createConverSion?email=${user}-${serviceUser}`,
       }),
     }),
-    /*    getConversions: builder.query({
-      query: (email) => ({
-        url: `/createConverSions/allConversion?email=${email}`,
-      }),
-    }), */
   }),
 });
 

@@ -6,6 +6,7 @@ export const messagesApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/message/${id}`,
       }),
+      providesTags: ["messagePost"],
     }),
     postMessage: builder.mutation({
       query: (data) => ({

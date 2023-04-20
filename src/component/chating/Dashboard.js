@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoIosSend } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import NaveBar from "../home/NaveBar";
@@ -10,6 +10,8 @@ import {
   useEditConversationMutation,
 } from "../../features/conversions/converionsApi";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
+import { io } from "socket.io-client";
+import ChatRoom from "./ChatRoom";
 
 function Dashboard() {
   const { email: user } = useSelector((state) => state?.auth?.user);
@@ -17,6 +19,14 @@ function Dashboard() {
   const { data } = useGetMessagesQuery(id);
   const [editConversation, {}] = useEditConversationMutation();
   const messages = data?.result;
+
+  const socket = io("http://localhost:5000");
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Connected to server!");
+    });
+  }, [socket]);
 
   const { data: loginUserData } = useGetUserDataQuery(user);
   // const loginUser = loginUserData?.data;
@@ -55,8 +65,6 @@ function Dashboard() {
       ? userInformation.receiver
       : userInformation.sender;
 
-  // console.log(sender?.email);
-
   const onSubmit = (message) => {
     editConversation({
       id: userInformation?.conversationId,
@@ -85,7 +93,7 @@ function Dashboard() {
               const { message: lastMessage, id, sender } = message || {};
 
               return (
-                <h1
+                <li
                   key={id}
                   className={`  flex ${
                     sender.email !== user ? "justify-start" : "justify-end"
@@ -94,7 +102,7 @@ function Dashboard() {
                   <div className=" max-w-xl px-4 py-2 text-gray-700 rounded shadow">
                     <span className="block">{message?.message}</span>
                   </div>
-                </h1>
+                </li>
               );
             })}
 
@@ -132,6 +140,11 @@ function Dashboard() {
             </button>
           </div>
         </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <ChatRoom />
       </div>
     </>
   );

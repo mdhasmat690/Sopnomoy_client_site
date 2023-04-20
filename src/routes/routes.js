@@ -24,6 +24,10 @@ import LarnMore from "../pages/warmUp/LarnMore";
 import WarmUp from "../pages/warmUp/WarmUp";
 import Dashboard from "../component/chating/Dashboard";
 import ChatUi from "../component/chating/ChatUi";
+import Profile from "../pages/profile/Profile";
+import Works from "../pages/profile/Works";
+import Collection from "../pages/profile/Collection";
+import LinkedShoot from "../pages/profile/LinkedShoot";
 
 const routes = createBrowserRouter([
   {
@@ -70,6 +74,7 @@ const routes = createBrowserRouter([
       { path: "/emptyCreateAccout", element: <EmptyCreateAccout /> },
       { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
       { path: "/inbox", element: <ChatUi /> },
+      { path: "/profile", element: <Profile /> },
       {
         element: <ChatUi />,
         children: [
@@ -77,6 +82,18 @@ const routes = createBrowserRouter([
             path: "/message/:id",
             element: <Dashboard />,
           },
+        ],
+      },
+      {
+        element: <Profile />,
+        children: [
+          /*   {
+            path: "/work",
+            element: <Work />,
+          }, */
+          { path: "/work", element: <Works /> },
+          { path: "/collection", element: <Collection /> },
+          { path: "/linkedShoot", element: <LinkedShoot /> },
         ],
       },
     ],

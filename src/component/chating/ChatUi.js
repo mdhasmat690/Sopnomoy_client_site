@@ -27,20 +27,27 @@ function ChatUi() {
   } else if (!isLoading && !isError && conversion?.length === 0) {
     content = <li className="m-2 text-center">No conversations found!</li>;
   } else if (!isLoading && !isError && conversion?.length > 0) {
-    content = conversion.map((conversation) => {
-      const { _id, message, timestamp } = conversation;
-      const email = user || {};
-      const {
-        displayName,
-        email: partnerEmail,
-        image,
-      } = conversation?.users?.find(
-        (participant) => participant.email !== email
-      );
+    content = conversion
+      ?.slice()
+      ?.sort((a, b) => b.timestamp - a.timestamp)
+      .map((conversation) => {
+        const { _id, message, timestamp } = conversation;
+        const email = user || {};
+        const {
+          displayName,
+          email: partnerEmail,
+          image,
+        } = conversation?.users?.find(
+          (participant) => participant.email !== email
+        );
 
-      return (
-        <>
-          <Link to={`/message/${_id}`}>
+        // const t = conversion
+        //   ?.slice()
+        //   ?.sort((a, b) => a.timestamp - b.timestamp)
+        //   .map((conversation) => <>{conversation.item}</>);
+
+        return (
+          <Link to={`/message/${_id}`} key={_id}>
             <div className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
               <img
                 className="object-cover w-10 h-10 rounded-full"
@@ -63,9 +70,8 @@ function ChatUi() {
               </div>
             </div>
           </Link>
-        </>
-      );
-    });
+        );
+      });
   }
 
   return (
@@ -83,7 +89,7 @@ function ChatUi() {
           </div>
           <div className="  flex lg:grid lg:grid-cols-3 rounded-md">
             <div className="w-[100px]  lg:col-span-1 md:w-full ">
-              <div className="overflow-auto h-[calc(100vh_-_129px)]">
+              <div className="whitespace-nowrap overflow-auto scrollbar-hide h-[calc(100vh_-_129px)]">
                 {content}
               </div>
               {/* <Blank /> */}
