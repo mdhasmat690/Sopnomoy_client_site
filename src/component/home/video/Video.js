@@ -59,19 +59,17 @@ function Video(props) {
             ref={rowRef}
           >
             {groupButton.map((button, index) => (
-              <>
-                <div
-                  key={index}
-                  className={` min-w-[150px] cursor-pointer   md:min-w-[150px] `}
+              <div
+                key={index}
+                className={` min-w-[150px] cursor-pointer   md:min-w-[150px] `}
+              >
+                <button
+                  onClick={() => handleGruoupClick(`${button?.searchTag}`)}
+                  className={`text-white rounded-[50px] text-xl w-[150px] p-[10px] bg-[rgba(0,0,0,0.5)] hover:bg-white hover:text-black   active:bg-white focus:text-black focus:bg-white focus:ring-violet-300 `}
                 >
-                  <button
-                    onClick={() => handleGruoupClick(`${button?.searchTag}`)}
-                    className={`text-white rounded-[50px] text-xl w-[150px] p-[10px] bg-[rgba(0,0,0,0.5)] hover:bg-white hover:text-black   active:bg-white focus:text-black focus:bg-white focus:ring-violet-300 `}
-                  >
-                    {button?.name}
-                  </button>
-                </div>
-              </>
+                  {button?.name}
+                </button>
+              </div>
             ))}
           </div>
 

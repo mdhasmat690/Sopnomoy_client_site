@@ -43,7 +43,7 @@ export const links = [
         name: "Job Board",
         desc: "Find your dream design job",
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
-        link: "/",
+        link: "/JobBoards",
       },
       {
         name: "Freelance Projects",

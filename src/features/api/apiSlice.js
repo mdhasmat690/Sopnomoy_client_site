@@ -5,6 +5,6 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/v1/tools",
   }),
-  tagTypes: ["service", "conversionPost", "messagePost"],
+  tagTypes: ["service", "conversionPost", "messagePost", "likes", "watch"],
   endpoints: (builder) => ({}),
 });

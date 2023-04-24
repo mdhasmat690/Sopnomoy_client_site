@@ -1,16 +1,23 @@
 import React, { useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import NaveBar from "../../component/home/NaveBar";
+import Footer from "../../component/home/Footer";
 const groupButton = [
-  { name: "Work 0", searchTag: "", link: "work" },
-  { name: "Collections 1", searchTag: "WebDesign", link: "collection" },
-  { name: "Liked Shots 1", searchTag: "softwareDesigner", link: "LinkedShoot" },
-  { name: "About", searchTag: "Mobile" },
+  { name: "Work 0", searchTag: "", link: "profile/work" },
+  { name: "Collections 1", searchTag: "WebDesign", link: "profile/collection" },
+  {
+    name: "Liked Shots 1",
+    searchTag: "softwareDesigner",
+    link: "profile/LinkedShoot",
+  },
+  { name: "About", searchTag: "profile/about", link: "profile/about" },
 ];
 
 function Profile(props) {
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
+  const location = useLocation();
 
   const handleClick = (direction) => {
     setIsMoved(true);
@@ -24,8 +31,12 @@ function Profile(props) {
       rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
   };
+
+  const currentPath = location.pathname;
+
   return (
     <div>
+      <NaveBar />
       <hr className="#f3f3f4" />
       <div className="md:flex justify-center items-center my-10">
         <div className="ml-4 ">
@@ -75,7 +86,14 @@ function Profile(props) {
             {groupButton.map((button, index) => (
               <div key={index} className="">
                 <Link to={`/${button?.link}`}>
-                  <button className="text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]">
+                  <button
+                    className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30] ${
+                      button?.link === "profile/work" &&
+                      currentPath == "/profile"
+                        ? "text-black"
+                        : "null"
+                    }`}
+                  >
                     {button?.name}
                   </button>
                 </Link>
@@ -96,6 +114,7 @@ function Profile(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

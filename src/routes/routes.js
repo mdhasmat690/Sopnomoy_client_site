@@ -28,6 +28,7 @@ import Profile from "../pages/profile/Profile";
 import Works from "../pages/profile/Works";
 import Collection from "../pages/profile/Collection";
 import LinkedShoot from "../pages/profile/LinkedShoot";
+import About from "../pages/profile/About";
 
 const routes = createBrowserRouter([
   {
@@ -84,18 +85,17 @@ const routes = createBrowserRouter([
           },
         ],
       },
-      {
-        element: <Profile />,
-        children: [
-          /*   {
-            path: "/work",
-            element: <Work />,
-          }, */
-          { path: "/work", element: <Works /> },
-          { path: "/collection", element: <Collection /> },
-          { path: "/linkedShoot", element: <LinkedShoot /> },
-        ],
-      },
+    ],
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+    children: [
+      { path: "/profile", element: <Works /> },
+      { path: "/profile/work", element: <Works /> },
+      { path: "/profile/collection", element: <Collection /> },
+      { path: "/profile/linkedShoot", element: <LinkedShoot /> },
+      { path: "/profile/about", element: <About /> },
     ],
   },
 ]);

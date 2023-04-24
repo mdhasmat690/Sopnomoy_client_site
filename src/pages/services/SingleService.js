@@ -62,8 +62,6 @@ function SingleService() {
     serviceUser: servicesUser?.email,
   });
 
-  console.log(conversionData?.result[0]?._id);
-
   const {
     register,
     formState,

@@ -75,7 +75,7 @@ function Services() {
           <button>Popular</button>
         </div>
         <div className="mx-auto px-2 py-5">
-          <div className="grid md:grid-cols-4 gap-6">{content}</div>
+          <div className="grid md:grid-cols-4 gap-x-6 gap-y-8">{content}</div>
           <div className="flex items-center justify-center mt-10 mx-auto">
             {!user?.email && (
               <>

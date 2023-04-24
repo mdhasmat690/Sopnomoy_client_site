@@ -127,9 +127,11 @@ const NaveBar = () => {
                           </h3>
                         </div>
                         <div className="w-[90%] mx-auto">
-                          <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
-                            Profile
-                          </h1>
+                          <Link to={"/profile"}>
+                            <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3 hover:bg-[rgba(13,12,34,0.03)]">
+                              Profile
+                            </h1>
+                          </Link>
                           <hr className="text-[#e7e7e9]" />
                           <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
                             Edit Profile
