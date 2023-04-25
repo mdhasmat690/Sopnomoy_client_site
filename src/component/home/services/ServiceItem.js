@@ -15,20 +15,7 @@ import {
   useWatchPostMutation,
 } from "../../../features/services/servicesApi";
 import { useDispatch, useSelector } from "react-redux";
-
-const customStyles = {
-  overlay: {
-    backgroundColor: "rgba(30,30,30,0.9)",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import Collection from "./Collection";
 
 function ServiceItem({ service }) {
   const dispatch = useDispatch();
@@ -182,60 +169,12 @@ function ServiceItem({ service }) {
         </div>
       </div>
       <div>
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <div className="rounded-[10px]">
-            <button className="w-[100%] flex  justify-end" onClick={closeModal}>
-              <span className="text-[#9e9ea7] hover:text-[#ea4c89] hover:rounded-md text-[20px]">
-                {/* <AiOutlineClose /> */}
-              </span>
-            </button>
-            <div>
-              <div className="my-2 p-4">
-                <div className="flex items-center">
-                  <img
-                    src="https://i.ibb.co/LtBvpbr/IMG20211124101014.jpg"
-                    alt=""
-                    className=" h-[50px] w-[50px] rounded-[50%]"
-                  />
-                  <h1 className="ml-3 text-[24px] font-[700] leading-[29px]  ">
-                    {service?.productName?.slice(0, 18)}
-                  </h1>
-                </div>
-              </div>
-              {/* <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="sm:w-[400px] md:w-[520px] p-3">
-                  <textarea
-                    className="bg-[#f3f3f4] outline-none rounded-[10px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] border-solid  focus:bg-white p-2 w-[100%] h-[110px] text-[14px] font-[400] leading-[28px] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] hover:bg-white"
-                    {...register("message")}
-                    required
-                    placeholder="Start a conversation with Design Squad"
-                  />
-
-                  <div className=" w-[100%] flex items-center justify-end ">
-                    <button className="my-2 mr-5 bg-[#f3f3f4] hover:bg-[#e7e7e9] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px] ">
-                      Cancel
-                    </button>
-                    <button
-                      className={`bg-[#ea4c89] hover:bg-[#f082ac] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px]  ${
-                        !isDirty || !isValid ? "cursor-not-allowed" : "null"
-                      }`}
-                      type="submit"
-                      disabled={!formState.isValid}
-                    >
-                      Send
-                    </button>
-                  </div>
-                </div>
-              </form> */}
-            </div>
-          </div>
-        </Modal>
+        <Collection
+          service={service}
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          afterOpenModal={afterOpenModal}
+        />
       </div>
     </div>
   );

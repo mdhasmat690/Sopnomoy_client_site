@@ -3,9 +3,15 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import NaveBar from "../../component/home/NaveBar";
 import Footer from "../../component/home/Footer";
+import { useGetCollectionsQuery } from "../../features/collection.api/collectionApi";
+import { useSelector } from "react-redux";
+import {
+  useGetRelatedServicesQuery,
+  useGetUserLikedServicesQuery,
+} from "../../features/services/servicesApi";
 const groupButton = [
   { name: "Work 0", searchTag: "", link: "profile/work" },
-  { name: "Collections 1", searchTag: "WebDesign", link: "profile/collection" },
+  { name: "Collections", searchTag: "WebDesign", link: "profile/collection" },
   {
     name: "Liked Shots 1",
     searchTag: "softwareDesigner",
@@ -15,6 +21,14 @@ const groupButton = [
 ];
 
 function Profile(props) {
+  const { user } = useSelector((state) => state?.auth);
+  const userEmail = user?.email;
+
+  const { data, isLoading, isError } = useGetCollectionsQuery(userEmail);
+
+  const { data: likeShot } = useGetUserLikedServicesQuery(userEmail);
+  const { data: works } = useGetRelatedServicesQuery(userEmail);
+
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
   const location = useLocation();
@@ -83,22 +97,42 @@ function Profile(props) {
             className="flex items-center space-x-0.5 overflow-x-scroll overflow-hidden md:space-x-2.5 "
             ref={rowRef}
           >
-            {groupButton.map((button, index) => (
-              <div key={index} className="">
-                <Link to={`/${button?.link}`}>
-                  <button
-                    className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30] ${
-                      button?.link === "profile/work" &&
-                      currentPath == "/profile"
-                        ? "text-black"
-                        : "null"
-                    }`}
-                  >
-                    {button?.name}
-                  </button>
-                </Link>
-              </div>
-            ))}
+            <div className="">
+              <Link to={`/profile/work`}>
+                <button
+                  className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30] ${
+                    currentPath == "/profile" ? "text-black" : "null"
+                  }`}
+                >
+                  Work {works?.data?.length}
+                </button>
+              </Link>
+              <Link to={`/profile/collection`}>
+                <button
+                  className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]`}
+                >
+                  Collections{" "}
+                  <span className="active:text-[red]   focus:text-[red]">
+                    {" "}
+                    {data?.data?.length}
+                  </span>
+                </button>
+              </Link>
+              <Link to={`/profile/LinkedShoot`}>
+                <button
+                  className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]`}
+                >
+                  Liked Shots {likeShot?.data?.length}
+                </button>
+              </Link>
+              <Link to={`/profile/about`}>
+                <button
+                  className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]`}
+                >
+                  About
+                </button>
+              </Link>
+            </div>
           </div>
 
           <MdChevronRight

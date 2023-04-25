@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { collectionApi } from "../collection.api/collectionApi";
 
 export const servicesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,6 +33,25 @@ export const servicesApi = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: ["services"],
+    }),
+    createCollection: builder.mutation({
+      query: (data) => ({
+        url: "/collection",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        const data = await queryFulfilled;
+        if (data?.data?.id) {
+          console.log(arg);
+          dispatch(
+            collectionApi.endpoints.updateCollection.initiate({
+              id: data?.data?.id,
+              data: arg,
+            })
+          );
+        }
+      },
     }),
     getServices: builder.query({
       query: () => ({
@@ -75,4 +95,5 @@ export const {
   useGetUserLikedServicesQuery,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
+  useCreateCollectionMutation,
 } = servicesApi;
