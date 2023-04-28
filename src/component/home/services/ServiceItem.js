@@ -1,6 +1,11 @@
 import React, { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillFileAdd, AiFillHeart } from "react-icons/ai";
+import {
+  AiFillEye,
+  AiFillFileAdd,
+  AiFillFolderAdd,
+  AiFillHeart,
+} from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import Modal from "react-modal";
 
@@ -26,7 +31,8 @@ function ServiceItem({ service }) {
   const userEmail = user?.email;
   // const isLiked = service?.likesUser?.find((ll) => ll === userEmail);
   const isLiked = service?.likesUser?.includes(userEmail);
-  // console.log(service?.likesUser?.length);
+  const isCollection = service?.collection?.includes(userEmail);
+
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
   const { data } = useGetUserLikedServicesQuery();
   // console.log(service?.likesUser);
@@ -113,7 +119,11 @@ function ServiceItem({ service }) {
                   className="mr-3 bg-white text-gray-700 p-2 rounded-[7px] cursor-pointer"
                 >
                   {" "}
-                  <AiFillFileAdd className="text-[20px]" />
+                  <AiFillFolderAdd
+                    className={`text-[20px] ${
+                      isCollection ? "text-[#ea4c89] " : " text-gray-700"
+                    }  `}
+                  />
                 </span>
                 <button
                   type="submit"

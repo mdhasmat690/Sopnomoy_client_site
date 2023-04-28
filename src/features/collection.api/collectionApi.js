@@ -8,12 +8,13 @@ export const collectionApi = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["collection"],
     }),
     getCollections: builder.query({
       query: (email) => ({
         url: `/collection?email=${email}`,
       }),
-      providesTags: ["messagePost"],
+      providesTags: ["messagePost", "collection"],
     }),
   }),
 });

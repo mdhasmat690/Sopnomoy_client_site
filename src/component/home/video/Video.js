@@ -86,7 +86,7 @@ function Video(props) {
           <h1 className="text-[36px] leading-[1.2] text-white font-[700] ">
             Explore the world’s leading <br /> design portfolios
           </h1>
-          <h2 className="text-justify text-[16px]  w-[50%] mx-auto text-white leading-[25px] mt-5">
+          <h2 className="text-justify text-[16px] w-[90%] md:w-[50%]   mx-auto text-white leading-[25px] mt-5">
             Millions of designers and agencies around the world showcase their
             portfolio work on Dribbble - the home to the world’s best design and
             creative .

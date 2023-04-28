@@ -80,7 +80,7 @@ function Services() {
             {!user?.email && (
               <>
                 {" "}
-                <button className="ml-5 w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
+                <button className="md:ml-5 w-[50%] md:w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
                   Sign Up To Continue
                 </button>
                 <button className="text-[#ea4c89] hover:text-[#f082ac] ml-10">

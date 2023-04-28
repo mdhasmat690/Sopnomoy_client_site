@@ -43,7 +43,6 @@ export const servicesApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         const data = await queryFulfilled;
         if (data?.data?.id) {
-          console.log(arg);
           dispatch(
             collectionApi.endpoints.updateCollection.initiate({
               id: data?.data?.id,
