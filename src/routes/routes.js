@@ -29,6 +29,7 @@ import Works from "../pages/profile/Works";
 import Collection from "../pages/profile/Collection";
 import LinkedShoot from "../pages/profile/LinkedShoot";
 import About from "../pages/profile/About";
+import CollectionItem from "../pages/profile/CollectionItem";
 
 const routes = createBrowserRouter([
   {
@@ -76,6 +77,7 @@ const routes = createBrowserRouter([
       { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
       { path: "/inbox", element: <ChatUi /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/profile/work/:id", element: <CollectionItem /> },
       {
         element: <ChatUi />,
         children: [

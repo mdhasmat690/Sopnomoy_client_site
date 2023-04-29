@@ -327,16 +327,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
                       onClick={() => setToggle(true)}
                       disabled={isLoading}
                     />
-
-                    {/* <button
-                    className={`bg-[#ea4c89] hover:bg-[#f082ac] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px]  ${
-                      !"isDirty" || !"isValid" ? "cursor-not-allowed" : "null"
-                    }`}
-
-                    // disabled={!formState.isValid}
-                  >
-                    Send
-                  </button> */}
                   </div>
                 </div>
               </div>

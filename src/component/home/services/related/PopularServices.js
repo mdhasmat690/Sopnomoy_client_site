@@ -24,10 +24,6 @@ function PopularServices() {
     content = <>there was an error</>;
   }
 
-  if (!isLoading && !isError && services?.length === 0) {
-    content = <>No videos found!</>;
-  }
-
   if (!isLoading && !isError && services?.length > 0) {
     const shuffledServices = [...services]?.sort(() => 0.5 - Math.random());
 

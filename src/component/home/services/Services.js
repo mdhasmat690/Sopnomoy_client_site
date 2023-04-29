@@ -23,8 +23,6 @@ function Services() {
     isError,
   } = useGetGroupProjectsQuery(searchTag);
 
-  // console.log(groupData?.service);
-
   const services = groupData?.service;
 
   let content = null;

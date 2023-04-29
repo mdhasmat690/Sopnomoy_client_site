@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import PopularServices from "../../component/home/services/related/PopularServices";
 import { useForm } from "react-hook-form";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiFillHeart, AiOutlineClose } from "react-icons/ai";
 import { IoIosClose } from "react-icons/io";
 import {
   useAddConversationMutation,
@@ -254,8 +254,11 @@ function SingleService() {
           <button className="my-2 mr-5 bg-[#f3f3f4] hover:bg-[#e7e7e9] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px] mx-auto">
             Save
           </button>
-          <button className=" bg-[#ea4c89] hover:bg-[#f082ac] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px] mx-auto">
-            Like
+          <button className=" bg-[#ea4c89] text-white hover:bg-[#f082ac] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px] mx-auto">
+            <span className="flex justify-center items-center">
+              <AiFillHeart className={`text-white `} />
+              <span className="ml-2">Like</span>
+            </span>
           </button>
         </div>
       </div>

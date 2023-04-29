@@ -13,17 +13,6 @@ function About() {
   return (
     <div className="w-[80%] mx-auto">
       <br />
-      {/* <div className="grid grid-cols-3">
-        <div className="col-span-2">
-          <h1 className="text-[#0d0c22] text-[16] font-bold leading-[1em]">
-            Biography
-          </h1>
-          <h1 className="text-[#ea4c89] text-[14] font-[500] mt-5 leading-[20px]">
-            Add Bio
-          </h1>
-        </div>
-        <div className="col-span-1">asdkfj</div>
-      </div> */}
 
       <div className="flex md:justify-between items-center  ">
         <div>

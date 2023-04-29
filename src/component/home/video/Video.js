@@ -106,6 +106,3 @@ function Video(props) {
 }
 
 export default Video;
-
-/* https://i.ibb.co/2PwnGWT/cdn-dribbble-com-c33e424e99ba06e76cf74d3b8d9a3b02-mp4.gif
-https://i.ibb.co/sPnhPnR/cdn-dribbble-com-c33e424e99ba06e76cf74d3b8d9a3b02-mp4-Adobe-Express.gif */

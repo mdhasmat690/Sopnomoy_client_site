@@ -1,5 +1,10 @@
 import React from "react";
-import { AiFillEye, AiFillFileAdd } from "react-icons/ai";
+import {
+  AiFillEye,
+  AiFillFileAdd,
+  AiFillFolderAdd,
+  AiFillHeart,
+} from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import "./likeed.css";
 import { Link } from "react-router-dom";
@@ -43,28 +48,28 @@ function LinkedShoot(props) {
             </Link>
           </div>
 
-          <div className="hidden group-hover:block absolute mt-[-120px] w-[100%] ">
+          <div className="hidden group-hover:block absolute mt-[-110px] w-[100%] ">
             <div
               style={{
                 backgroundImage:
                   "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8))",
                 // "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1))",
               }}
-              className="  pt-[50px] rounded-b-[8px] h-[120px]"
+              className="  pt-[50px] rounded-b-[8px] h-[110px]"
             >
               <div className="flex justify-between items-center w-[95%] mx-auto">
                 <p className="text-[18px] font-bold text-white capitalize">
-                  a;lkjasd klhj
+                  {service?.productName}
                 </p>
 
-                <div className="text-[red] flex">
+                <div className="  flex">
                   <span className="mr-3 bg-white text-gray-700 p-2 rounded-[7px] cursor-pointer">
                     {" "}
-                    <AiFillFileAdd className="text-[20px]" />
+                    <AiFillFolderAdd className="text-[20px]" />
                   </span>
                   <span className=" bg-white text-gray-700 p-2 rounded-[7px] cursor-pointer">
                     {" "}
-                    <FcLike className="text-[20px]" />
+                    <AiFillHeart className="text-[20px]" />
                   </span>
                 </div>
               </div>
@@ -89,7 +94,7 @@ function LinkedShoot(props) {
 
           <div className="flex">
             <span className="mr-3">
-              <FcLike />
+              <AiFillHeart />
             </span>
             <span>
               <AiFillEye />
@@ -102,7 +107,7 @@ function LinkedShoot(props) {
 
   return (
     <div>
-      <div className="grid md:grid-cols-3 gap-x-6 gap-y-8">{content}</div>
+      <div className="grid md:grid-cols-3 gap-x-10 gap-y-8">{content}</div>
     </div>
   );
 }

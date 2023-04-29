@@ -16,8 +16,17 @@ export const collectionApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["messagePost", "collection"],
     }),
+    getSingleCollections: builder.query({
+      query: (id) => ({
+        url: `/collection/${id}`,
+      }),
+      providesTags: ["messagePost", "collection"],
+    }),
   }),
 });
 
-export const { useUpdateCollectionMutation, useGetCollectionsQuery } =
-  collectionApi;
+export const {
+  useUpdateCollectionMutation,
+  useGetCollectionsQuery,
+  useGetSingleCollectionsQuery,
+} = collectionApi;
