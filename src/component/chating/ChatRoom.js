@@ -7,8 +7,19 @@ function ChatRoom() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
-  socket.on("/", (data) => {
-    console.log("object");
+  useEffect(() => {
+    console.log(socket, "where are you");
+    socket.on("connect", () => {
+      console.log(socket.id); // "G5p5..."
+    });
+  }, []);
+
+  socket.on("connect", () => {
+    console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
+  });
+
+  socket.on("test event", (data) => {
+    console.log("object", data);
   });
 
   function sendMessage(event) {
@@ -19,19 +30,19 @@ function ChatRoom() {
 
   return (
     <div>
-      <h1>Chat Room</h1>
+      {/* <h1>Chat Room</h1> */}
       <ul>
         {messages.map((msg, index) => (
           <li key={index}>{msg}</li>
         ))}
       </ul>
       <form onSubmit={sendMessage}>
-        <input
+        {/*     <input
           type="text"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
-        <button type="submit">Send</button>
+        <button type="submit">Send</button> */}
       </form>
     </div>
   );

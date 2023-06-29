@@ -83,7 +83,7 @@ function Dashboard() {
     <>
       <div
         style={{ overflowY: "" }}
-        className="whitespace-nowrap overflow-auto scrollbar-hide w-full h-[calc(100vh_-_197px)] p-6   flex flex-col-reverse "
+        className="bg-[#efeae2]  whitespace-nowrap overflow-auto scrollbar-hide w-full h-[calc(100vh_-_197px)] p-6   flex flex-col-reverse "
       >
         <ul className="space-y-2">
           {messages
@@ -105,25 +105,12 @@ function Dashboard() {
                 </li>
               );
             })}
-
-          {/*  {messages?.map((message, index) => (
-             const {
-              message: lastMessage,
-              id,
-              sender,
-          } = message || {};
-          return(  <li key={index} className={`flex justify-end`}>
-              <div className="relative max-w-xl px-4 py-2 text-gray-700 rounded shadow">
-                <span className="block">{message?.message}</span>
-              </div>
-            </li>)
-          ))} */}
         </ul>
       </div>
-      <div>
+      <div className="bg-[#f3f3f4]">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid  md:grid-cols-8 gap-4 items-center"
+          className="grid  md:grid-cols-8 gap-4 items-center "
         >
           <div className=" col-span-7">
             {" "}
@@ -131,7 +118,7 @@ function Dashboard() {
               className="bg-[#f3f3f4] outline-none  border-solid  focus:bg-white p-2 w-[100%] h-[70px] text-[14px] font-[400] leading-[28px]   focus:border border-[pink]"
               {...register("message")}
               required
-              placeholder="Ask your Question"
+              placeholder="Type your Question"
             />
           </div>
           <div className="col-span-1">
@@ -140,10 +127,7 @@ function Dashboard() {
             </button>
           </div>
         </form>
-        <br />
-        <br />
-        <br />
-        <br />
+
         <ChatRoom />
       </div>
     </>

@@ -43,7 +43,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
   const [LikeSingleServices, {}] = useLikeSingleServicesMutation();
   const { data, isError } = useGetCollectionsQuery(userEmail);
   const [toggle, setToggle] = useState(false);
-  console.log(updatedData);
 
   const {
     register,

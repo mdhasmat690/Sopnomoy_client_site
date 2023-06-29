@@ -41,8 +41,8 @@ function Works(props) {
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data?.map((service, index) => (
-      <div>
+    content = data?.data?.map((service) => (
+      <div key={service._id}>
         <div className="relative group ">
           <div>
             <Link

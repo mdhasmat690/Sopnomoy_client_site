@@ -142,16 +142,31 @@ function PostFrelance() {
                 />
               </div>
 
-              <div>
-                <select
-                  className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[35%]"
-                  {...register("projectType")}
-                >
-                  <option value="web">Web Development</option>
-                  <option value="designer">Web Designer</option>
-                  <option value="softwareDesigner">Software Designer</option>
-                  <option value="Grapch Designer">Grapch Designer</option>
-                </select>
+              <div className="">
+                <div>
+                  <select
+                    className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 "
+                    {...register("projectType")}
+                  >
+                    <option value="web">Web Development</option>
+                    <option value="designer">Web Designer</option>
+                    <option value="softwareDesigner">Software Designer</option>
+                    <option value="Grapch Designer">Grapch Designer</option>
+                  </select>
+                </div>
+                <div className="my-6">
+                  <select
+                    className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2   "
+                    {...register("group")}
+                  >
+                    <option value="web">single</option>
+                    <option value="designer">team</option>
+                  </select>
+
+                  <span className="ml-3 font-bold">
+                    Project type Group or Single
+                  </span>
+                </div>
               </div>
               <div className="mt-5 ">
                 {error && <h1 className="text-red-400">{error?.error}</h1>}

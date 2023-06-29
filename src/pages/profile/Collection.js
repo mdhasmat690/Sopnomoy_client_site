@@ -65,10 +65,7 @@ function Collection() {
 
       return (
         <>
-          <Link
-            to={`/profile/work/${collection?._id}`}
-            className="cursor-pointer"
-          >
+          <Link to={`/profile/${collection?._id}`} className="cursor-pointer">
             <div className=" ">
               <img
                 className="w-full md:w-[100%] h-[60%] rounded-t-[8px] hover:bg-[f082ac] bg-indigo-[#f082ac] hover:opacity-75 "

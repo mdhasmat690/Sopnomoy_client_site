@@ -6,17 +6,15 @@ import {
 import ServiceItem from "./ServiceItem";
 import ServiceLodear from "../../../pages/ui/ServiceLodear";
 import { useSelector } from "react-redux";
+import Selector from "../../../features/services/Selector";
+import PaginatedItems from "./pagination/PaginatedItems";
 
-function Services() {
+function Services({ currentItems }) {
   const { user } = useSelector((state) => state.auth);
   const { searchTag } = useSelector((state) => state.searchTol);
 
-  const {
-    data,
-    isLoading: fetchLoading,
-    isError: tetchError,
-  } = useGetServicesQuery();
-
+  const { data } = useGetServicesQuery();
+  console.log("ser", currentItems);
   const {
     data: groupData,
     isLoading,
@@ -27,22 +25,35 @@ function Services() {
 
   let content = null;
 
-  if (isLoading) {
+  // if (isLoading) {
+  //   content = (
+  //     <>
+  //       <ServiceLodear />
+  //       <ServiceLodear />
+  //       <ServiceLodear />
+  //       <ServiceLodear />
+  //     </>
+  //   );
+  // }
+
+  /*  if (!isLoading && isError) {
     content = (
       <>
         <ServiceLodear />
         <ServiceLodear />
         <ServiceLodear />
         <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
       </>
     );
-  }
+  } */
 
-  if (!isLoading && isError) {
+  /*   if (!isLoading && !isError && currentItems?.length === 0) {
     content = (
       <>
-        there was an error
-        <ServiceLodear />
+        No Services found
         <ServiceLodear />
         <ServiceLodear />
         <ServiceLodear />
@@ -51,14 +62,10 @@ function Services() {
         <ServiceLodear />
       </>
     );
-  }
+  } */
 
-  if (!isLoading && !isError && services?.length === 0) {
-    content = <>No videos found!</>;
-  }
-
-  if (!isLoading && !isError && services?.length > 0) {
-    content = services?.map((service, index) => (
+  if (!isLoading && !isError && currentItems?.length > 0) {
+    content = currentItems?.map((service, index) => (
       <ServiceItem key={index} service={service} />
     ));
   }
@@ -66,15 +73,14 @@ function Services() {
   return (
     <>
       <br />
-      <br />
-      <br />
+
       <div id="projects" className="w-[90%] mx-auto">
-        <div className=" w-[90%] mx-auto  py-5">
-          <button>Popular</button>
+        <div className=" w-[97%] mx-auto  py-5">
+          <Selector />
         </div>
         <div className="mx-auto px-2 py-5">
           <div className="grid md:grid-cols-4 gap-x-6 gap-y-8">{content}</div>
-          <div className="flex items-center justify-center mt-10 mx-auto">
+          {/* <div className="flex items-center justify-center mt-10 mx-auto">
             {!user?.email && (
               <>
                 {" "}
@@ -86,7 +92,7 @@ function Services() {
                 </button>
               </>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

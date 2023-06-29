@@ -1,34 +1,37 @@
 import React, { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
+import {
+  AiFillEye,
+  AiFillFileAdd,
+  AiFillFolderAdd,
+  AiFillHeart,
+} from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
+import Modal from "react-modal";
 
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
-import SingleService from "../../../pages/services/SingleService";
 import {
   servicesApi,
   useGetUserLikedServicesQuery,
   useLikePostMutation,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
-} from "../../../features/services/servicesApi";
+} from "../../features/services/servicesApi";
 import { useDispatch, useSelector } from "react-redux";
-import Collection from "./Collection";
-import { useGetUserDataQuery } from "../../../features/auth/authApi";
+import Collection from "../../component/home/services/Collection";
 
-function ServiceItem({ service }) {
+function SingleCollectionItems({ service }) {
   const dispatch = useDispatch();
   const [likesPost, {}] = useLikePostMutation();
   const [watchpost, {}] = useWatchPostMutation();
 
-  const { data: serviceUserInto } = useGetUserDataQuery(service?.email);
-
   const { user } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
-  const isLiked = service?.likesUser?.includes(userEmail);
 
+  const isLiked = service?.likesUser?.includes(userEmail);
   const isCollection = service?.collection?.includes(userEmail);
-  console.log("collection", isCollection);
+
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
   const { data } = useGetUserLikedServicesQuery();
 
@@ -140,23 +143,15 @@ function ServiceItem({ service }) {
       <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
         <div style={{ alignItems: "center" }} className="flex">
           <img
-            src={serviceUserInto?.data?.image}
+            src="https://i.ibb.co/Vvz1D7w/3-D-Composition-2.webp"
             className="w-[24px] h-[24px] rounded-[50%] mr-2"
             alt=""
           />
 
-          <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
-            {serviceUserInto?.data?.displayName}
-          </h1>
-          {false ? (
-            <>
-              <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
-                Team
-              </span>
-            </>
-          ) : (
-            <></>
-          )}
+          <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">Hasmat</h1>
+          <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
+            Team
+          </span>
         </div>
 
         <div className="flex">
@@ -168,14 +163,14 @@ function ServiceItem({ service }) {
             />
             <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
               {" "}
-              {service?.likesUser?.length || 0}
+              356
             </span>
           </span>
           <span className="flex items-center  text-[#9e9ea7] cursor-pointer">
             <AiFillEye className="text-[#9e9ea7] hover:text-[#ea4c89]" />
             <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
               {" "}
-              {service?.watch || 0}
+              2345
             </span>
           </span>
         </div>
@@ -186,10 +181,11 @@ function ServiceItem({ service }) {
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           afterOpenModal={afterOpenModal}
+          isCollection={isCollection}
         />
       </div>
     </div>
   );
 }
 
-export default memo(ServiceItem);
+export default memo(SingleCollectionItems);

@@ -30,6 +30,12 @@ import Collection from "../pages/profile/Collection";
 import LinkedShoot from "../pages/profile/LinkedShoot";
 import About from "../pages/profile/About";
 import CollectionItem from "../pages/profile/CollectionItem";
+import Account from "../pages/account/Account";
+import General from "../pages/account/General";
+import EditProfile from "../pages/account/EditProfile";
+import SocialProfile from "../pages/account/SocialProfile";
+import Section from "../pages/account/Section";
+import DeleteAccount from "../pages/account/DeleteAccount";
 
 const routes = createBrowserRouter([
   {
@@ -77,7 +83,9 @@ const routes = createBrowserRouter([
       { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
       { path: "/inbox", element: <ChatUi /> },
       { path: "/profile", element: <Profile /> },
-      { path: "/profile/work/:id", element: <CollectionItem /> },
+      { path: "/profile/:id", element: <CollectionItem /> },
+      { path: "/account", element: <Account /> },
+      { path: "/deleteAccount", element: <DeleteAccount /> },
       {
         element: <ChatUi />,
         children: [
@@ -98,6 +106,19 @@ const routes = createBrowserRouter([
       { path: "/profile/collection", element: <Collection /> },
       { path: "/profile/linkedShoot", element: <LinkedShoot /> },
       { path: "/profile/about", element: <About /> },
+    ],
+  },
+  {
+    path: "/account",
+    element: <Account />,
+    children: [
+      { path: "/account", element: <General /> },
+      { path: "/account/editProfile", element: <EditProfile /> },
+      { path: "/account/socialProfile", element: <SocialProfile /> },
+      { path: "/account/section", element: <Section /> },
+
+      // { path: "/account/linkedShoot", element: <LinkedShoot /> },
+      // { path: "/account/about", element: <About /> },
     ],
   },
 ]);

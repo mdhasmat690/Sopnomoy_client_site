@@ -8,18 +8,182 @@ import {
   AiOutlineTwitter,
 } from "react-icons/ai";
 import Collection from "../../component/home/services/Collection";
-import { useParams } from "react-router-dom";
-import { useGetSingleCollectionsQuery } from "../../features/collection.api/collectionApi";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  useDeleteCollectionNameMutation,
+  useGetSingleCollectionsQuery,
+  useGetSingleCollectionsitemsQuery,
+  useUpdateCollectionNameMutation,
+} from "../../features/collection.api/collectionApi";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
+import ServiceLodear from "../ui/ServiceLodear";
+import ServiceItem from "../../component/home/services/ServiceItem";
+import SingleCollectionItems from "./SingleCollectionItems";
+import Modal from "react-modal";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { servicesApi } from "../../features/services/servicesApi";
+
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(30,30,30,0.9)",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: "10px",
+    overflow: "auto",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    padding: "20px",
+    with: "50px",
+  },
+};
 
 function CollectionItem() {
   const { id } = useParams();
-  const { data } = useGetSingleCollectionsQuery(id);
+  const { data, refetch } = useGetSingleCollectionsQuery(id);
   const mainCollections = data?.data;
   const { data: userInfo } = useGetUserDataQuery(
     mainCollections?.loginUserEmail
   );
-  console.log(mainCollections?.collections);
+  const {
+    data: collectionItem,
+    isLoading,
+    isError,
+  } = useGetSingleCollectionsitemsQuery(id);
+  const dispatch = useDispatch();
+
+  const [updateCollectionName, {}] = useUpdateCollectionNameMutation();
+
+  const [deleteCollection, { isSuccess }] = useDeleteCollectionNameMutation();
+  const navigate = useNavigate();
+  const {
+    register,
+    formState,
+    handleSubmit,
+    setFocus,
+    control,
+    reset,
+    formState: { isSubmitting, isDirty, isValid },
+  } = useForm({ mode: "onChange" });
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  let content = null;
+
+  if (isLoading) {
+    content = (
+      <>
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+      </>
+    );
+  }
+
+  if (!isLoading && isError) {
+    content = (
+      <>
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+        <ServiceLodear />
+      </>
+    );
+  }
+
+  if (!isLoading && !isError && collectionItem?.newData?.length === 0) {
+    content = (
+      <h3 className="text-red-500 font-medium">
+        No Collection yet!!{" "}
+        <Link to="/">
+          <span className="font-bold underline text-green-500 cursor-pointer">
+            Click
+          </span>{" "}
+        </Link>
+      </h3>
+    );
+  }
+
+  if (!isLoading && !isError && collectionItem?.newData?.length > 0) {
+    content = collectionItem?.newData?.map((service, index) => (
+      <SingleCollectionItems key={index} service={service} />
+    ));
+  }
+
+  const onSubmit = (e) => {
+    const data = {
+      // loginUserEmail: userEmail,
+      collectionName: e.collectionName,
+      collectionNameDescripction: e.desc,
+      // name: service?.productName,
+      // image: service?.imgUrl,
+      // mainServiceId: service._id,
+      timestamp: new Date().getTime(),
+    };
+
+    updateCollectionName({ id, data })
+      .unwrap()
+      .then((data) => refetch(data.id));
+    reset();
+    // setToggle(false);
+  };
+
+  const handleDelete = (id) => {
+    const objId = id?.collections?.map((data) => data?.mainServiceId);
+
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCollection(id?._id)
+          .unwrap()
+          .then((data) => {
+            if (data.success) {
+              dispatch(
+                servicesApi.endpoints.updateServiceCollection.initiate({
+                  ids: objId,
+                  data: { collection: id?.loginUserEmail },
+                })
+              );
+            }
+          });
+      }
+    });
+  };
+
+  if (isSuccess) {
+    navigate("/profile/collection");
+  }
+
   return (
     <>
       <hr />
@@ -84,10 +248,16 @@ function CollectionItem() {
 
             <div className="flex md:justify-end md:mr-10">
               <div>
-                <button className="text-[black] text-[14px] font-[500] border border-indigo-[#f3f3f4] h-[40px] py-[10px] px-[16px] rounded-[8px] mt-0 md:mt-28">
+                <button
+                  onClick={openModal}
+                  className="text-[black] text-[14px] font-[500] border border-indigo-[#f3f3f4] h-[40px] py-[10px] px-[16px] rounded-[8px] mt-0 md:mt-28"
+                >
                   Edit Collection
                 </button>
-                <button className="text-[black] text-[14px] font-[500] border border-indigo-[#f3f3f4] h-[40px] py-[10px] px-[16px] rounded-[8px] ml-5">
+                <button
+                  onClick={() => handleDelete(mainCollections)}
+                  className="text-[black] text-[14px] font-[500] border border-indigo-[#f3f3f4] h-[40px] py-[10px] px-[16px] rounded-[8px] ml-5"
+                >
                   Delete Collection
                 </button>
               </div>
@@ -95,109 +265,85 @@ function CollectionItem() {
           </div>
         </div>
         <div>
-          {/* <div className="relative group ">
-        <div>
-          <Link
-            to={`/singleProduct/${service?._id}`}
-            onClick={() => hanldeWatchCount(service._id)}
-          >
-            <img
-              className=" cursor-pointer rounded-[8px]"
-              src={service?.imgUrl}
-              alt=""
-            />
-          </Link>
+          <br />
+          <div className="grid md:grid-cols-3 gap-10">{content}</div>
         </div>
+      </div>
 
-        <div className="hidden group-hover:block absolute mt-[-80px] w-[100%] ">
-          <div
-            style={{
-              backgroundImage:
-                "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8))",
-              borderRadius: "8px",
-            }}
-            className="  pt-[32px]  h-[80px]"
-          >
-            <div className="flex justify-between items-center w-[95%] mx-auto">
-              <p className="text-[18px] font-bold text-white capitalize">
-                {service?.productName?.slice(0, 18)}
-                {service?.productName?.length >= 18 ? <>...</> : <></>}
-              </p>
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          // onAfterOpen={afterOpenModal}
+          ariaHideApp={false}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <>
+            {" "}
+            <div className="px-[40px]">
+              <div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="sm:w-[400px] md:w-[550px] p-3">
+                    <div>
+                      <h1 className="text-[16px] font-[500] text-[#0d0c22]">
+                        Create a new collection
+                      </h1>
+                      <div className="border-t-[1px] border-[#ddd] w-[100%] my-2 pb-3"></div>
+                    </div>
 
-              <div className="text-[red] flex">
-                <span
-                  onClick={openModal}
-                  className="mr-3 bg-white text-gray-700 p-2 rounded-[7px] cursor-pointer"
-                >
-                  {" "}
-                  <AiFillFolderAdd
-                    className={`text-[20px] ${
-                      isCollection ? "text-[#ea4c89] " : " text-gray-700"
-                    }  `}
-                  />
-                </span>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  onClick={() => handleSubmit(service)}
-                  className=" bg-white  p-2 rounded-[7px] cursor-pointer"
-                >
-                  {" "}
-                  <AiFillHeart
-                    className={`text-[20px] ${
-                      isLiked ? "text-[#ea4c89] " : " text-gray-700"
-                    }  `}
-                  />
-                </button>
+                    <div className="my-6">
+                      <label className="font-[500] text-[16px] text-[#0d0c22]">
+                        Name
+                      </label>
+                      <input
+                        className="bg-[#f3f3f4] outline-none rounded-[6px] mt-2 focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
+                        {...register("collectionName")}
+                        defaultValue={mainCollections?.collectionName || ""}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="font-[500] text-[16px] text-[#0d0c22]">
+                        Description (optional)
+                      </label>
+                      <textarea
+                        className="bg-[#f3f3f4] outline-none rounded-[10px] mt-2 focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] border-solid  focus:bg-white p-2 w-[100%] h-[110px] text-[14px] font-[400] leading-[28px] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] hover:bg-white"
+                        {...register("desc")}
+                        required
+                        defaultValue={
+                          mainCollections?.collectionNameDescripction || ""
+                        }
+                        placeholder="Start a conversation with Design Squad"
+                      />
+                    </div>
+
+                    <div className=" w-[100%] flex items-center justify-start mt-2">
+                      <button
+                        className="my-2 mr-5 bg-[#ea4c89] hover:bg-[#f082ac]
+                        text-white h-[40px] w-[80%] md:w-[30%] rounded-[8px]
+                        text-[14px] font-[500] leading-[20px] cursor-pointer"
+                        type="submit"
+                        // disabled={isLoading}
+                      >
+                        Create Collection
+                      </button>
+
+                      <button
+                        className="text-center items-center  my-2 mr-5 bg-[#f3f3f4] hover:bg-[#e7e7e9] h-[40px] w-[70px] rounded-[8px] text-[14px] font-[500] leading-[20px] cursor-pointer"
+                        type="button"
+                        onClick={closeModal}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
-        <div style={{ alignItems: "center" }} className="flex">
-          <img
-            src="https://i.ibb.co/Vvz1D7w/3-D-Composition-2.webp"
-            className="w-[24px] h-[24px] rounded-[50%] mr-2"
-            alt=""
-          />
-
-          <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">Hasmat</h1>
-          <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
-            Team
-          </span>
-        </div>
-
-        <div className="flex">
-          <span className="mr-3 flex items-center  hover:text-[#ea4c89] cursor-pointer">
-            <AiFillHeart
-              className={` ${
-                isLiked ? "text-[#ea4c89] " : " text-[#9e9ea7]"
-              }  `}
-            />
-            <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
-              {" "}
-              356
-            </span>
-          </span>
-          <span className="flex items-center  text-[#9e9ea7] cursor-pointer">
-            <AiFillEye className="text-[#9e9ea7] hover:text-[#ea4c89]" />
-            <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
-              {" "}
-              2345
-            </span>
-          </span>
-        </div>
-      </div>
-      <div>
-        <Collection
-          service={service}
-          modalIsOpen={modalIsOpen}
-          closeModal={closeModal}
-          afterOpenModal={afterOpenModal}
-        />
-      </div> */}
-        </div>
+          </>
+        </Modal>
       </div>
     </>
   );

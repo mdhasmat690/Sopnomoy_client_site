@@ -11,6 +11,14 @@ export const servicesApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["services"],
     }),
+    updateServiceCollection: builder.mutation({
+      query: (data) => ({
+        url: "/postProject",
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["serviceUPCollection"],
+    }),
     likeSingleServices: builder.mutation({
       query: ({ id, data }) => ({
         url: `/postProject/${id}`,
@@ -56,13 +64,13 @@ export const servicesApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/postProject",
       }),
-      providesTags: ["services", "likes", "watch"],
+      providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getGroupProjects: builder.query({
       query: (name) => ({
         url: `/getProjectType?name=${name}`,
       }),
-      providesTags: ["services", "likes", "watch"],
+      providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getSingleServices: builder.query({
       query: (id) => ({
@@ -73,7 +81,7 @@ export const servicesApi = apiSlice.injectEndpoints({
       query: (email) => ({
         url: `/postProject/related/${email}`,
       }),
-      providesTags: ["services", "likes", "watch"],
+      providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getUserLikedServices: builder.query({
       query: (email) => ({

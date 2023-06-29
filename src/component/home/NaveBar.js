@@ -38,9 +38,9 @@ const NaveBar = () => {
       <div className="flex items-center font-medium justify-between">
         <div className="z-50 p-5 md:w-auto w-full flex items-center justify-between">
           <img
-            src="https://i.ibb.co/z8S8RST/about.jpg"
+            src="https://img.freepik.com/free-vector/letter-h-with-blossoms_53876-66878.jpg?size=626&ext=jpg&ga=GA1.2.1738658831.1683692513&semt=ais"
             alt="logo"
-            className="md:cursor-pointer h-12"
+            className="md:cursor-pointer h-10 w-10 rounded-[50%]"
           />
 
           <ul className="md:flex hidden  items-center text-[#6e6d7a] font-[500]">
@@ -133,9 +133,11 @@ const NaveBar = () => {
                             </h1>
                           </Link>
                           <hr className="text-[#e7e7e9]" />
-                          <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
-                            Edit Profile
-                          </h1>
+                          <Link to={"/account/editProfile"}>
+                            <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
+                              Edit Profile
+                            </h1>
+                          </Link>
                           <h1 className="text-[#6e6d7a] text-[14px] my-3 cursor-pointer">
                             Edit Work Preferences
                           </h1>
@@ -169,7 +171,7 @@ const NaveBar = () => {
                             </h1>
                           </div>
 
-                          <Link to="inbox">
+                          <Link to="/inbox">
                             <div className="flex items-center cursor-pointer">
                               <span className="mr-3 text-[#6e6d7a] text-[18px] font-bold">
                                 <BiMessageAltDots />
@@ -189,9 +191,11 @@ const NaveBar = () => {
                             </h1>
                           </div>
                           <hr className="text-[#e7e7e9] mb-3 mt-4" />
-                          <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
-                            Account Settings
-                          </h1>
+                          <Link to={"/account"}>
+                            <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
+                              Account Settings
+                            </h1>
+                          </Link>
 
                           <h1 className="cursor-pointer text-[#6e6d7a] text-[14px] my-3">
                             Sign Out
