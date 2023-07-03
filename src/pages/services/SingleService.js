@@ -54,6 +54,7 @@ function SingleService() {
   const service = data?.data;
   const { data: loginUserData } = useGetUserDataQuery(user);
   const loginUser = loginUserData?.data;
+  console.log(service);
 
   const { data: userData } = useGetUserDataQuery(service?.email);
   const servicesUser = userData?.data;
@@ -94,10 +95,42 @@ function SingleService() {
   if (isLoading) {
     return (
       <>
-        <ServiceLodear />
-        <ServiceLodear />
-        <ServiceLodear />
-        <ServiceLodear />
+        <div className="w-[60%] mx-auto animate-pulse my-14">
+          <div className="flex flex-row mt-2 gap-2 items-center">
+            <div className="bg-slate-200 rounded-full h-8 w-8 shrink-0" />
+
+            <div className="flex flex-col space-y-1 grow">
+              <p className="bg-slate-200 text-slate-200 text-[8px]">
+                Loading...
+              </p>
+              <p className="bg-slate-200 text-slate-200 w-[20%] text-[8px]">
+                Loading...
+              </p>
+            </div>
+          </div>
+          <br />
+          <div className="relative">
+            <div className="aspect-video bg-slate-200" />
+          </div>
+          <div>
+            <br />
+            <h1 className="bg-slate-200 text-slate-200 w-[75%] mx-auto text-[8px] my-2">
+              Loading...
+            </h1>
+            <h1 className="bg-slate-200 text-slate-200 w-[75%] mx-auto text-[8px] my-2">
+              Loading...
+            </h1>
+            <h1 className="bg-slate-200 text-slate-200 w-[75%] mx-auto text-[8px] my-2">
+              Loading...
+            </h1>
+            <h1 className="bg-slate-200 text-slate-200 w-[75%] mx-auto text-[8px] my-2">
+              Loading...
+            </h1>
+            <h1 className="bg-slate-200 text-slate-200 w-[75%] mx-auto text-[8px] my-2">
+              Loading...
+            </h1>
+          </div>
+        </div>
       </>
     );
   }
@@ -205,15 +238,6 @@ function SingleService() {
         </Modal>
       </div>
 
-      {/*   <Drawer
-      open={isOpen}
-      onClose={toggleDrawer}
-      direction="bottom"
-      size={"95%"}
-      className="bla bla bla "
-      style={{ overflow: "auto" }}
-    >
-     </Drawer> */}
       <div className="border-t border-indigo-[#f3f3f4] w-[100%]  mb-5"></div>
       <div className="flex items-center justify-evenly md:flex-wrap">
         <div className="flex">
@@ -277,19 +301,40 @@ function SingleService() {
             </span>
           </h1>
           <div className="w-[67%] mx-auto">
-            <h1 className="text-[20px] font-[400] leading-[32px] my-8">
+            <h1 className="text-[20px] font-bold leading-[32px] my-8">
               {service?.Tittle}
             </h1>
-            <h2 className="text-[20px] font-[400] leading-[32px] my-8">
-              {service?.description}
-            </h2>
-            <h1 className="text-[20px] font-[400] leading-[32px] my-8">
+            <div>
+              <h2
+                style={{ whiteSpace: "pre-line" }}
+                className="text-[20px] font-[400] leading-[32px] my-8"
+              >
+                {service?.description}
+              </h2>
+              <div>
+                {/* {service?.description?.split("\n").map((line, index) => (
+                  <h2
+                    className="text-[20px] font-[400] leading-[32px] my-8"
+                    key={index}
+                  >
+                    {line}
+                  </h2>
+                ))} */}
+              </div>
+            </div>
+            <h1
+              style={{ whiteSpace: "pre-line" }}
+              className="text-[20px] font-[400] leading-[32px] my-8"
+            >
               {service?.Details}
             </h1>
             <h1 className="text-[20px] font-[400] leading-[32px] my-8">
               ________
             </h1>
-            <h1 className="text-[20px] font-[400] leading-[32px]  my-1">
+            <h1
+              style={{ whiteSpace: "pre-line" }}
+              className="text-[20px] font-[400] leading-[32px]  my-1"
+            >
               {service?.contact}
             </h1>
             <h1 className="text-[20px] font-[400] leading-[32px] mb-8 text-[#ea4c89]">

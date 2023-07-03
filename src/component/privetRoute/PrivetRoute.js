@@ -10,15 +10,17 @@ const PrivetRoute = ({ children }) => {
   const { user, isLoading } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
   const { data } = useGetUserDataQuery(userEmail);
-  // console.log();
+
   const isLogin = useAuth();
 
   let location = useLocation();
 
   if (isLoading) {
     return (
-      <div>
-        <ServiceLodear />
+      <div className="h-[350px]">
+        <h1 className="flex justify-center mt-10 text-lg text-fuchsia-500">
+          Re-direct...
+        </h1>
       </div>
     );
   }

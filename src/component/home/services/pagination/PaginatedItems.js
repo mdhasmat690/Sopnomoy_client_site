@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import Items from "./Items";
 import { useGetGroupProjectsQuery } from "../../../../features/services/servicesApi";
 import { useSelector } from "react-redux";
 import Services from "../Services";
@@ -78,15 +77,13 @@ function PaginatedItems({ itemsPerPage }) {
 
   return (
     <>
-      <>
-        {content && (
-          <>
-            <div className="grid md:grid-cols-4 gap-x-6 gap-y-8 my-12">
-              {content}
-            </div>
-          </>
-        )}
-      </>
+      {content && (
+        <div className="w-[90%] mx-auto">
+          <div className="grid md:grid-cols-4 gap-x-6 gap-y-8 my-12">
+            {content}
+          </div>
+        </div>
+      )}
 
       <div id="" className="">
         {items?.length && (
@@ -96,7 +93,7 @@ function PaginatedItems({ itemsPerPage }) {
               breakLabel="..."
               nextLabel="next"
               onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
+              pageRangeDisplayed={12}
               pageCount={pageCount}
               previousLabel="previous"
               renderOnZeroPageCount={null}
@@ -114,7 +111,7 @@ function PaginatedItems({ itemsPerPage }) {
       </div>
 
       <div>
-        <div className="flex items-center justify-center mt-10 mx-auto">
+        <div className="flex items-center justify-center my-10 mx-auto">
           {!user?.email && (
             <>
               {" "}

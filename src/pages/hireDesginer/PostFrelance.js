@@ -107,6 +107,7 @@ function PostFrelance() {
                 <label className="font-bold ">Post Description</label>
                 <textarea
                   className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
+                  style={{ whiteSpace: "pre-wrap" }}
                   {...register("description")}
                   required
                 />
@@ -152,6 +153,8 @@ function PostFrelance() {
                     <option value="designer">Web Designer</option>
                     <option value="softwareDesigner">Software Designer</option>
                     <option value="Grapch Designer">Grapch Designer</option>
+                    <option value="animation">Animation</option>
+                    <option value="app">App Design</option>
                   </select>
                 </div>
                 <div className="my-6">

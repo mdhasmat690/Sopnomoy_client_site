@@ -103,7 +103,7 @@ function ServiceItem({ service }) {
           >
             <div className="flex justify-between items-center w-[95%] mx-auto">
               <p className="text-[18px] font-bold text-white capitalize">
-                {service?.productName?.slice(0, 18)}
+                {service?.productName?.slice(0, 15)}
                 {service?.productName?.length >= 18 ? <>...</> : <></>}
               </p>
 
@@ -139,11 +139,24 @@ function ServiceItem({ service }) {
       </div>
       <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
         <div style={{ alignItems: "center" }} className="flex">
-          <img
-            src={serviceUserInto?.data?.image}
-            className="w-[24px] h-[24px] rounded-[50%] mr-2"
-            alt=""
-          />
+          {serviceUserInto?.data?.image ? (
+            <>
+              {" "}
+              <img
+                src={serviceUserInto?.data?.image}
+                className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                alt=""
+              />
+            </>
+          ) : (
+            <>
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                alt=""
+              />
+            </>
+          )}
 
           <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
             {serviceUserInto?.data?.displayName}
