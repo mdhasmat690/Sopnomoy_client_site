@@ -47,7 +47,7 @@ function LinkedShoot(props) {
 
   if (!isLoading && !isError && data?.data?.length > 0) {
     content = data?.data.map((service, index) => (
-      <ServiceItem key={index} service={service} />
+      <ServiceItem key={service?._id} service={service} />
     ));
   }
 

@@ -60,11 +60,11 @@ function Collection() {
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data?.map((collection) => {
+    content = data?.data?.map((collection, index) => {
       const { collections } = collection;
 
       return (
-        <>
+        <div key={index}>
           <Link to={`/profile/${collection?._id}`} className="cursor-pointer">
             <div className=" ">
               <img
@@ -73,8 +73,8 @@ function Collection() {
                 alt=""
               />
               <div className="grid grid-cols-3 gap-1 mt-1">
-                {collections.slice(0, 3)?.map?.((col) => (
-                  <div>
+                {collections.slice(0, 3)?.map?.((col, index) => (
+                  <div key={index}>
                     <img
                       className="w-full md:w-[100%] h-[78%] rounded-b-[8px] hover:bg-[f082ac] bg-indigo-[#f082ac] "
                       src={col?.image}
@@ -115,7 +115,7 @@ function Collection() {
               </div>
             </div>
           </Link>
-        </>
+        </div>
       );
     });
   }

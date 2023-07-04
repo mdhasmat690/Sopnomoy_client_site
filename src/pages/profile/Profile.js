@@ -9,6 +9,7 @@ import {
   useGetRelatedServicesQuery,
   useGetUserLikedServicesQuery,
 } from "../../features/services/servicesApi";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
 const groupButton = [
   { name: "Work 0", searchTag: "", link: "profile/work" },
   { name: "Collections", searchTag: "WebDesign", link: "profile/collection" },
@@ -21,13 +22,14 @@ const groupButton = [
 ];
 
 function Profile(props) {
-  const { user } = useSelector((state) => state?.auth);
-  const userEmail = user?.email;
+  const { email } = useSelector((state) => state?.auth?.user);
 
-  const { data, isLoading, isError } = useGetCollectionsQuery(userEmail);
+  const { data: serviceUserInto } = useGetUserDataQuery(email);
+  const user = serviceUserInto?.data;
+  const { data, isLoading, isError } = useGetCollectionsQuery(email);
 
-  const { data: likeShot } = useGetUserLikedServicesQuery(userEmail);
-  const { data: works } = useGetRelatedServicesQuery(userEmail);
+  const { data: likeShot } = useGetUserLikedServicesQuery(email);
+  const { data: works } = useGetRelatedServicesQuery(email);
 
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
@@ -52,27 +54,27 @@ function Profile(props) {
     <div>
       <NaveBar />
       <hr className="#f3f3f4" />
-      <div className="md:flex justify-center items-center my-10">
+      <div className="md:flex flex justify-center items-center my-10">
         <div className="ml-4 ">
           <img
-            src="https://i.ibb.co/3pbVY1G/googleimg.png"
+            src={user?.image}
             alt="https://md-hasmat-ali.imgbb.com/"
-            className="w-[100px]"
+            className="w-[100px] h-[100px] rounded-[50%]"
           />
         </div>
         <div className="ml-8">
           <div>
             <h1 className="text-[32px] font-[700] leading-[38px] font-[Haas Grot Text R Web, Helvetica Neue]">
-              Md Hasmat Ali
+              {user?.displayName}
             </h1>
             <h6 className="text-[#9e9ea7] text-[16px] font-[400] hover:text-[#3d3d4e] cursor-pointer my-3">
-              Dinajpur
+              {user?.location}
             </h6>
             <div className=" flex">
               <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4">
                 Edit Profile
               </button>
-              <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4">
+              <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4 md:block hidden">
                 ...
               </button>
               <button className="text-[#4d44c6] bg-[rgba(77,68,198,0.1)] border border-indigo-[#E7E7E7] rounded-[71px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px]">
@@ -104,17 +106,21 @@ function Profile(props) {
                     currentPath == "/profile" ? "text-black" : "null"
                   }`}
                 >
-                  Work {works?.data?.length}
+                  Work
+                  <span className=" focus:text-black text-[15px] font-[200]">
+                    ({works?.data?.length})
+                  </span>
                 </button>
               </Link>
               <Link to={`/profile/collection`}>
                 <button
                   className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]`}
                 >
-                  Collections{" "}
+                  Collections
                   <span className="active:text-[red]   focus:text-[red]">
-                    {" "}
-                    {data?.data?.length}
+                    <span className=" focus:text-black text-[15px] font-[200]">
+                      ({data?.data?.length})
+                    </span>
                   </span>
                 </button>
               </Link>
@@ -122,7 +128,10 @@ function Profile(props) {
                 <button
                   className={`text-[#6e6d7a] font-[500] mr-3 text-[17px]   hover:text-black   active:text-black focus:text-black focus:bg-white focus:ring-violet-300 py-[30]`}
                 >
-                  Liked Shots {likeShot?.data?.length}
+                  Liked Shots
+                  <span className=" focus:text-black text-[15px] font-[200]">
+                    ({likeShot?.data?.length})
+                  </span>
                 </button>
               </Link>
               <Link to={`/profile/about`}>

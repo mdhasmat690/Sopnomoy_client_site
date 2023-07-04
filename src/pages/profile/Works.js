@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useGetRelatedServicesQuery } from "../../features/services/servicesApi";
+import {
+  useDeleteProjectMutation,
+  useGetRelatedServicesQuery,
+} from "../../features/services/servicesApi";
 import {
   AiTwotoneEdit,
   AiFillDelete,
@@ -10,10 +13,30 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ServiceLodear from "../ui/ServiceLodear";
+import Swal from "sweetalert2";
 
 function Works(props) {
   const { email: user } = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isError } = useGetRelatedServicesQuery(user);
+
+  const [deleteProject, { isSuccess: deleteIsSuccess }] =
+    useDeleteProjectMutation();
+
+  const deleteClick = (service) => {
+    console.log(service._id);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProject(service._id);
+      }
+    });
+  };
 
   let content = null;
 
@@ -73,7 +96,7 @@ function Works(props) {
                   {service?.productName?.length >= 18 ? <>...</> : <></>}
                 </p>
 
-                <div className=" flex">
+                <div onClick={() => deleteClick(service)} className=" flex">
                   <span className="mr-3 bg-white text-red-600 p-2 rounded-[7px] cursor-pointer">
                     {" "}
                     <AiFillDelete className="text-[20px]" />

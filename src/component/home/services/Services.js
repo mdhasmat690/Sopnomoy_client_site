@@ -6,7 +6,7 @@ import {
 import ServiceItem from "./ServiceItem";
 import ServiceLodear from "../../../pages/ui/ServiceLodear";
 import { useSelector } from "react-redux";
-import Selector from "../../../features/services/Selector";
+import Selector from "./Selector";
 import PaginatedItems from "./pagination/PaginatedItems";
 
 function Services({ currentItems }) {
@@ -14,7 +14,6 @@ function Services({ currentItems }) {
   const { searchTag } = useSelector((state) => state.searchTol);
 
   const { data } = useGetServicesQuery();
-  console.log("ser", currentItems);
   const {
     data: groupData,
     isLoading,

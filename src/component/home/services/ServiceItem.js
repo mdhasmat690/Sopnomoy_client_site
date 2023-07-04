@@ -15,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Collection from "./Collection";
 import { useGetUserDataQuery } from "../../../features/auth/authApi";
+import { Vortex } from "react-loader-spinner";
 
 function ServiceItem({ service }) {
   const dispatch = useDispatch();
@@ -26,9 +27,10 @@ function ServiceItem({ service }) {
   const { user } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
   const isLiked = service?.likesUser?.includes(userEmail);
+  // console.log("serviceItem", service?.likesUser);
 
   const isCollection = service?.collection?.includes(userEmail);
-  console.log("collection", isCollection);
+  // console.log("collection", isCollection);
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
   const { data } = useGetUserLikedServicesQuery();
 
@@ -125,12 +127,34 @@ function ServiceItem({ service }) {
                   onClick={() => handleSubmit(service)}
                   className=" bg-white  p-2 rounded-[7px] cursor-pointer"
                 >
-                  {" "}
-                  <AiFillHeart
-                    className={`text-[20px] ${
-                      isLiked ? "text-[#ea4c89] " : " text-gray-700"
-                    }  `}
-                  />
+                  {isLoading ? (
+                    <>
+                      <Vortex
+                        visible={true}
+                        height="20"
+                        width="20"
+                        ariaLabel="vortex-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="vortex-wrapper"
+                        colors={[
+                          "red",
+                          "green",
+                          "blue",
+                          "yellow",
+                          "orange",
+                          "purple",
+                        ]}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <AiFillHeart
+                        className={`text-[20px] ${
+                          isLiked ? "text-[#ea4c89] " : " text-gray-700"
+                        }  `}
+                      />
+                    </>
+                  )}
                 </button>
               </div>
             </div>

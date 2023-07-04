@@ -97,7 +97,7 @@ function JobBoards(props) {
           <div className=" col-span-4   border border-indigo-[#f3f3f4] rounded-lg p-6 w-[80%] mx-auto">
             <h1>Filter</h1>
             <input
-              class="shadow appearance-none border rounded w-[100%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-[100%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="Filter"
               type="text"
               placeholder="Filter"
@@ -110,16 +110,16 @@ function JobBoards(props) {
             </div>
 
             <div>
-              <div class="form-check">
+              <div className="form-check">
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Animation
@@ -127,13 +127,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Bran / Graphic Design
@@ -141,13 +141,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Leadership
@@ -155,13 +155,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Mobile Design
@@ -169,13 +169,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Ui / Visual Design
@@ -183,13 +183,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Product Design
@@ -197,13 +197,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Ux Design
@@ -211,13 +211,13 @@ function JobBoards(props) {
                 </div>
                 <div className="my-3">
                   <input
-                    class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                    className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
                   <label
-                    class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                    className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                     for="flexCheckDefault"
                   >
                     Web Design
@@ -231,20 +231,20 @@ function JobBoards(props) {
 
                 <div>
                   <input
-                    class="shadow appearance-none border rounded w-[100%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline my-3"
+                    className="shadow appearance-none border rounded w-[100%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline my-3"
                     id="Location"
                     type="text"
                     placeholder="Location"
                   />
                   <div className="my-3">
                     <input
-                      class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                      className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                       type="checkbox"
                       value=""
                       id="flexCheckDefault"
                     />
                     <label
-                      class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                      className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                       for="flexCheckDefault"
                     >
                       Open to remote
@@ -252,13 +252,13 @@ function JobBoards(props) {
                     <div className="border-t border-indigo-[#f3f3f4] w-[100%] my-5 "></div>
                     <div className="my-3">
                       <input
-                        class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                        className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                        className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                         for="flexCheckDefault"
                       >
                         Full-Time
@@ -266,13 +266,13 @@ function JobBoards(props) {
                     </div>
                     <div className="my-3">
                       <input
-                        class="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
+                        className="form-check-input   h-5 w-5 border border-gray-300 rounded-sm  checked:bg-[#ea4c89] checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer  accent-pink-500"
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
+                        className="form-check-label inline-block text-[#3d3d4e] text-[14px] font-[400] leading-[20px]"
                         for="flexCheckDefault"
                       >
                         Freelance/Contract

@@ -11,6 +11,13 @@ export const servicesApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["services"],
     }),
+    DeleteProject: builder.mutation({
+      query: (id) => ({
+        url: `/postProject/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["services"],
+    }),
     updateServiceCollection: builder.mutation({
       query: (data) => ({
         url: "/postProject",
@@ -76,6 +83,7 @@ export const servicesApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/postProject/${id}`,
       }),
+      providesTags: ["likes", "serviceUPCollection"],
     }),
     getRelatedServices: builder.query({
       query: (email) => ({
@@ -103,4 +111,5 @@ export const {
   useLikeSingleServicesMutation,
   useWatchPostMutation,
   useCreateCollectionMutation,
+  useDeleteProjectMutation,
 } = servicesApi;

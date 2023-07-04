@@ -20,8 +20,6 @@ const Selector = () => {
     setIsOpen(false);
   };
 
-  console.log(isOpen);
-
   return (
     <div className="relative inline-block text-left">
       <button

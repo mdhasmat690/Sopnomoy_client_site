@@ -1,21 +1,34 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useState } from "react";
 
 import { useGetRelatedServicesQuery } from "../../../../features/services/servicesApi";
 import ServiceLodear from "../../../../pages/ui/ServiceLodear";
 import ServiceItem from "../ServiceItem";
+import { useDispatch, useSelector } from "react-redux";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import RelatedServiceItem from "./RelatedServiceItem";
 
 function RelatedService({ email }) {
   const { data, isLoading, isError } = useGetRelatedServicesQuery(email);
-
   const services = data?.data;
+  const rowRef = useRef(null);
+  const [isMoved, setIsMoved] = useState(false);
 
-  /*   if (!services?.length) {
-    return <>Loading</>;
-  } */
+  const handleClick = (direction) => {
+    setIsMoved(true);
+    if (rowRef.current) {
+      const { scrollLeft, clientWidth } = rowRef.current;
 
-  // decide what to render
+      const scrollTo =
+        direction === "left"
+          ? scrollLeft - clientWidth
+          : scrollLeft + clientWidth;
+      rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
   let content = null;
-
   if (isLoading) {
     content = (
       <>
@@ -27,27 +40,43 @@ function RelatedService({ email }) {
     );
   }
 
-  if (!isLoading && isError) {
-    content = <>there was an error</>;
-  }
-
   if (!isLoading && !isError && services?.length === 0) {
-    content = <>No videos found!</>;
+    content = (
+      <>
+        {" "}
+        <ServiceLodear />
+      </>
+    );
   }
 
   if (!isLoading && !isError && services?.length > 0) {
     content = services.map((service, index) => (
-      <ServiceItem key={index} service={service} />
+      <RelatedServiceItem key={index} service={service} />
     ));
   }
 
-  // console.log("this is main problem in code", services);
-
   return (
     <>
-      <div id="projects" className="w-[90%] mx-auto">
-        <div className="mx-auto px-2 py-5">
-          <div className="grid md:grid-cols-4 gap-6">{content}</div>
+      <div className="w-[90%] mx-auto">
+        <div className="group relative md:-ml-2 mb-3 ">
+          <MdChevronLeft
+            className={`absolute top-0 bottom-0 left-2 z-40 m-auto text-[#ea4c89] h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
+              !isMoved && "hidden"
+            }`}
+            onClick={() => handleClick("left")}
+          />
+          <div
+            style={{ overflowX: "hidden" }}
+            className="flex  space-x-[10px] overflow-x-scroll overflow-hidden md:space-x-[20px] md:p-2"
+            ref={rowRef}
+          >
+            {content}
+          </div>
+
+          <MdChevronRight
+            className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 text-[#ea4c89]"
+            onClick={() => handleClick("right")}
+          />
         </div>
       </div>
     </>
