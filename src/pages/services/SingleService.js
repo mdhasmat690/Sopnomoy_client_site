@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import { TiMessages } from "react-icons/ti";
 import Modal from "react-modal";
 import "react-modern-drawer/dist/index.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   servicesApi,
   useGetSingleServicesQuery,
@@ -38,6 +38,7 @@ const customStyles = {
 function SingleService() {
   const { id } = useParams();
   const { email: user } = useSelector((state) => state?.auth?.user);
+  console.log(user);
 
   const {
     data,
@@ -77,10 +78,13 @@ function SingleService() {
     formState: { isSubmitting, isDirty, isValid },
   } = useForm({ mode: "onChange" }); */
   const userInformation = userData?.data;
-
+  const navigate = useNavigate();
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
+    if (!user) {
+      return navigate("/signUp");
+    }
     setIsOpen(true);
   }
   function afterOpenModal() {
@@ -95,6 +99,9 @@ function SingleService() {
   const [modalIsOpenSave, setIsOpenSave] = useState(false);
 
   function openModalSave() {
+    if (!user) {
+      return navigate("/signUp");
+    }
     setIsOpenSave(true);
   }
 
@@ -160,6 +167,9 @@ function SingleService() {
 
   /* like product */
   const handleLikeSubmit = (data) => {
+    if (!user) {
+      return navigate("/signUp");
+    }
     const mainData = data;
 
     LikeSingleServices({

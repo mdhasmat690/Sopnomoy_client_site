@@ -29,6 +29,7 @@ function RelatedServiceItem({ service }) {
   const userEmail = user?.email;
   const isLiked = service?.likesUser?.includes(userEmail);
   // console.log("serviceItem", service?.likesUser);
+  const navigate = useNavigate();
 
   const isCollection = service?.collection?.includes(userEmail);
   // console.log("collection", isCollection);
@@ -39,6 +40,9 @@ function RelatedServiceItem({ service }) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
+    if (!userEmail) {
+      return navigate("/signUp");
+    }
     setIsOpen(true);
   }
 
@@ -52,6 +56,9 @@ function RelatedServiceItem({ service }) {
   }
 
   const handleSubmit = (data) => {
+    if (!userEmail) {
+      return navigate("/signUp");
+    }
     const mainData = data;
 
     LikeSingleServices({

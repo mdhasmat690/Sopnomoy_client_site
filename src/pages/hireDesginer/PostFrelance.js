@@ -162,8 +162,8 @@ function PostFrelance() {
                     className="bg-[#f3f3f4] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2   "
                     {...register("group")}
                   >
-                    <option value="web">single</option>
-                    <option value="designer">team</option>
+                    <option value="single">single</option>
+                    <option value="single">team</option>
                   </select>
 
                   <span className="ml-3 font-bold">

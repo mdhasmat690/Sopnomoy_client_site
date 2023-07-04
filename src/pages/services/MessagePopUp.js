@@ -19,9 +19,9 @@ function MessagePopUp({
 }) {
   /*  */
   const { email: user } = useSelector((state) => state?.auth?.user);
+  console.log(user);
   const { data: loginUserData } = useGetUserDataQuery(user);
   const loginUser = loginUserData?.data;
-  console.log(servicesUserInfo);
 
   const { data: conversionData, refetch } = useConversionQuery({
     user: loginUser?.email,

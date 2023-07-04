@@ -21,6 +21,7 @@ function ServiceItem({ service }) {
   const dispatch = useDispatch();
   const [likesPost, {}] = useLikePostMutation();
   const [watchpost, {}] = useWatchPostMutation();
+  const navigate = useNavigate();
 
   const { data: serviceUserInto } = useGetUserDataQuery(service?.email);
 
@@ -38,6 +39,9 @@ function ServiceItem({ service }) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
+    if (!userEmail) {
+      return navigate("/signUp");
+    }
     setIsOpen(true);
   }
 
@@ -52,6 +56,9 @@ function ServiceItem({ service }) {
 
   const handleSubmit = (data) => {
     const mainData = data;
+    if (!userEmail) {
+      return navigate("/signUp");
+    }
 
     LikeSingleServices({
       id: data?._id,

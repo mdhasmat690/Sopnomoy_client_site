@@ -14,16 +14,18 @@ import {
 import { Link } from "react-router-dom";
 import ServiceLodear from "../ui/ServiceLodear";
 import Swal from "sweetalert2";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
 
-function Works(props) {
+function Works() {
   const { email: user } = useSelector((state) => state?.auth?.user);
+  const { data: serviceUserInto } = useGetUserDataQuery(user);
+  console.log(serviceUserInto?.data);
   const { data, isLoading, isError } = useGetRelatedServicesQuery(user);
 
   const [deleteProject, { isSuccess: deleteIsSuccess }] =
     useDeleteProjectMutation();
 
   const deleteClick = (service) => {
-    console.log(service._id);
     Swal.fire({
       title: "Are you sure?",
       icon: "warning",
@@ -68,10 +70,7 @@ function Works(props) {
       <div key={service._id}>
         <div className="relative group ">
           <div>
-            <Link
-              to={`/singleProduct/${service?._id}`}
-              //  onClick={() => hanldeWatchCount(service._id)}
-            >
+            <Link to={`/singleProduct/${service?._id}`}>
               <img
                 className=" cursor-pointer rounded-[8px]"
                 src={service?.imgUrl}
@@ -110,7 +109,7 @@ function Works(props) {
                     {" "}
                     <AiTwotoneEdit
                       className={`text-[20px] text-gray-700 ${
-                        "isLiked" ? "text-gray-700 " : " text-gray-700" //isLiked
+                        "isLiked" ? "text-gray-700 " : " text-gray-700"
                       }  `}
                     />
                   </button>
@@ -122,13 +121,13 @@ function Works(props) {
         <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
           <div style={{ alignItems: "center" }} className="flex">
             <img
-              src="https://i.ibb.co/Vvz1D7w/3-D-Composition-2.webp"
+              src={serviceUserInto?.data?.image}
               className="w-[24px] h-[24px] rounded-[50%] mr-2"
               alt=""
             />
 
             <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
-              Hasmat
+              {serviceUserInto?.data?.displayName}
             </h1>
             <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
               Team
@@ -139,19 +138,19 @@ function Works(props) {
             <span className="mr-3 flex items-center  hover:text-[#ea4c89] cursor-pointer">
               <AiFillHeart
                 className={` ${
-                  "isLiked" ? "text-[#ea4c89] " : " text-[#9e9ea7]" //isLiked
+                  "isLiked" ? "text-[#ea4c89] " : " text-[#9e9ea7]"
                 }  `}
               />
               <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
                 {" "}
-                356
+                {service?.likesUser?.length || 0}
               </span>
             </span>
             <span className="flex items-center  text-[#9e9ea7] cursor-pointer">
               <AiFillEye className="text-[#9e9ea7] hover:text-[#ea4c89]" />
               <span className="text-[#9e9ea7] font-[500] text-[12px] ml-1">
                 {" "}
-                2345
+                {service?.watch || 0}
               </span>
             </span>
           </div>

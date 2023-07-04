@@ -36,6 +36,7 @@ import EditProfile from "../pages/account/EditProfile";
 import SocialProfile from "../pages/account/SocialProfile";
 import Section from "../pages/account/Section";
 import DeleteAccount from "../pages/account/DeleteAccount";
+import MessagePopUp from "../pages/services/MessagePopUp";
 
 const routes = createBrowserRouter([
   {
@@ -43,16 +44,21 @@ const routes = createBrowserRouter([
     element: <Main />,
     children: [
       { path: "/", element: <Home /> },
-      {
-        path: "/singleProduct/:id",
-        element: (
-          <PrivetRoute>
-            {" "}
-            <SingleService />
-          </PrivetRoute>
-        ),
-      },
+      { path: "/singleProduct/:id", element: <SingleService /> },
+      // {
+      //   path: "/singleProduct/:id",
+      //   element: (
+      //     <PrivetRoute>
+      //       {" "}
+      //       <MessagePopUp />
+      //       </PrivetRoute>
+      //   ),
+      // },
 
+      // <PrivetRoute>
+      //   {" "}
+      // </PrivetRoute>
+      // <SingleService />
       { path: "/blog", element: <Stories /> },
       { path: "/blog/:id", element: <SingleStory /> },
       { path: "/warmUp", element: <WarmUp /> },
@@ -99,7 +105,12 @@ const routes = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <PrivetRoute>
+        {" "}
+        <Profile />
+      </PrivetRoute>
+    ),
     children: [
       { path: "/profile", element: <Works /> },
       { path: "/profile/work", element: <Works /> },
@@ -110,7 +121,12 @@ const routes = createBrowserRouter([
   },
   {
     path: "/account",
-    element: <Account />,
+    element: (
+      <PrivetRoute>
+        {" "}
+        <Account />{" "}
+      </PrivetRoute>
+    ),
     children: [
       { path: "/account", element: <General /> },
       { path: "/account/editProfile", element: <EditProfile /> },

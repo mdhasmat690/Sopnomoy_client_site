@@ -71,9 +71,11 @@ function Profile(props) {
               {user?.location}
             </h6>
             <div className=" flex">
-              <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4">
-                Edit Profile
-              </button>
+              <Link to={"/account/editProfile"}>
+                <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4">
+                  Edit Profile
+                </button>
+              </Link>
               <button className="border border-indigo-[#E7E7E7] rounded-[8px] cursor-pointer text-[14px] h-[40px] font-[500] py-[10] px-[16px] mr-4 md:block hidden">
                 ...
               </button>
