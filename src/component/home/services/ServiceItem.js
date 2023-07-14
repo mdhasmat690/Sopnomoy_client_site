@@ -18,6 +18,7 @@ import { useGetUserDataQuery } from "../../../features/auth/authApi";
 import { Vortex } from "react-loader-spinner";
 
 function ServiceItem({ service }) {
+  console.log(service?.projectType);
   const dispatch = useDispatch();
   const [likesPost, {}] = useLikePostMutation();
   const [watchpost, {}] = useWatchPostMutation();

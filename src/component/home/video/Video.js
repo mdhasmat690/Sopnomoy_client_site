@@ -8,11 +8,11 @@ import { search } from "../../../features/services/servicesSlice";
 
 const groupButton = [
   { name: "Discover", searchTag: "" },
-  { name: "Animation", searchTag: "Animation" },
-  { name: "Web Design", searchTag: "WebDesign" },
-  { name: "Designer", searchTag: "softwareDesigner" },
-  { name: "Mobile", searchTag: "Mobile" },
-  { name: "App Design", searchTag: "App Design" },
+  { name: "Animation", searchTag: "animation" },
+  { name: "Web Design", searchTag: "web" },
+  { name: "Designer", searchTag: "designer" },
+  { name: "Mobile", searchTag: "softwareDesigner" },
+  { name: "App Design", searchTag: "app" },
 ];
 
 function Video(props) {
