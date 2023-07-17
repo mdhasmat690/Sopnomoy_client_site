@@ -14,15 +14,16 @@ function Section(props) {
 
         <h1 className="text-[16px] font-bold uppercase mt-4 mb-2">Device</h1>
         <div className="border-t border-solid border-[#dbdbde] my-2"></div>
-
-        <td>
-          <tr className="text-[14px] font-bold">37.111.222.124</tr>
-          <tr className="text-[14px] font-bold">Device</tr>
-          <tr className="text-[14px] font-bold">
-            Last accessed: <span>May 16, 2023</span>{" "}
-          </tr>
-          <tr className="text-[14px] font-bold">Signed in: Apr 03, 2023</tr>
-        </td>
+        <tbody>
+          <td>
+            <tr className="text-[14px] font-bold">37.111.222.124</tr>
+            <tr className="text-[14px] font-bold">Device</tr>
+            <tr className="text-[14px] font-bold">
+              Last accessed: <span>May 16, 2023</span>{" "}
+            </tr>
+            <tr className="text-[14px] font-bold">Signed in: Apr 03, 2023</tr>
+          </td>
+        </tbody>
       </div>
     </div>
   );

@@ -2,8 +2,18 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useBeforeUnload } from "react-router-dom";
+import {
+  useGetUserDataQuery,
+  useUserUpdateMutation,
+} from "../../features/auth/authApi";
+import { useSelector } from "react-redux";
 
 function General(props) {
+  const { email } = useSelector((state) => state?.auth?.user);
+
+  const { data: user } = useGetUserDataQuery(email);
+  const [updateUserMore, {}] = useUserUpdateMutation();
+  // console.log(user?.data?._id);
   /*   const [save, setSave] = useState("");
 
   useEffect(() => {
@@ -17,64 +27,29 @@ function General(props) {
   const {
     register,
     formState: { errors },
-    // handleSubmit,
+    handleSubmit,
     control,
     reset,
   } = useForm();
 
+  useEffect(() => {
+    reset();
+  }, [user, reset]);
+
   const onSubmit = (data) => {
-    console.log("object");
-    // setSave(true);
+    updateUserMore({ id: user?.data?._id, data });
+    reset();
   };
-
-  const [saved, setSaved] = useState(false);
-
-  const handleBeforeUnload = (e) => {
-    if (!saved) {
-      e.preventDefault();
-      e.returnValue = "";
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSaved(true);
-  };
-
-  /*   useEffect(() => {
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [saved]); */
-
-  const [state, setState] = React.useState(null);
-
-  // save it off before users navigate away
-  useBeforeUnload(
-    React.useCallback(() => {
-      localStorage.stuff = state;
-    }, [state])
-  );
-
-  // read it in when they return
-  React.useEffect(() => {
-    if (state === null && localStorage.stuff != null) {
-      setState(localStorage.stuff);
-    }
-  }, [state]);
-
-  console.log(state);
 
   return (
     <div>
       <div>
-        <form /* onSubmit={handleSubmit(onSubmit)} */>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="my-6">
             <label className="font-bold">Username</label>
             <input
               className="  my-2 border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-              defaultValue={"test" || ""}
+              defaultValue={user?.data?.username ? user?.data?.username : ""}
               {...register("username")}
               required
             />
@@ -84,8 +59,8 @@ function General(props) {
             <label className="font-bold ">Email</label>
             <input
               className=" my-2  border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-              defaultValue={"@gmail" || ""}
-              {...register("userEmail")}
+              defaultValue={user?.data?.email ? user?.data?.email : ""}
+              {...register("email")}
               required
             />
           </div>
@@ -93,6 +68,7 @@ function General(props) {
           <h1 className="text-red-700 my-2">
             This field not working now we are working now
           </h1>
+          {errors.userEmail && <span>This field is required</span>}
 
           <div className="flex justify-end">
             {" "}
@@ -106,16 +82,6 @@ function General(props) {
           </div>
         </form>
       </div>
-      <br />
-
-      {/*   <form onSubmit={handleSubmit}>
-        <input className="bg-pink-400" type="text" />
-        <button type="submit">submit</button>
-      </form>
-      <br />
-      <a href="google.com">test link</a>
-      <br />
-      <Link to="/lkj">to</Link> */}
     </div>
   );
 }

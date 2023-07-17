@@ -13,6 +13,7 @@ export const apiSlice = createApi({
     "watch",
     "collection",
     "serviceUPCollection",
+    "user",
   ],
   endpoints: (builder) => ({}),
 });

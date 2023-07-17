@@ -85,7 +85,7 @@ const NaveBar = () => {
                 <div className="group">
                   {userData?.image ? (
                     <img
-                      className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
+                      className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a] cursor-pointer"
                       src={userData.image}
                       alt=""
                     />

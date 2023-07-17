@@ -34,6 +34,15 @@ export const servicesApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["likes"],
     }),
+    /*  */
+    /*   thisCodeWillDelete: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/update/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }), */
+    /*  */
     watchPost: builder.mutation({
       query: (id) => ({
         url: `/postProject/${id}`,
