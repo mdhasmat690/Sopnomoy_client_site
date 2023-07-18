@@ -1,10 +1,29 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import NaveBar from "../../component/home/NaveBar";
 import Footer from "../../component/home/Footer";
 import { Tooltip } from "react-tooltip";
+import { useSelector } from "react-redux";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
 
 function Account() {
+  const { email } = useSelector((state) => state?.auth?.user);
+
+  const { data } = useGetUserDataQuery(email);
+  const user = data?.data;
+  const location = useLocation();
+
+  let name;
+  if (location.pathname == "/account") {
+    name = "General";
+  } else if (location.pathname == "/account/editProfile") {
+    name = "Edit Profile";
+  } else if (location.pathname == "/account/socialProfile") {
+    name = "Social Profile";
+  } else if (location.pathname == "/account/section") {
+    name = "Section Application";
+  }
+
   return (
     <div>
       <NaveBar />
@@ -15,15 +34,15 @@ function Account() {
           <div>
             {" "}
             <img
-              src="https://cdn.dribbble.com/assets/default_avatars/avatar-6-91d8278f6ad70a5aebebacac5ab583e57ef1930f085dec5247de9223c765089c.png"
+              src={user?.image}
               alt=""
               className="h-[48px] w-[48px] rounded-[50%]"
             />
           </div>
           <div className="ml-5">
             <h1 className="text-[#0d0c22] text-[20px] font-[500]">
-              Md Hasmat Ali <span className="text-[#dbdbde]">/</span>{" "}
-              <span className="my-anchor-element">General</span>
+              {user?.displayName} <span className="text-[#dbdbde]">/</span>{" "}
+              <span className="my-anchor-element">{name}</span>
             </h1>
             <h4 className="text-[14px] text-[#6e6d7a]">
               Update your username and manage your account
@@ -59,7 +78,7 @@ function Account() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       <Tooltip
         anchorSelect=".my-anchor-element"
         content="We are busy now coming soon fixed it"

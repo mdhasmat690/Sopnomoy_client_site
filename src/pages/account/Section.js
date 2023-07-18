@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Section(props) {
+import { browserName, browserVersion, BrowserTypes } from "react-device-detect";
+
+function Section() {
+  /*   const [data, setData] = useState("");
+
+  useEffect(() => {
+    fetch("https://geolocation-db.com/json/")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+ */
   return (
     <div>
-      <div>
+      {/*  <div>
         <h1 className="text-[16px] font-bold">Your Sessions</h1>
 
         <div className="border-t border-solid border-[#dbdbde] my-2"></div>
@@ -14,17 +27,16 @@ function Section(props) {
 
         <h1 className="text-[16px] font-bold uppercase mt-4 mb-2">Device</h1>
         <div className="border-t border-solid border-[#dbdbde] my-2"></div>
-        <tbody>
-          <td>
-            <tr className="text-[14px] font-bold">37.111.222.124</tr>
-            <tr className="text-[14px] font-bold">Device</tr>
-            <tr className="text-[14px] font-bold">
-              Last accessed: <span>May 16, 2023</span>{" "}
-            </tr>
-            <tr className="text-[14px] font-bold">Signed in: Apr 03, 2023</tr>
-          </td>
-        </tbody>
-      </div>
+
+        <h4 className="text-[14px] font-bold">{data?.IPv4}</h4>
+        <h4 className="text-[14px] font-bold">
+          Device: <span className="capitalize">{browserName}</span>
+        </h4>
+        <h4 className="text-[14px] font-bold">
+          Last accessed: <span>{data?.latitude}</span>{" "}
+        </h4>
+        <h4 className="text-[14px] font-bold">Signed in: Apr 03, 2023</h4>
+      </div> */}
     </div>
   );
 }

@@ -7,12 +7,13 @@ import {
   useUserUpdateMutation,
 } from "../../features/auth/authApi";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
-function General(props) {
+function General() {
   const { email } = useSelector((state) => state?.auth?.user);
 
   const { data: user } = useGetUserDataQuery(email);
-  const [updateUserMore, {}] = useUserUpdateMutation();
+  const [updateUserMore, { isSuccess, isLoading }] = useUserUpdateMutation();
   // console.log(user?.data?._id);
   /*   const [save, setSave] = useState("");
 
@@ -41,6 +42,31 @@ function General(props) {
     reset();
   };
 
+  if (isLoading) {
+    let timerInterval;
+    Swal.fire({
+      title: "Please wait finish soon!",
+      html: "I will close in <b></b> milliseconds.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  }
+
   return (
     <div>
       <div>
@@ -65,9 +91,6 @@ function General(props) {
             />
           </div>
 
-          <h1 className="text-red-700 my-2">
-            This field not working now we are working now
-          </h1>
           {errors.userEmail && <span>This field is required</span>}
 
           <div className="flex justify-end">
@@ -76,6 +99,7 @@ function General(props) {
               className={`text-white rounded-md   bg-[#ea4c89] px-3 py-2 
                     cursor-pointer`}
               type="submit"
+              disabled={isLoading}
             >
               Save Changes
             </button>

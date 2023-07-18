@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,16 +11,53 @@ import {
 } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import {
+  useGetUserDataQuery,
+  useUserUpdateMutation,
+} from "../../features/auth/authApi";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 
-function EditProfile(props) {
+function EditProfile() {
   const navigate = useNavigate();
+  const { email } = useSelector((state) => state?.auth?.user);
+
+  const { data } = useGetUserDataQuery(email);
+  const user = data?.data;
+
+  const [updateUserMore, { isSuccess, isLoading: updateLoading }] =
+    useUserUpdateMutation();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    control,
+    reset,
+  } = useForm();
+
+  useEffect(() => {
+    reset();
+  }, [user, reset]);
 
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
+  const [error, setError] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
+    if (file.size > 614400) {
+      setError("Please select another image.");
+      setImage("");
+      return;
+    }
+
+    setError("");
+
     setProfileImage(file);
     const reader = new FileReader();
 
@@ -30,7 +68,7 @@ function EditProfile(props) {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = () => {
+  const handleSubmitCloudinary = () => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "bzhujgp9");
@@ -44,21 +82,48 @@ function EditProfile(props) {
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
-        console.log(data?.url);
         setProfileImage("");
+        setImageUrl(data.url);
       })
       .catch((error) => console.log(error));
   };
+
+  const onSubmit = (data) => {
+    data.image = imageUrl;
+    const fullData = data;
+    updateUserMore({ id: user?._id, data });
+  };
+  if (updateLoading) {
+    let timerInterval;
+    Swal.fire({
+      title: "Please wait finish soon!",
+      html: "I will close in <b></b> milliseconds.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  }
 
   return (
     <div>
       <div className="flex">
         <img
           className="w-[80px] h-[80px] rounded-[50%]"
-          src={
-            image ||
-            "https://cdn.dribbble.com/assets/default_avatars/avatar-6-91d8278f6ad70a5aebebacac5ab583e57ef1930f085dec5247de9223c765089c.png"
-          }
+          src={image || `${user?.image}`}
           alt=""
         />
 
@@ -75,27 +140,42 @@ function EditProfile(props) {
             <br />
 
             <h1 className="text-[#9e9ea7] text-[12px] my-3">
-              JPG, GIF or PNG. Max size of 800K
+              JPG, GIF or PNG. Max size of 600K{" "}
+              <span className="text-red-600">{error}</span>
             </h1>
-
-            <button
-              onClick={handleSubmit}
-              className="bg-[#ea4c89] text-[15px] rounded-[8px] py-[10px] px-[16px] "
-              disabled={isLoading}
-            >
-              {isLoading ? "Uploading..." : "Upload Now"}
-            </button>
+            {imageUrl ? (
+              <>
+                {" "}
+                <button
+                  className="bg-[#ea4c89] text-[15px] rounded-[8px] py-[10px] px-[16px] "
+                  type="button"
+                >
+                  Uploaded
+                </button>
+              </>
+            ) : (
+              <>
+                {" "}
+                <button
+                  onClick={handleSubmitCloudinary}
+                  className="bg-[#ea4c89] text-[15px] rounded-[8px] py-[10px] px-[16px] "
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Uploading..." : "Upload Now"}
+                </button>
+              </>
+            )}
           </form>
         </div>
       </div>
 
-      <form /* onSubmit={handleSubmit(onSubmit)} */>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-5">
           <label className="text-[14px] font-[600]">Name</label>
           <input
             className=" text-[16px] h-[48px] py-[10px] px-[16px] my-2 border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-            defaultValue={"Md Hasmat" || ""}
-            // {...register("username")}
+            defaultValue={user?.displayName ? user?.displayName : ""}
+            {...register("displayName")}
             required
           />
         </div>
@@ -103,8 +183,8 @@ function EditProfile(props) {
           <label className="text-[14px] font-[600]">Location</label>
           <input
             className=" text-[16px] h-[48px] py-[10px] px-[16px] my-2 border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-            defaultValue={"Dhaka" || ""}
-            // {...register("username")}
+            defaultValue={user?.location ? user?.location : ""}
+            {...register("location")}
             required
           />
         </div>
@@ -113,8 +193,8 @@ function EditProfile(props) {
           <label className="font-bold ">Bio</label>
           <textarea
             className="min-h-[108px] h-[48px] my-2  border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-            defaultValue={"Test" || ""}
-            // {...register("userEmail")}
+            defaultValue={user?.bio ? user?.bio : ""}
+            {...register("bio")}
             required
           />
         </div>
@@ -128,14 +208,14 @@ function EditProfile(props) {
           <label className="text-[16px] font-[600]">Personal Website</label>
           <input
             className=" text-[16px] h-[48px] py-[10px] px-[16px] my-2 border-[2px] outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] "
-            defaultValue={"Md Hasmat" || ""}
-            // {...register("username")}
+            defaultValue={user?.personalWeb ? user?.personalWeb : ""}
+            {...register("personalWeb")}
             required
           />
         </div>
-        <h1 className="text-red-700 my-2">
+        {/* <h1 className="text-red-700 my-2">
           This field not working now we are working now
-        </h1>
+        </h1> */}
 
         <div className="flex justify-end">
           {" "}

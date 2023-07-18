@@ -132,9 +132,6 @@ const routes = createBrowserRouter([
       { path: "/account/editProfile", element: <EditProfile /> },
       { path: "/account/socialProfile", element: <SocialProfile /> },
       { path: "/account/section", element: <Section /> },
-
-      // { path: "/account/linkedShoot", element: <LinkedShoot /> },
-      // { path: "/account/about", element: <About /> },
     ],
   },
 ]);
