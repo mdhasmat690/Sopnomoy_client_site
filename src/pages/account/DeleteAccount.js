@@ -29,7 +29,7 @@ function DeleteAccount(props) {
               <button className="bg-[#ea4c89] text-white py-[10px] px-[16px] rounded-[8px]">
                 Nevermind
               </button>
-              <button className=" ml-4 border border-solid-[1px]  py-[10px] px-[16px] rounded-[8px]">
+              <button className=" ml-4 border border-solid-[1px]  py-[10px] px-[16px] rounded-[8px]my-anchor-element">
                 Delete My Account
               </button>
             </div>

@@ -62,14 +62,18 @@ function Account() {
               <Link to={"/account/socialProfile"}>
                 <li className="my-2  ">Social Profile </li>
               </Link>
-              <li className="my-2 my-anchor-element">Email Notifications</li>
+              <Link to={"/account"}>
+                <li className="my-2 my-anchor-element">Email Notifications</li>
+              </Link>
               <Link to={"/account/section"}>
                 <li className="my-2"> Sessions Applications </li>
               </Link>
               <li className="my-2 mb-4 my-anchor-element"> Billing </li>
               <hr />
               <Link to={"/deleteAccount"}>
-                <li className="my-4 text-[#ff5555] ">Delete Account</li>
+                <li className="my-4 text-[#ff5555] my-anchor-element">
+                  Delete Account
+                </li>
               </Link>
             </ul>
           </div>

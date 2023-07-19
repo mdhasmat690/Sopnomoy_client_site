@@ -68,8 +68,8 @@ function General() {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className="h-[1044px]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="my-6">
             <label className="font-bold">Username</label>
@@ -106,7 +106,7 @@ function General() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

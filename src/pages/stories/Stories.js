@@ -1,8 +1,29 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ContributeStory from "./ContributeStory";
 
 function Stories() {
   const navigate = useNavigate();
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    /*  if (!userEmail) {
+      return navigate("/signUp");
+    } */
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className="border-t border-indigo-[#f3f3f4] w-[100%]"></div>
@@ -32,10 +53,20 @@ function Stories() {
                 trends, including the minimalist movement that so many designers
                 are so fond of today. Explore a collection of modern graphic
                 design inspired by the mid-century modern aesthetic.
+                <span className="font-500 text-orange-400">
+                  Write A blog{" "}
+                  <span
+                    onClick={openModal}
+                    to={""}
+                    className="text-[#ea4c89] font-bold cursor-pointer"
+                  >
+                    click
+                  </span>{" "}
+                </span>
               </h1>
               <div className="border-t-2 border-indigo-[#f3f3f4] w-[100%] my-5"></div>
 
-              <div className=" flex">
+              {/*  <div className=" flex">
                 <img
                   src="https://cdn.dribbble.com/uploads/43144/original/3c0b815faaccefbb2c55009848996fde.png?1670361214"
                   alt=""
@@ -57,7 +88,7 @@ function Stories() {
                     designers to scale their brand in 2023 and beyond.
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <hr className="my-5" />
               {/*  */}
@@ -126,6 +157,14 @@ function Stories() {
               </h2>
             </div>
           </div>
+        </div>
+        <div>
+          <ContributeStory
+            // service={service}
+            modalIsOpen={modalIsOpen}
+            closeModal={closeModal}
+            afterOpenModal={afterOpenModal}
+          />
         </div>
       </div>
     </>
