@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ContributeStory from "./ContributeStory";
+import { useGetBlogQuery } from "../../features/blog/blogApi";
+import moment from "moment/moment";
 
 function Stories() {
+  const { data } = useGetBlogQuery();
+
+  console.log(data);
   const navigate = useNavigate();
 
   let subtitle;
@@ -90,32 +95,37 @@ function Stories() {
                 </div>
               </div> */}
 
-              <hr className="my-5" />
-              {/*  */}
-              <div className="grid md:grid-cols-5 gap-4">
-                <img
-                  src="https://cdn.dribbble.com/uploads/43144/original/3c0b815faaccefbb2c55009848996fde.png?1670361214"
-                  alt=""
-                  className="w-[100%] rounded-md col-span-1"
-                />
+              {data?.map((blog) => (
+                <>
+                  <hr className="my-5" />
+                  <div className="grid md:grid-cols-5 gap-4 mb-8">
+                    <div className=" col-span-1">
+                      <img
+                        src={blog?.image}
+                        alt=""
+                        className="w-[100%] rounded-md"
+                      />
+                    </div>
 
-                <div className="col-span-4">
-                  <span className="text-[#dbdbde] text-[14] font-[500]">
-                    DEC 13, 2022
-                  </span>
-                  <h1
-                    className="text-[24px] font-[500] cursor-pointer hover:text-[#ea4c89]"
-                    // onClick={() => navigate("/blog/2")}
-                    onClick={() => navigate(`/blog/1`)}
-                  >
-                    7 critical business tools every designer needs in 2023
-                  </h1>
-                  <p className="text-[#dbdbde] text-[14] font-[400]">
-                    Discover a list of the most important business tools for
-                    designers to scale their brand in 2023 and beyond.
-                  </p>
-                </div>
-              </div>
+                    <div className="col-span-4">
+                      <span className="text-[#dbdbde] text-[14] font-[500]">
+                        {moment(blog?.time).fromNow()}
+                      </span>
+                      <h1
+                        className="text-[24px] font-[500] cursor-pointer hover:text-[#ea4c89]"
+                        // onClick={() => navigate("/blog/2")}
+                        onClick={() => navigate(`/blog/${blog?._id}`)}
+                      >
+                        {blog?.tittle?.slice(0, 60)}
+                      </h1>
+                      <p className="text-[#dbdbde] text-[14] font-[400]">
+                        {blog?.desc?.slice(0, 55)}
+                        {blog?.desc?.length >= 55 ? <>...</> : <></>}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ))}
             </div>
           </div>
           <div className=" md:mx-auto">

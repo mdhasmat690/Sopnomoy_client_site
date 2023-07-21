@@ -1,5 +1,17 @@
 import React from "react";
 import Modal from "react-modal";
+import { AiFillDelete } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useGetUserDataQuery } from "../../features/auth/authApi";
+import { useEffect } from "react";
+import {
+  useDeleteBlogMutation,
+  useGetBlogEmailQuery,
+  usePostBlogMutation,
+} from "../../features/blog/blogApi";
+import Swal from "sweetalert2";
+import moment from "moment/moment";
 
 const customStyles = {
   overlay: {
@@ -22,6 +34,60 @@ const customStyles = {
 };
 
 function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
+  const { email } = useSelector((state) => state?.auth?.user);
+
+  const { data: user } = useGetUserDataQuery(email);
+  const { data: getBlog } = useGetBlogEmailQuery(user?.data?.email);
+  console.log(getBlog);
+  const [postBlog, { isLoading, isSuccess }] = usePostBlogMutation();
+
+  const [deleteBlog, { isSuccess: deleteSuccess, isLoading: deleteIsloading }] =
+    useDeleteBlogMutation();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    control,
+    reset,
+  } = useForm();
+
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleString();
+
+  const time = new Date().getTime();
+
+  const onSubmit = (data) => {
+    data.time = time;
+    data.email = user?.data?.email;
+    postBlog(data);
+    reset();
+  };
+
+  const handleDelete = (e) => {
+    deleteBlog(e);
+  };
+
+  if (isSuccess) {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your new service added",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
+  if (deleteSuccess) {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your new service added",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
   return (
     <div>
       <Modal
@@ -41,7 +107,7 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
             </span>
           </button> */}
             <div>
-              <form /* onSubmit={handleSubmit(onSubmit)} */>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="sm:w-[400px] md:w-[550px] p-3">
                   <div>
                     <h1 className="text-[16px] font-[500] text-[#0d0c22]">
@@ -56,7 +122,18 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
                     </label>
                     <input
                       className="bg-[#f3f3f4] outline-none rounded-[6px] mt-2 focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
-                      // {...register("collectionName")}
+                      {...register("tittle")}
+                      required
+                    />
+                  </div>
+
+                  <div className="my-3">
+                    <label className="font-[500] text-[16px] text-[#0d0c22]">
+                      Image
+                    </label>
+                    <input
+                      className="bg-[#f3f3f4] outline-none rounded-[6px] mt-2 focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]  border-solid   focus:bg-white p-2 w-[100%]"
+                      {...register("image")}
                       required
                     />
                   </div>
@@ -67,9 +144,10 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
                     </label>
                     <textarea
                       className="bg-[#f3f3f4] outline-none rounded-[10px] mt-2 focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] border-solid  focus:bg-white p-2 w-[100%] h-[110px] text-[14px] font-[400] leading-[28px] hover:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)] hover:bg-white"
-                      // {...register("desc")}
+                      style={{ whiteSpace: "pre-wrap" }}
+                      {...register("desc")}
                       required
-                      placeholder="Start a conversation with Design Squad"
+                      placeholder="you comment"
                     />
                   </div>
 
@@ -79,7 +157,7 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
                         text-white h-[40px] w-[80%] md:w-[30%] rounded-[8px]
                         text-[14px] font-[500] leading-[20px] cursor-pointer"
                       type="submit"
-                      // disabled={isLoading}
+                      disabled={isLoading}
                     >
                       Post
                     </button>
@@ -104,26 +182,39 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
                   {content}
                  
                 </ul> */}
-                <div className="grid md:grid-cols-2  ">
-                  <div className="col-span-1">
-                    lkjhfffffffffffffffffffffffffffff
-                    {/*  <img
-                      src="https://cdn.dribbble.com/uploads/43144/original/3c0b815faaccefbb2c55009848996fde.png?1670361214"
-                      alt=""
-                      className="w-[100px] rounded-md "
-                    /> */}
-                  </div>
-                  <div className="col-span-1">
-                    <span className="text-[#dbdbde] text-[14] font-[500]">
-                      DEC 13, 2022
-                    </span>
-                    <h1 className="text-[24px] font-[500] cursor-pointer hover:text-[#ea4c89]">
-                      7 critical business{" "}
-                    </h1>
-                    <p className="text-[#dbdbde] text-[14] font-[400]">
-                      Discover{" "}
-                    </p>
-                  </div>
+                <div className="min-h-[68px] flex flex-col">
+                  {getBlog?.map((blog) => (
+                    <>
+                      <div className="flex items-center">
+                        <div className=" md:block hidden">
+                          <img
+                            src={blog?.image}
+                            alt=""
+                            className="w-[80px] rounded-md "
+                          />
+                        </div>
+                        <div className=" ml-5">
+                          <span className="text-[#dbdbde] text-[14] font-[400] flex items-center">
+                            {moment(blog?.time).fromNow()}
+                            <button
+                              onClick={() => handleDelete(blog?._id)}
+                              className="ml-2 cursor-pointer text-red-600 font-bold"
+                              disabled={deleteIsloading}
+                            >
+                              <AiFillDelete />
+                            </button>
+                          </span>
+                          <h1 className="text-[16px] font-[500] cursor-pointer hover:text-[#ea4c89]">
+                            {blog?.tittle?.slice(0, 54)}
+                          </h1>
+                          <p className="text-[#dbdbde] text-[14] font-[400]">
+                            {blog?.desc?.slice(0, 50)}
+                            {blog?.desc?.length >= 40 ? <>...</> : <></>}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ))}
                 </div>
               </div>
             </div>
