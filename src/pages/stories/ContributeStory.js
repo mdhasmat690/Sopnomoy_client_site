@@ -38,7 +38,6 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
 
   const { data: user } = useGetUserDataQuery(email);
   const { data: getBlog } = useGetBlogEmailQuery(user?.data?.email);
-  console.log(getBlog);
   const [postBlog, { isLoading, isSuccess }] = usePostBlogMutation();
 
   const [deleteBlog, { isSuccess: deleteSuccess, isLoading: deleteIsloading }] =
@@ -69,12 +68,27 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
   };
 
   if (isSuccess) {
+    let timerInterval;
     Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Your new service added",
-      showConfirmButton: false,
+      title: "Please wait finish soon!",
+      html: "I will close in <b></b> milliseconds.",
       timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
     });
   }
 
@@ -82,7 +96,7 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Your new service added",
+      title: "Delete Successfully",
       showConfirmButton: false,
       timer: 2000,
     });

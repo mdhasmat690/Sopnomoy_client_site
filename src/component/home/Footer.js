@@ -20,7 +20,7 @@ function Footer(props) {
               />
             </div>
 
-            <h1 className="text-[#3d3d4e] w-[50vh]">
+            <h1 className="text-[#3d3d4e] md:w-[50vh] w-[30vh]">
               Dribbble is the world’s leading community for creatives to share,
               grow, and get hired.
             </h1>

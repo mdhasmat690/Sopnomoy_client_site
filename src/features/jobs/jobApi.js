@@ -2,39 +2,34 @@ import { apiSlice } from "../api/apiSlice";
 
 export const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    postBlog: builder.mutation({
+    postJob: builder.mutation({
       query: (data) => ({
-        url: "/blog/post",
+        url: "/job/post",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["blog"],
+      invalidatesTags: ["Job"],
     }),
-    deleteBlog: builder.mutation({
+    /*   deleteBlog: builder.mutation({
       query: (id) => ({
         url: `/blog/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["blog"],
-    }),
-    getBlog: builder.query({
+    }), */
+    getJobs: builder.query({
       query: () => ({
-        url: "/blog/post",
+        url: "/job/post",
       }),
-      providesTags: ["blog"],
+      providesTags: ["Job"],
     }),
-    getBlogEmail: builder.query({
+    /*   getBlogEmail: builder.query({
       query: (email) => ({
         url: `/blog/post?email=${email}`,
       }),
       providesTags: ["blog"],
-    }),
+    }), */
   }),
 });
 
-export const {
-  usePostBlogMutation,
-  useGetBlogQuery,
-  useGetBlogEmailQuery,
-  useDeleteBlogMutation,
-} = blogApi;
+export const { usePostJobMutation, useGetJobsQuery } = blogApi;

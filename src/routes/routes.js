@@ -37,6 +37,7 @@ import SocialProfile from "../pages/account/SocialProfile";
 import Section from "../pages/account/Section";
 import DeleteAccount from "../pages/account/DeleteAccount";
 import MessagePopUp from "../pages/services/MessagePopUp";
+import PostJob from "../pages/findwork/PostJob";
 
 const routes = createBrowserRouter([
   {
@@ -65,7 +66,8 @@ const routes = createBrowserRouter([
       { path: "/warmUp/:id", element: <LarnMore /> },
       { path: "/desginProjects", element: <DesginProjects /> },
       { path: "/jobBoards", element: <JobBoards /> },
-      { path: "/singleJob", element: <SingleJob /> },
+      { path: "/postJob", element: <PostJob /> },
+      { path: "/singleJob/:id", element: <SingleJob /> },
       { path: "/signUp", element: <SignUp /> },
       { path: "/login", element: <Login /> },
       { path: "/forgetPassword", element: <ForgetPassword /> },
