@@ -23,13 +23,14 @@ export const blogApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["Job"],
     }),
-    /*   getBlogEmail: builder.query({
-      query: (email) => ({
-        url: `/blog/post?email=${email}`,
+    getSingleJobs: builder.query({
+      query: (id) => ({
+        url: `/job/post/${id}`,
       }),
-      providesTags: ["blog"],
-    }), */
+      providesTags: ["Job"],
+    }),
   }),
 });
 
-export const { usePostJobMutation, useGetJobsQuery } = blogApi;
+export const { usePostJobMutation, useGetJobsQuery, useGetSingleJobsQuery } =
+  blogApi;

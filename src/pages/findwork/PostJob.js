@@ -162,7 +162,7 @@ function PostJob() {
                   className="bg-[#fafafb] mt-3 outline-none rounded-[6px] focus:shadow-[0px_0px_2px_4px_rgba(234,76,137,0.24)]     focus:bg-white p-2 w-[100%] border-solid border-2 border-[#e7e7e9] h-[50px]"
                   {...register("employType")}
                 >
-                  <option value="fulltime">Full-time</option>
+                  <option value="full-time">Full-time</option>
                   <option value="freelance">Freelance / Contract Hire</option>
                 </select>
               </div>

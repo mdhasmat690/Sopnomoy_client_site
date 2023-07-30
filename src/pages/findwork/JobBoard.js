@@ -4,9 +4,8 @@ import { useGetJobsQuery } from "../../features/jobs/jobApi";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
 
-function JobBoards(props) {
+function JobBoards() {
   const { data, isLoading, isError } = useGetJobsQuery();
-  console.log(data);
   return (
     <>
       <div className="mb-10">
@@ -76,88 +75,71 @@ function JobBoards(props) {
             {Math.floor(Math.random() * 10 + 1)} new opportunities posted today!
           </h1>
           <div className="grid md:grid-cols-12 sm:grid-cols-2 gap-4 ">
-            {/*  <div className=" col-span-8">
-            <div className=" flex items-center justify-between hover:bg-[#f3f3f4] p-5">
-              <div className="">
-                <h1 className="text-[24px] font-[600] leading-[29px]">
-                  Product Designer
-                </h1>
-                <h2 className="text-[18px] font-[600]  text-[#3d3d4e">
-                  Md Hasmat{" "}
-                  <span className="text-[#3d3d4e] text-[18px] font-[400]">
-                    - full time
-                  </span>
-                </h2>
-              </div>
-              <div className="flex items-center ">
-                <div className=" hover:block mr-5">
-                  <button>click</button>
-                </div>
-                <div className="hover:hidden">
-                  {" "}
-                  <h1 className="">Dhaka,Bangladesh</h1>
-                  <h1 className="text-[#3d3d4e] text-[16px] font-[400]">
-                    Posted about 2 Hours ago
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
             <div class="col-span-8">
-              {data?.map((job) => (
-                <div
-                  key={job?._id}
-                  class="flex items-center justify-between hover:bg-[#f3f3f4] p-5 group"
-                >
-                  <div className="flex items-center">
-                    <div className="">
-                      <img
-                        src={job?.image}
-                        alt=""
-                        className="w-[50px]  mr-5 rounded-[50%]"
-                      />
-                    </div>
-                    <div>
-                      <h1 class="md:text-[20px] sm:text-[17px] font-semibold leading-[29px] whitespace-nowrap overflow-ellipsis overflow-hidden">
-                        {job?.JobTitle?.slice(0, 24)}
-                      </h1>
-                      <h2 class="text-[18px] font-[600] text-[#3d3d4e]">
-                        {job?.companyName}
-                        <span class="text-[#3d3d4e] text-[18px] font-[400] ml-1">
-                          • {job?.workplace}
-                        </span>
-                        <span class="text-[#3d3d4e] text-[18px] font-[400] ml-1">
-                          • {job?.employType}
-                        </span>
-                      </h2>
-                    </div>
-                  </div>
+              {data?.length ? (
+                <>
+                  {" "}
+                  {data?.map((job) => (
+                    <Link key={job?._id} to={`/singleJob/${job?._id}`}>
+                      <div
+                        key={job?._id}
+                        class="flex items-center justify-between hover:bg-[#f3f3f4] p-5 group"
+                      >
+                        <div className="flex items-center">
+                          <div className="">
+                            <img
+                              src={job?.image}
+                              alt=""
+                              className="w-[50px]  mr-5 rounded-[50%]"
+                            />
+                          </div>
+                          <div>
+                            <h1 class="md:text-[20px] sm:text-[17px] font-semibold leading-[29px] whitespace-nowrap overflow-ellipsis overflow-hidden">
+                              {job?.JobTitle?.slice(0, 24)}
+                            </h1>
+                            <h2 class="text-[18px] font-[600] text-[#3d3d4e]">
+                              {job?.companyName}
+                              <span class="text-[#3d3d4e] text-[18px] font-[400] ml-1">
+                                • {job?.workplace}
+                              </span>
+                              <span class="text-[#3d3d4e] text-[18px] font-[400] ml-1">
+                                • {job?.employType}
+                              </span>
+                            </h2>
+                          </div>
+                        </div>
 
-                  <div class=" items-center mr-5 invisible group-hover:visible hidden md:block">
-                    <div className="flex items-center">
-                      <button class="mr-4 px-4 py-2 bg-blue-500 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                        View Job
-                      </button>
-                      <button class="px-4 py-2 bg-blue-500 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                        apply now
-                      </button>
-                    </div>
-                  </div>
-                  <div class="group-hover:hidden md:block hidden">
-                    <h1 class="flex items-center">
-                      {" "}
-                      <span>
-                        <MdLocationOn className="mr-2" />
-                      </span>{" "}
-                      Dhaka, Bangladesh
-                    </h1>
-                    <h1 class="text-[#3d3d4e] text-[16px] font-[400]">
-                      Posted {moment(job?.time).fromNow()}
-                    </h1>
-                  </div>
-                </div>
-              ))}
+                        <div class=" items-center mr-5 invisible group-hover:visible hidden md:block">
+                          <div className="flex items-center">
+                            <Link to={`/singleJob/${job?._id}`}>
+                              <button class="mr-4 px-4 py-2 bg-blue-500 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                                View Job
+                              </button>
+                            </Link>
+                            <button class="px-4 py-2 bg-blue-500 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                              apply now
+                            </button>
+                          </div>
+                        </div>
+                        <div class="group-hover:hidden md:block hidden">
+                          <h1 class="flex items-center">
+                            {" "}
+                            <span>
+                              <MdLocationOn className="mr-2" />
+                            </span>{" "}
+                            Dhaka, Bangladesh
+                          </h1>
+                          <h1 class="text-[#3d3d4e] text-[16px] font-[400]">
+                            Posted {moment(job?.time).fromNow()}
+                          </h1>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </>
+              ) : (
+                <div className="my-10 ">Loading...</div>
+              )}
             </div>
 
             <div className=" col-span-4   border border-indigo-[#f3f3f4] rounded-lg p-6 w-[80%] mx-auto">
