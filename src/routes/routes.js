@@ -38,6 +38,10 @@ import Section from "../pages/account/Section";
 import DeleteAccount from "../pages/account/DeleteAccount";
 import MessagePopUp from "../pages/services/MessagePopUp";
 import PostJob from "../pages/findwork/PostJob";
+import Agency from "../pages/serviceUserProfile/Agency";
+import AgencyAbout from "../pages/serviceUserProfile/AgencyAbout";
+import AgencyWorks from "../pages/serviceUserProfile/AgencyWorks";
+import AgencyLike from "../pages/serviceUserProfile/AgencyLike";
 
 const routes = createBrowserRouter([
   {
@@ -119,6 +123,26 @@ const routes = createBrowserRouter([
       { path: "/profile/collection", element: <Collection /> },
       { path: "/profile/linkedShoot", element: <LinkedShoot /> },
       { path: "/profile/about", element: <About /> },
+    ],
+  },
+  /*   {
+    path: "/agency/:id",
+    element: <Agency />,
+    children: [
+      { path: "/agency", element: <AgencyWorks /> },
+      { path: "/agency/agencyAbout", element: <AgencyAbout /> },
+      { path: "/agency/agencyWorks", element: <AgencyWorks /> },
+      { path: "/agency/agencyLike", element: <AgencyLike /> },
+    ],
+  }, */
+  {
+    path: "/agency/:agencyId",
+    element: <Agency />,
+    children: [
+      { path: "", element: <AgencyWorks /> },
+      { path: "agencyWorks", element: <AgencyWorks /> },
+      { path: "agencyAbout", element: <AgencyAbout /> },
+      { path: "agencyLike", element: <AgencyLike /> },
     ],
   },
   {

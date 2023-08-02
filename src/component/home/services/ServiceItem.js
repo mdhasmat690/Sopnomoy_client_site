@@ -170,39 +170,41 @@ function ServiceItem({ service }) {
         </div>
       </div>
       <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
-        <div style={{ alignItems: "center" }} className="flex">
-          {serviceUserInto?.data?.image ? (
-            <>
-              {" "}
-              <img
-                src={serviceUserInto?.data?.image}
-                className="w-[24px] h-[24px] rounded-[50%] mr-2"
-                alt=""
-              />
-            </>
-          ) : (
-            <>
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
-                className="w-[24px] h-[24px] rounded-[50%] mr-2"
-                alt=""
-              />
-            </>
-          )}
+        <Link to={`/agency/${serviceUserInto?.data?.email}`}>
+          <div style={{ alignItems: "center" }} className="flex">
+            {serviceUserInto?.data?.image ? (
+              <>
+                {" "}
+                <img
+                  src={serviceUserInto?.data?.image}
+                  className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                  alt=""
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                  className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                  alt=""
+                />
+              </>
+            )}
 
-          <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
-            {serviceUserInto?.data?.displayName}
-          </h1>
-          {false ? (
-            <>
-              <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
-                Team
-              </span>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
+            <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
+              {serviceUserInto?.data?.displayName}
+            </h1>
+            {false ? (
+              <>
+                <span className="bg-[#ccc] w-[26px] h-[15px] rounded-[4px] text-[10px]  text-white font-bold">
+                  Team
+                </span>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </Link>
 
         <div className="flex">
           <span className="mr-3 flex items-center  hover:text-[#ea4c89] cursor-pointer">

@@ -102,7 +102,7 @@ export const servicesApi = apiSlice.injectEndpoints({
     }),
     getUserLikedServices: builder.query({
       query: (email) => ({
-        url: `http://localhost:5000/api/v1/tools/like/${email}`,
+        url: `/like/${email}`,
       }),
       providesTags: ["services", "likes", "watch"],
     }),
