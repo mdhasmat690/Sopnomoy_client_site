@@ -1,13 +1,10 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
 
-//import styles 👇
 import "react-modern-drawer/dist/index.css";
-import SingleService from "../../../pages/services/SingleService";
 import {
   servicesApi,
-  useGetUserLikedServicesQuery,
   useLikePostMutation,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
@@ -18,7 +15,6 @@ import { useGetUserDataQuery } from "../../../features/auth/authApi";
 import { Vortex } from "react-loader-spinner";
 
 function ServiceItem({ service }) {
-  console.log(service?.projectType);
   const dispatch = useDispatch();
   const [likesPost, {}] = useLikePostMutation();
   const [watchpost, {}] = useWatchPostMutation();
@@ -29,14 +25,10 @@ function ServiceItem({ service }) {
   const { user } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
   const isLiked = service?.likesUser?.includes(userEmail);
-  // console.log("serviceItem", service?.likesUser);
 
   const isCollection = service?.collection?.includes(userEmail);
-  // console.log("collection", isCollection);
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
-  const { data } = useGetUserLikedServicesQuery();
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -106,15 +98,16 @@ function ServiceItem({ service }) {
             style={{
               backgroundImage:
                 "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8))",
-              // "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1))",
               borderRadius: "8px",
             }}
             className="  pt-[32px]  h-[80px]"
           >
             <div className="flex justify-between items-center w-[95%] mx-auto">
               <p className="text-[18px] font-bold text-white capitalize">
-                {service?.productName?.slice(0, 15)}
-                {service?.productName?.length >= 18 ? <>...</> : <></>}
+                <Link to={`/singleProduct/${service?._id}`}>
+                  {service?.productName?.slice(0, 15)}
+                  {service?.productName?.length >= 18 ? <>...</> : <></>}
+                </Link>
               </p>
 
               <div className="text-[red] flex">

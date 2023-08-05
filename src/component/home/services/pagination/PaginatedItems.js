@@ -4,12 +4,7 @@ import { useGetGroupProjectsQuery } from "../../../../features/services/services
 import { useSelector } from "react-redux";
 import Services from "../Services";
 import ServiceLodear from "../../../../pages/ui/ServiceLodear";
-
-// const items = [
-//   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-//   11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5,
-//   6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-// ];
+import { Link } from "react-router-dom";
 
 function PaginatedItems({ itemsPerPage }) {
   const { user } = useSelector((state) => state.auth);
@@ -114,12 +109,11 @@ function PaginatedItems({ itemsPerPage }) {
         <div className="flex items-center justify-center my-10 mx-auto">
           {!user?.email && (
             <>
-              {" "}
               <button className="md:ml-5 w-[50%] md:w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
-                Sign Up To Continue
+                <Link to={`/signUp`}>Sign Up To Continue</Link>
               </button>
               <button className="text-[#ea4c89] hover:text-[#f082ac] ml-10">
-                Or Sign In
+                <Link to={`/login`}>Or Sign In</Link>
               </button>
             </>
           )}

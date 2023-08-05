@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import {
   servicesApi,
   useCreateCollectionMutation,
-  useLikeSingleServicesMutation,
 } from "../../../features/services/servicesApi";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -40,7 +39,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
   const [createCollection, { isLoading }] = useCreateCollectionMutation();
   const [updateCollection, { isSuccess, data: updatedData }] =
     useUpdateCollectionMutation();
-  const [LikeSingleServices, {}] = useLikeSingleServicesMutation();
   const { data, isError } = useGetCollectionsQuery(userEmail);
   const [toggle, setToggle] = useState(false);
 
@@ -104,11 +102,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
           );
         }
       });
-
-    /*   LikeSingleServices({
-      id: service._id,
-      data: { collection: userEmail },
-    }); */
   };
 
   useEffect(() => {
@@ -122,7 +115,7 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
   }
 
   if (!isLoading && !isError && data?.data?.length === 0) {
-    content = <>No videos found!</>;
+    content = <>no data found</>;
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
@@ -193,10 +186,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
               )}
             </div>
           </div>
-
-          {/* <div>
-         
-        </div> */}
         </li>
       ));
   }
@@ -215,11 +204,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
           <>
             {" "}
             <div className="px-[40px]">
-              {/* <button className="w-[100%] flex  justify-end" onClick={closeModal}>
-            <span className="text-[#9e9ea7] hover:text-[#ea4c89] hover:rounded-md text-[20px]">
-              <AiOutlineClose />
-            </span>
-          </button> */}
               <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="sm:w-[400px] md:w-[550px] p-3">
@@ -259,7 +243,7 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
                         text-white h-[40px] w-[80%] md:w-[30%] rounded-[8px]
                         text-[14px] font-[500] leading-[20px] cursor-pointer"
                         type="submit"
-                        // disabled={isLoading}
+                        disabled={isLoading}
                       >
                         Create Collection
                       </button>
@@ -281,11 +265,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
           <>
             {" "}
             <div className="px-[7px] md:px-[40px]">
-              {/* <button className="w-[100%] flex  justify-end" onClick={closeModal}>
-            <span className="text-[#9e9ea7] hover:text-[#ea4c89] hover:rounded-md text-[20px]">
-              <AiOutlineClose />
-            </span>
-          </button> */}
               <div>
                 <div className="sm:w-[40px] md:w-[550px] p-3">
                   <div>
@@ -305,7 +284,6 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
                     </div>
                   </form>
 
-                  {/* <div  className="h-[300px] w-[100%] overflow-y-scroll -ms-overflow-style:none scrollbar-width: none"> */}
                   <div className="whitespace-nowrap overflow-auto scrollbar-hide w-[100%] h-[300px] py-4">
                     <ul className="min-h-[68px] flex flex-col">{content}</ul>
                   </div>
