@@ -48,7 +48,7 @@ function Video(props) {
         <br />
         <div className="group relative md:-ml-2 mb-3">
           <MdChevronLeft
-            className={`absolute top-0 bottom-0 left-2 z-40 m-auto text-white h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
+            className={`absolute top-0 bottom-0 left-2 z-10 m-auto text-white h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
               !isMoved && "hidden"
             }`}
             onClick={() => handleClick("left")}
@@ -74,7 +74,7 @@ function Video(props) {
           </div>
 
           <MdChevronRight
-            className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 text-white"
+            className="absolute top-0 bottom-0 right-2 z-10 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 text-white"
             onClick={() => handleClick("right")}
           />
         </div>

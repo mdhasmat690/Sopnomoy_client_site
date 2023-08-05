@@ -9,7 +9,7 @@ function NaveDrop() {
   return (
     <>
       {links.map((link, index) => (
-        <div key={index} className="text-[#6e6d7a] font-[500]">
+        <div key={index} className="text-[#6e6d7a] font-[500]   z-10">
           <div className="md:cursor-pointer group">
             <li
               className="p-4 flex justify-between items-center md:pr-0 pr-10 group hover:text-[black]"
@@ -30,7 +30,6 @@ function NaveDrop() {
             {link.submenu && (
               <div>
                 <div className="shadow-md p-3 absolute hidden group-hover:md:block hover:md:block ">
-                  {/* <div className="bg-white grid grid-cols-2 float-right gap-10"> */}
                   <div className="bg-white w-[400px] h-[300px] px-4    rounded ">
                     {link.sublinks.map((mysublinks, index) => (
                       <div key={index} className="flex flex-col py-2 group">
@@ -56,28 +55,28 @@ function NaveDrop() {
               </div>
             )}
           </div>
-          {/* Mobile menus */}
           <div
             className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
+            ${heading === link.name ? "md:hidden" : "hidden"}  
           `}
           >
-            {/* sublinks */}
             {link.sublinks.map((slinks, index) => (
               <div key={index}>
                 <div>
-                  <h1
-                    onClick={() =>
-                      subHeading !== slinks.Head
-                        ? setSubHeading(slinks.Head)
-                        : setSubHeading("")
-                    }
-                    className="py-4 pl-7 font-semibold md:pr-0 pr-5 flex justify-between items-center md:pr-0 pr-5"
-                  >
-                    {slinks.name}
+                  <Link to={slinks.link}>
+                    <h1
+                      onClick={() =>
+                        subHeading !== slinks.Head
+                          ? setSubHeading(slinks.Head)
+                          : setSubHeading("")
+                      }
+                      className="py-4 pl-7 font-semibold   flex justify-between items-center md:pr-0 pr-5"
+                    >
+                      {slinks.name}
 
-                    <span className="text-xl md:mt-1 md:ml-2 inline"></span>
-                  </h1>
+                      <span className="text-xl md:mt-1 md:ml-2 inline"></span>
+                    </h1>
+                  </Link>
                 </div>
               </div>
             ))}
