@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import NaveDrop from "./NaveDrop";
-import { FiArrowRightCircle } from "react-icons/fi";
 import { BiMessageAltDots } from "react-icons/bi";
 import { AiFillFolderAdd, AiFillStar } from "react-icons/ai";
-import {
-  MdFavorite,
-  MdLocalPostOffice,
-  MdLogin,
-  MdShowChart,
-} from "react-icons/md";
-import Video from "./video/Video";
+import { MdFavorite, MdLogin, MdShowChart } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/auth/authSlice";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
@@ -19,21 +11,16 @@ import { FiLogOut } from "react-icons/fi";
 
 const NaveBar = () => {
   const { email: user } = useSelector((state) => state?.auth?.user);
-
   const { data } = useGetUserDataQuery(user);
-
   const userData = data?.data;
-  // const { user, logOut: log, reDir } = useAuth();
   const dispatch = useDispatch();
-  // console.log(user);
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
 
   const userLogOut = () => {
     dispatch(logOut());
   };
-
-  const [isOpen, setIsOpen] = useState(true);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -225,7 +212,7 @@ const NaveBar = () => {
         {/* Mobile nav */}
         <ul
           className={`
-      md:hidden bg-white absolute z-40	 w-[100%] h-[100%] top-0 bottom-0 py-24 pl-4
+      md:hidden bg-white absolute z-40	 w-[100%] h-[50%] overflow-auto scrollbar-hide  top-0 bottom-0 py-24 pl-4
       duration-500 ${open ? "left-0" : "left-[-100%] text-[#6e6d7a] font-[500]"}
       `}
         >

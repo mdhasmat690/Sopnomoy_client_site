@@ -5,7 +5,6 @@ import { links } from "./Link";
 function NaveDrop() {
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
-  const navigate = useNavigate();
   return (
     <>
       {links.map((link, index) => (
