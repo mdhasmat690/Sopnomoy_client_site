@@ -1,14 +1,10 @@
-import React, { memo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { memo } from "react";
+import { Link } from "react-router-dom";
 import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
-import Modal from "react-modal";
 
 import "react-modern-drawer/dist/index.css";
 import {
   servicesApi,
-  useGetUserLikedServicesQuery,
-  useLikePostMutation,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
 } from "../../features/services/servicesApi";
@@ -17,8 +13,7 @@ import Collection from "../../component/home/services/Collection";
 
 function SingleCollectionItems({ service }) {
   const dispatch = useDispatch();
-  const [likesPost, {}] = useLikePostMutation();
-  const [watchpost, {}] = useWatchPostMutation();
+  const [watchpost] = useWatchPostMutation();
 
   const { user } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
@@ -27,9 +22,7 @@ function SingleCollectionItems({ service }) {
   const isCollection = service?.collection?.includes(userEmail);
 
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
-  const { data } = useGetUserLikedServicesQuery();
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {

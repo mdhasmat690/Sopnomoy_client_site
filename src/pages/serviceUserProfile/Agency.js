@@ -1,25 +1,10 @@
 import React, { useRef, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import { useGetCollectionsQuery } from "../../features/collection.api/collectionApi";
-import { useSelector } from "react-redux";
-import {
-  useGetRelatedServicesQuery,
-  useGetUserLikedServicesQuery,
-} from "../../features/services/servicesApi";
+
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import NaveBar from "../../component/home/NaveBar";
 import Footer from "../../component/home/Footer";
-const groupButton = [
-  { name: "Work 0", searchTag: "", link: "profile/work" },
-  { name: "Collections", searchTag: "WebDesign", link: "profile/collection" },
-  {
-    name: "Liked Shots 1",
-    searchTag: "softwareDesigner",
-    link: "profile/LinkedShoot",
-  },
-  { name: "About", searchTag: "profile/about", link: "profile/about" },
-];
 
 function Agency() {
   const { agencyId } = useParams();

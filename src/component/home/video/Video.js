@@ -4,7 +4,6 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import "./video.css";
 import { useDispatch, useSelector } from "react-redux";
 import { search } from "../../../features/services/servicesSlice";
-import { useGetUserDataQuery } from "../../../features/auth/authApi";
 
 const groupButton = [
   { name: "Discover", searchTag: "" },
@@ -17,8 +16,6 @@ const groupButton = [
 
 function Video() {
   const { email: user } = useSelector((state) => state?.auth?.user);
-  const { data } = useGetUserDataQuery(user);
-  const userData = data?.data;
 
   const dispatch = useDispatch();
   const rowRef = useRef(null);

@@ -8,17 +8,17 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
-function SocialProfile(props) {
+function SocialProfile() {
   const { email } = useSelector((state) => state?.auth?.user);
 
   const { data: user } = useGetUserDataQuery(email);
-  const [updateUserMore, { isSuccess, isLoading }] = useUserUpdateMutation();
+  const [updateUserMore, { isLoading }] = useUserUpdateMutation();
 
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
 

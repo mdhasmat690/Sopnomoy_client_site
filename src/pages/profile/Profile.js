@@ -10,16 +10,6 @@ import {
   useGetUserLikedServicesQuery,
 } from "../../features/services/servicesApi";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
-const groupButton = [
-  { name: "Work 0", searchTag: "", link: "profile/work" },
-  { name: "Collections", searchTag: "WebDesign", link: "profile/collection" },
-  {
-    name: "Liked Shots 1",
-    searchTag: "softwareDesigner",
-    link: "profile/LinkedShoot",
-  },
-  { name: "About", searchTag: "profile/about", link: "profile/about" },
-];
 
 function Profile() {
   const { email } = useSelector((state) => state?.auth?.user);

@@ -5,7 +5,6 @@ import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
 import "react-modern-drawer/dist/index.css";
 import {
   servicesApi,
-  useLikePostMutation,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
 } from "../../../features/services/servicesApi";
@@ -16,8 +15,7 @@ import { Vortex } from "react-loader-spinner";
 
 function ServiceItem({ service }) {
   const dispatch = useDispatch();
-  const [likesPost, {}] = useLikePostMutation();
-  const [watchpost, {}] = useWatchPostMutation();
+  const [watchpost] = useWatchPostMutation();
   const navigate = useNavigate();
 
   const { data: serviceUserInto } = useGetUserDataQuery(service?.email);

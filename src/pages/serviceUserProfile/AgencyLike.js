@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  AiFillEye,
-  AiFillFileAdd,
-  AiFillFolderAdd,
-  AiFillHeart,
-} from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
-import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useGetUserLikedServicesQuery } from "../../features/services/servicesApi";
 import ServiceLodear from "../ui/ServiceLodear";
 import ServiceItem from "../../component/home/services/ServiceItem";
 
-function AgencyLike(props) {
-  const { email: user } = useSelector((state) => state?.auth?.user);
+function AgencyLike() {
   const { agencyId } = useParams();
   const { data, isLoading, isError } = useGetUserLikedServicesQuery(agencyId);
   console.log(data, "data");

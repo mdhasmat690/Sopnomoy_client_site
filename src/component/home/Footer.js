@@ -1,5 +1,4 @@
 import React from "react";
-import { DiDreamweaver } from "react-icons/di";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";

@@ -50,7 +50,7 @@ function SingleService() {
   const { data: userData } = useGetUserDataQuery(service?.email);
   const userInformation = userData?.data;
   const navigate = useNavigate();
-  let subtitle;
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {

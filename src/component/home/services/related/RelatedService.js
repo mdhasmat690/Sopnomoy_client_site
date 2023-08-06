@@ -5,7 +5,6 @@ import ServiceLodear from "../../../../pages/ui/ServiceLodear";
 
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-import { Link } from "react-router-dom";
 import RelatedServiceItem from "./RelatedServiceItem";
 
 function RelatedService({ email }) {

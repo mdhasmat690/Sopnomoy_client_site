@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useBeforeUnload } from "react-router-dom";
+import React, { useEffect } from "react";
 import {
   useGetUserDataQuery,
   useUserUpdateMutation,
@@ -13,7 +11,7 @@ function General() {
   const { email } = useSelector((state) => state?.auth?.user);
 
   const { data: user } = useGetUserDataQuery(email);
-  const [updateUserMore, { isSuccess, isLoading }] = useUserUpdateMutation();
+  const [updateUserMore, { isLoading }] = useUserUpdateMutation();
 
   const {
     register,

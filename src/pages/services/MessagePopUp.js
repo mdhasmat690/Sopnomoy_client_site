@@ -27,9 +27,9 @@ function MessagePopUp({
     user: loginUser?.email,
     serviceUser: servicesUserInfo?.email,
   });
-  const [editConversation, { isLoading: editConLoading }] =
+  const [editConversation, { isSuccess: editConLoading }] =
     useEditConversationMutation();
-  const [addconversion, { isLoading: conversionLoading }] =
+  const [addconversion, { isSuccess: conversionLoading }] =
     useAddConversationMutation();
   const {
     register,
@@ -83,27 +83,12 @@ function MessagePopUp({
   };
 
   if (conversionLoading | editConLoading) {
-    let timerInterval;
     Swal.fire({
-      title: "message Sending",
-      html: "I will close in <b></b> milliseconds.",
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("message Sending");
-      }
+      position: "top-end",
+      icon: "success",
+      title: "You message send",
+      showConfirmButton: false,
+      timer: 2000,
     });
   }
 

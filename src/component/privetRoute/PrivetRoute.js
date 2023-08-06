@@ -2,12 +2,10 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { useGetUserDataQuery } from "../../features/auth/authApi";
 
 const PrivetRoute = ({ children }) => {
   const { user, isLoading } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
-  const { data } = useGetUserDataQuery(userEmail);
 
   let location = useLocation();
 

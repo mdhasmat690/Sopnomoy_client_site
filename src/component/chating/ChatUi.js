@@ -30,7 +30,7 @@ function ChatUi() {
         const email = user || {};
         const {
           displayName,
-          email: partnerEmail,
+
           image,
         } = conversation?.users?.find(
           (participant) => participant.email !== email

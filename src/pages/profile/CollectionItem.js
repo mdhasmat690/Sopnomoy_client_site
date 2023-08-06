@@ -4,7 +4,6 @@ import {
   AiOutlineLink,
   AiOutlineTwitter,
 } from "react-icons/ai";
-import Collection from "../../component/home/services/Collection";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useDeleteCollectionNameMutation,
@@ -55,7 +54,7 @@ function CollectionItem() {
   } = useGetSingleCollectionsitemsQuery(id);
   const dispatch = useDispatch();
 
-  const [updateCollectionName, {}] = useUpdateCollectionNameMutation();
+  const [updateCollectionName] = useUpdateCollectionNameMutation();
 
   const [deleteCollection, { isSuccess }] = useDeleteCollectionNameMutation();
   const navigate = useNavigate();
@@ -71,11 +70,6 @@ function CollectionItem() {
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
   }
 
   function closeModal() {

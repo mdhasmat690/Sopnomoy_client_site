@@ -44,12 +44,10 @@ function Collection({ service, modalIsOpen, closeModal, afterOpenModal }) {
 
   const {
     register,
-    formState,
+
     handleSubmit,
-    setFocus,
-    control,
+
     reset,
-    formState: { isSubmitting, isDirty, isValid },
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (e) => {

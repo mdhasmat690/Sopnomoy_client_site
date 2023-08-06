@@ -1,20 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAuth } from "../../contexts/AuthContext";
 import EmptyCreateAccout from "../getStart/EmptyCreateAccout";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import { useSelector } from "react-redux";
 import { usePostProjectMutation } from "../../features/services/servicesApi";
 
 function PostFrelance() {
-  const [postProject, { isError, isLoading, isSuccess, error }] =
-    usePostProjectMutation();
+  const [postProject, { isSuccess, error }] = usePostProjectMutation();
   const { email } = useSelector((state) => state?.auth?.user);
   const { data: user } = useGetUserDataQuery(email);
-  const navigate = useNavigate();
-  const { reDir } = useAuth();
+
   const {
     register,
 

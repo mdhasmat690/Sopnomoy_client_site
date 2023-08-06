@@ -1,19 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  AiTwotoneEdit,
-  AiFillDelete,
-  AiFillEye,
-  AiFillFileAdd,
-  AiFillHeart,
-} from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useGetUserDataQuery } from "../../features/auth/authApi";
-import {
-  useDeleteProjectMutation,
-  useGetRelatedServicesQuery,
-} from "../../features/services/servicesApi";
+
+import { useParams } from "react-router-dom";
+
+import { useGetRelatedServicesQuery } from "../../features/services/servicesApi";
 import ServiceLodear from "../ui/ServiceLodear";
 import ServiceItem from "../../component/home/services/ServiceItem";
 
@@ -22,8 +11,6 @@ function AgencyWorks() {
 
   const { data, isLoading, isError } = useGetRelatedServicesQuery(agencyId);
   console.log(data);
-  const [deleteProject, { isSuccess: deleteIsSuccess }] =
-    useDeleteProjectMutation();
 
   let content = null;
 

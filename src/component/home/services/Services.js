@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useGetGroupProjectsQuery,
-  useGetServicesQuery,
-} from "../../../features/services/servicesApi";
+import { useGetGroupProjectsQuery } from "../../../features/services/servicesApi";
 import ServiceItem from "./ServiceItem";
 import { useSelector } from "react-redux";
 import Selector from "./Selector";
@@ -10,11 +7,7 @@ import Selector from "./Selector";
 function Services({ currentItems }) {
   const { searchTag } = useSelector((state) => state.searchTol);
 
-  const {
-    data: groupData,
-    isLoading,
-    isError,
-  } = useGetGroupProjectsQuery(searchTag);
+  const { isLoading, isError } = useGetGroupProjectsQuery(searchTag);
 
   let content = null;
 

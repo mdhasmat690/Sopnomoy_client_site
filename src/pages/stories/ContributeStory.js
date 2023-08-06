@@ -4,7 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
-import { useEffect } from "react";
+
 import {
   useDeleteBlogMutation,
   useGetBlogEmailQuery,
@@ -45,14 +45,11 @@ function ContributeStory({ service, modalIsOpen, closeModal, afterOpenModal }) {
 
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
-
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleString();
 
   const time = new Date().getTime();
 

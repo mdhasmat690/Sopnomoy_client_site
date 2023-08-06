@@ -1,16 +1,13 @@
-import React, { memo, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
 
-//import styles 👇
 import "react-modern-drawer/dist/index.css";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   servicesApi,
-  useGetUserLikedServicesQuery,
-  useLikePostMutation,
   useLikeSingleServicesMutation,
   useWatchPostMutation,
 } from "../../../../features/services/servicesApi";
@@ -20,8 +17,7 @@ import { Vortex } from "react-loader-spinner";
 
 function RelatedServiceItem({ service }) {
   const dispatch = useDispatch();
-  const [likesPost, {}] = useLikePostMutation();
-  const [watchpost, {}] = useWatchPostMutation();
+  const [watchpost] = useWatchPostMutation();
 
   const { data: serviceUserInto } = useGetUserDataQuery(service?.email);
 
@@ -32,9 +28,7 @@ function RelatedServiceItem({ service }) {
 
   const isCollection = service?.collection?.includes(userEmail);
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
-  const { data } = useGetUserLikedServicesQuery();
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {

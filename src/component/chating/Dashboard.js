@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { IoIosSend } from "react-icons/io";
 import { useParams } from "react-router-dom";
-import NaveBar from "../home/NaveBar";
 import { useGetMessagesQuery } from "../../features/message/messagesApi";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import {
-  useConversionQuery,
-  useEditConversationMutation,
-} from "../../features/conversions/converionsApi";
-import { useGetUserDataQuery } from "../../features/auth/authApi";
+import { useEditConversationMutation } from "../../features/conversions/converionsApi";
+
 import { io } from "socket.io-client";
 import ChatRoom from "./ChatRoom";
 
@@ -17,7 +13,7 @@ function Dashboard() {
   const { email: user } = useSelector((state) => state?.auth?.user);
   const { id } = useParams();
   const { data } = useGetMessagesQuery(id);
-  const [editConversation, {}] = useEditConversationMutation();
+  const [editConversation] = useEditConversationMutation();
   const messages = data?.result;
 
   const socket = io("http://localhost:5000");
@@ -28,16 +24,12 @@ function Dashboard() {
     });
   }, [socket]);
 
-  const { data: loginUserData } = useGetUserDataQuery(user);
-
   const {
     register,
-    formState,
+
     handleSubmit,
-    setFocus,
-    control,
+
     reset,
-    formState: { isSubmitting, isDirty, isValid },
   } = useForm({ mode: "onChange" });
 
   if (!messages?.length) {
@@ -79,7 +71,7 @@ function Dashboard() {
             ?.slice()
             ?.sort((a, b) => a.timestamp - b.timestamp)
             ?.map((message) => {
-              const { message: lastMessage, id, sender } = message || {};
+              const { id, sender } = message || {};
 
               return (
                 <li

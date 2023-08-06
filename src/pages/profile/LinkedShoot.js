@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./likeed.css";
-import { Link } from "react-router-dom";
 import { useGetUserLikedServicesQuery } from "../../features/services/servicesApi";
 import { useSelector } from "react-redux";
 import ServiceLodear from "../ui/ServiceLodear";

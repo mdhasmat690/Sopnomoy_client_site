@@ -17,7 +17,7 @@ function EditProfile() {
   const { data } = useGetUserDataQuery(email);
   const user = data?.data;
 
-  const [updateUserMore, { isSuccess, isLoading: updateLoading }] =
+  const [updateUserMore, { isLoading: updateLoading }] =
     useUserUpdateMutation();
 
   const {
@@ -81,7 +81,6 @@ function EditProfile() {
 
   const onSubmit = (data) => {
     data.image = imageUrl;
-    const fullData = data;
     updateUserMore({ id: user?._id, data });
   };
   if (updateLoading) {

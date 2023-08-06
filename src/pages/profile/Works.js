@@ -8,7 +8,6 @@ import {
   AiTwotoneEdit,
   AiFillDelete,
   AiFillEye,
-  AiFillFileAdd,
   AiFillHeart,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -22,8 +21,7 @@ function Works() {
   console.log(serviceUserInto?.data);
   const { data, isLoading, isError } = useGetRelatedServicesQuery(user);
 
-  const [deleteProject, { isSuccess: deleteIsSuccess }] =
-    useDeleteProjectMutation();
+  const [deleteProject] = useDeleteProjectMutation();
 
   const deleteClick = (service) => {
     Swal.fire({

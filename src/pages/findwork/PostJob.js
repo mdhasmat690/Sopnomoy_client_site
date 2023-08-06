@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useForm, Controller, useWatch } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { useAuth } from "../../contexts/AuthContext";
-import EmptyCreateAccout from "../getStart/EmptyCreateAccout";
-import { useGetUserDataQuery } from "../../features/auth/authApi";
 import { useSelector } from "react-redux";
 import { usePostJobMutation } from "../../features/jobs/jobApi";
 
 function PostJob() {
-  const [postJob, { isError, isLoading, isSuccess, error }] =
-    usePostJobMutation();
+  const [postJob, { isSuccess }] = usePostJobMutation();
   const { email } = useSelector((state) => state?.auth?.user);
-  // console.log(email);
 
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
 
