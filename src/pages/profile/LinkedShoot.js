@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  AiFillEye,
-  AiFillFileAdd,
-  AiFillFolderAdd,
-  AiFillHeart,
-} from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
+
 import "./likeed.css";
 import { Link } from "react-router-dom";
 import { useGetUserLikedServicesQuery } from "../../features/services/servicesApi";
@@ -46,7 +40,7 @@ function LinkedShoot(props) {
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data.map((service, index) => (
+    content = data?.data.map((service) => (
       <ServiceItem key={service?._id} service={service} />
     ));
   }

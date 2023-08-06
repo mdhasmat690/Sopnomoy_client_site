@@ -1,8 +1,7 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { TiMessages } from "react-icons/ti";
-import Modal from "react-modal";
 import "react-modern-drawer/dist/index.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   servicesApi,
   useGetSingleServicesQuery,
@@ -12,9 +11,7 @@ import RelatedService from "../../component/home/services/related/RelatedService
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import PopularServices from "../../component/home/services/related/PopularServices";
-
 import { AiFillHeart } from "react-icons/ai";
-
 import Collection from "../../component/home/services/Collection";
 import SingleServicesLoder from "../ui/SingleServicesLoder";
 import MessagePopUp from "./MessagePopUp";
@@ -38,49 +35,24 @@ const customStyles = {
 function SingleService() {
   const { id } = useParams();
   const { email: user } = useSelector((state) => state?.auth?.user);
-  console.log(user);
 
-  const {
-    data,
-    isLoading,
-    refetch: refetchSingleData,
-  } = useGetSingleServicesQuery(id);
+  const { data, isLoading } = useGetSingleServicesQuery(id);
   const [LikeSingleServices, { isLoading: likeIsloading }] =
     useLikeSingleServicesMutation();
 
-  // const [addconversion, { isLoading: conversionLoading }] =
-  //   useAddConversationMutation();
-
-  // const [editConversation, {}] = useEditConversationMutation();
-
   const service = data?.data;
-  // const { data: loginUserData } = useGetUserDataQuery(user);
-  // const loginUser = loginUserData?.data;
   const dispatch = useDispatch();
+  const [modalIsOpenSave, setIsOpenSave] = useState(false);
   const { data: serviceUserInto } = useGetUserDataQuery(service?.email);
   const servicesUserInfo = serviceUserInto?.data;
-
   const isLiked = service?.likesUser?.includes(user);
   const isCollection = service?.collection?.includes(user);
   const { data: userData } = useGetUserDataQuery(service?.email);
-  /*   const servicesUser = userData?.data; */
-  /*   const { data: conversionData, refetch } = useConversionQuery({
-    user: loginUser?.email,
-    serviceUser: servicesUser?.email,
-  }); */
-  /*   const {
-    register,
-    formState,
-    handleSubmit,
-    setFocus,
-    control,
-    reset,
-    formState: { isSubmitting, isDirty, isValid },
-  } = useForm({ mode: "onChange" }); */
   const userInformation = userData?.data;
   const navigate = useNavigate();
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+
   function openModal() {
     if (!user) {
       return navigate("/signUp");
@@ -96,7 +68,6 @@ function SingleService() {
   }
 
   /* collection modal */
-  const [modalIsOpenSave, setIsOpenSave] = useState(false);
 
   function openModalSave() {
     if (!user) {
@@ -120,50 +91,6 @@ function SingleService() {
       </>
     );
   }
-
-  /*   const onSubmit = (message) => {
-    if (loginUser?.email && servicesUser?.email) {
-      if (conversionData?.result.length > 0) {
-        console.log("edit post");
-        editConversation({
-          id: conversionData?.result[0]?._id,
-          sender: loginUser,
-          data: {
-            participants: `${loginUser?.email}-${servicesUser?.email}`,
-            users: [loginUser, servicesUser],
-            message: message?.message,
-            timestamp: new Date().getTime(),
-          },
-        });
-      } else if (conversionData?.result.length === 0) {
-        console.log("test case");
-        addconversion({
-          sender: loginUser,
-          data: {
-            participants: `${loginUser?.email}-${servicesUser?.email}`,
-            users: [loginUser, servicesUser],
-            message: message?.message,
-            timestamp: new Date().getTime(),
-          },
-        })
-          .unwrap()
-          .then((data) => {
-            if (data?.id) {
-              refetch({
-                user: loginUser?.email,
-                serviceUser: servicesUser?.email,
-              });
-            }
-          })
-          .catch((error) => console.log(error));
-      }
-      reset();
-    } else {
-      console.log(
-        "there was a Problem please agin latter or refresh this page"
-      );
-    }
-  }; */
 
   /* like product */
   const handleLikeSubmit = (data) => {
@@ -351,21 +278,23 @@ function SingleService() {
           <div className=" flex justify-center  items-center mt-16">
             <div className="border-t-2 border-indigo-[#f3f3f4] w-[50%]"></div>
             <div>
-              {servicesUserInfo?.image ? (
-                <img
-                  src={servicesUserInfo?.image}
-                  alt="logo"
-                  className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%] mx-3 "
-                />
-              ) : (
-                <>
+              <Link to={`/agency/${servicesUserInfo?.email}`}>
+                {servicesUserInfo?.image ? (
                   <img
-                    src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                    src={servicesUserInfo?.image}
                     alt="logo"
                     className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%] mx-3 "
                   />
-                </>
-              )}
+                ) : (
+                  <>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      alt="logo"
+                      className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%] mx-3 "
+                    />
+                  </>
+                )}
+              </Link>
             </div>
             <div className="border-t-2 border-indigo-[#f3f3f4] w-[50%]"></div>
           </div>
@@ -399,7 +328,7 @@ function SingleService() {
 
           <h2 className=" text-[#ea4c89] font-[400] hover:text-[#f082ac]">
             {" "}
-            View profile
+            <Link to={`/agency/${servicesUserInfo?.email}`}>View profile</Link>
           </h2>
         </div>
         <div className="mt-3">

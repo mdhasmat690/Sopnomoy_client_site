@@ -19,7 +19,7 @@ export const links = [
         name: "Playoffs",
         desc: "Work designers are riffing on",
         img: "https://i.ibb.co/wNbZs5R/svgexport-7.png",
-        link: "/",
+        link: "/warmUp/1",
       },
       {
         name: "Blog",

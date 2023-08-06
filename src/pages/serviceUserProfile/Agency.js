@@ -21,19 +21,11 @@ const groupButton = [
   { name: "About", searchTag: "profile/about", link: "profile/about" },
 ];
 
-function Agency(props) {
-  const { email } = useSelector((state) => state?.auth?.user);
-
+function Agency() {
   const { agencyId } = useParams();
-  // const { data: agencyUserInfo } = useGetUserDataQuery(agencyId);
-  // console.log(agencyUserInfo);
+
   const { data: serviceUserInto } = useGetUserDataQuery(agencyId);
   const user = serviceUserInto?.data;
-  console.log(user);
-  const { data, isLoading, isError } = useGetCollectionsQuery(email);
-
-  const { data: likeShot } = useGetUserLikedServicesQuery(email);
-  const { data: works } = useGetRelatedServicesQuery(email);
 
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);

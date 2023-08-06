@@ -14,22 +14,12 @@ function General() {
 
   const { data: user } = useGetUserDataQuery(email);
   const [updateUserMore, { isSuccess, isLoading }] = useUserUpdateMutation();
-  // console.log(user?.data?._id);
-  /*   const [save, setSave] = useState("");
 
-  useEffect(() => {
-    window.onbeforeunload = function () {
-      if (!save) {
-        return "If you leave this page, you will lose any unsaved changes.";
-      }
-    };
-  }, [save]);
- */
   const {
     register,
     formState: { errors },
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
 

@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  AiFillEye,
   AiFillFacebook,
-  AiFillFolderAdd,
-  AiFillHeart,
   AiOutlineLink,
   AiOutlineTwitter,
 } from "react-icons/ai";
@@ -17,7 +14,6 @@ import {
 } from "../../features/collection.api/collectionApi";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import ServiceLodear from "../ui/ServiceLodear";
-import ServiceItem from "../../component/home/services/ServiceItem";
 import SingleCollectionItems from "./SingleCollectionItems";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
@@ -65,12 +61,10 @@ function CollectionItem() {
   const navigate = useNavigate();
   const {
     register,
-    formState,
+
     handleSubmit,
-    setFocus,
-    control,
+
     reset,
-    formState: { isSubmitting, isDirty, isValid },
   } = useForm({ mode: "onChange" });
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -136,12 +130,8 @@ function CollectionItem() {
 
   const onSubmit = (e) => {
     const data = {
-      // loginUserEmail: userEmail,
       collectionName: e.collectionName,
       collectionNameDescripction: e.desc,
-      // name: service?.productName,
-      // image: service?.imgUrl,
-      // mainServiceId: service._id,
       timestamp: new Date().getTime(),
     };
 
@@ -325,7 +315,7 @@ function CollectionItem() {
                         text-white h-[40px] w-[80%] md:w-[30%] rounded-[8px]
                         text-[14px] font-[500] leading-[20px] cursor-pointer"
                         type="submit"
-                        // disabled={isLoading}
+                        disabled={isLoading}
                       >
                         Create Collection
                       </button>

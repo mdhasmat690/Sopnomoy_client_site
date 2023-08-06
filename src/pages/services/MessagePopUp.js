@@ -2,13 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
 import {
   useAddConversationMutation,
   useConversionQuery,
   useEditConversationMutation,
 } from "../../features/conversions/converionsApi";
+import Swal from "sweetalert2";
 
 function MessagePopUp({
   modalIsOpen,
@@ -17,9 +18,8 @@ function MessagePopUp({
   customStyles,
   servicesUserInfo,
 }) {
-  /*  */
   const { email: user } = useSelector((state) => state?.auth?.user);
-  console.log(user);
+
   const { data: loginUserData } = useGetUserDataQuery(user);
   const loginUser = loginUserData?.data;
 
@@ -27,25 +27,22 @@ function MessagePopUp({
     user: loginUser?.email,
     serviceUser: servicesUserInfo?.email,
   });
-  const [editConversation, {}] = useEditConversationMutation();
-  const dispatch = useDispatch();
+  const [editConversation, { isLoading: editConLoading }] =
+    useEditConversationMutation();
   const [addconversion, { isLoading: conversionLoading }] =
     useAddConversationMutation();
   const {
     register,
     formState,
     handleSubmit,
-    setFocus,
-    control,
+
     reset,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (message) => {
-    console.log(message);
     if (loginUser?.email && servicesUserInfo?.email) {
       if (conversionData?.result.length > 0) {
-        console.log("edit post");
         editConversation({
           id: conversionData?.result[0]?._id,
           sender: loginUser,
@@ -57,7 +54,6 @@ function MessagePopUp({
           },
         });
       } else if (conversionData?.result.length === 0) {
-        console.log("test case");
         addconversion({
           sender: loginUser,
           data: {
@@ -85,6 +81,31 @@ function MessagePopUp({
       );
     }
   };
+
+  if (conversionLoading | editConLoading) {
+    let timerInterval;
+    Swal.fire({
+      title: "message Sending",
+      html: "I will close in <b></b> milliseconds.",
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("message Sending");
+      }
+    });
+  }
 
   return (
     <div>

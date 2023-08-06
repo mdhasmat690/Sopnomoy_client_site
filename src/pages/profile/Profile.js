@@ -21,12 +21,12 @@ const groupButton = [
   { name: "About", searchTag: "profile/about", link: "profile/about" },
 ];
 
-function Profile(props) {
+function Profile() {
   const { email } = useSelector((state) => state?.auth?.user);
 
   const { data: serviceUserInto } = useGetUserDataQuery(email);
   const user = serviceUserInto?.data;
-  const { data, isLoading, isError } = useGetCollectionsQuery(email);
+  const { data } = useGetCollectionsQuery(email);
 
   const { data: likeShot } = useGetUserLikedServicesQuery(email);
   const { data: works } = useGetRelatedServicesQuery(email);

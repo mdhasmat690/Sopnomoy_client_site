@@ -18,30 +18,12 @@ import ServiceLodear from "../ui/ServiceLodear";
 import ServiceItem from "../../component/home/services/ServiceItem";
 
 function AgencyWorks() {
-  const { email: user } = useSelector((state) => state?.auth?.user);
   const { agencyId } = useParams();
-  console.log(agencyId, "id");
-  const { data: serviceUserInto } = useGetUserDataQuery(agencyId);
 
   const { data, isLoading, isError } = useGetRelatedServicesQuery(agencyId);
   console.log(data);
   const [deleteProject, { isSuccess: deleteIsSuccess }] =
     useDeleteProjectMutation();
-
-  const deleteClick = (service) => {
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteProject(service._id);
-      }
-    });
-  };
 
   let content = null;
 
@@ -69,7 +51,7 @@ function AgencyWorks() {
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data.map((service, index) => (
+    content = data?.data.map((service) => (
       <ServiceItem key={service?._id} service={service} />
     ));
   }

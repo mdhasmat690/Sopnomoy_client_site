@@ -5,7 +5,8 @@ import moment from "moment/moment";
 import { Link } from "react-router-dom";
 
 function JobBoards() {
-  const { data, isLoading, isError } = useGetJobsQuery();
+  const { data } = useGetJobsQuery();
+
   return (
     <>
       <div className="mb-10">
@@ -66,7 +67,7 @@ function JobBoards() {
             </div>
           </div>
         </div>
-        {/*  */}
+
         <div className="w-[90%] mx-auto my-5">
           <h1 className="text-[24px] font-[700] leading-[29px]">
             Recent new opportunities

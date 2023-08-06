@@ -2,18 +2,13 @@ import React from "react";
 import { useGetConversionsQuery } from "../../features/conversions/converionsApi";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
-import { AiOutlineSend } from "react-icons/ai";
-import { IoIosSend } from "react-icons/io";
 import { Link, Outlet } from "react-router-dom";
-import NaveBar from "../home/NaveBar";
-import Footer from "../home/Footer";
 
 function ChatUi() {
   const { email: user } = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isError } = useGetConversionsQuery(user);
   const conversion = data?.result;
 
-  // decide what to render
   let content = null;
 
   if (isLoading) {
@@ -83,7 +78,6 @@ function ChatUi() {
               <div className="whitespace-nowrap overflow-auto scrollbar-hide h-[calc(100vh_-_129px)]">
                 {content}
               </div>
-              {/* <Blank /> */}
             </div>
             <div
               style={{
@@ -96,11 +90,9 @@ function ChatUi() {
             >
               <Outlet />
             </div>
-            {/*  */}
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }

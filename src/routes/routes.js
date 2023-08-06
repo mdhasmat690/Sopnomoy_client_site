@@ -1,8 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../component/home/Home";
-import Services from "../component/home/services/Services";
-import ServicesByEmail from "../component/home/services/ServicesByEmail";
-import Video from "../component/home/video/Video";
 import PrivetRoute from "../component/privetRoute/PrivetRoute";
 import ForgetPassword from "../component/user/ForgetPassword";
 import Login from "../component/user/Login";
@@ -36,7 +33,6 @@ import EditProfile from "../pages/account/EditProfile";
 import SocialProfile from "../pages/account/SocialProfile";
 import Section from "../pages/account/Section";
 import DeleteAccount from "../pages/account/DeleteAccount";
-import MessagePopUp from "../pages/services/MessagePopUp";
 import PostJob from "../pages/findwork/PostJob";
 import Agency from "../pages/serviceUserProfile/Agency";
 import AgencyAbout from "../pages/serviceUserProfile/AgencyAbout";
@@ -92,7 +88,7 @@ const routes = createBrowserRouter([
       { path: "/hiringWorkType", element: <HiringWorkType /> },
       { path: "/hiringFreelance", element: <HiringFreelance /> },
       { path: "/emptyCreateAccout", element: <EmptyCreateAccout /> },
-      { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
+      // { path: "/servicesByEmail/:id", element: <ServicesByEmail /> },
       { path: "/inbox", element: <ChatUi /> },
       { path: "/profile", element: <Profile /> },
       { path: "/profile/:id", element: <CollectionItem /> },

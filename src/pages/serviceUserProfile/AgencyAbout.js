@@ -1,10 +1,4 @@
 import React from "react";
-import {
-  AiFillFacebook,
-  AiFillLinkedin,
-  AiOutlineLink,
-  AiOutlineTwitter,
-} from "react-icons/ai";
 
 import { HiLocationMarker } from "react-icons/hi";
 import { TiContacts } from "react-icons/ti";

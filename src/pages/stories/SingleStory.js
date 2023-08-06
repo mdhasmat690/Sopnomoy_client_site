@@ -4,7 +4,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
 import { AiOutlineLink } from "react-icons/ai";
 
-function SingleStory(props) {
+function SingleStory() {
   return (
     <div className=" ">
       <div className="border-t border-indigo-[#f3f3f4] w-[100%]  "></div>

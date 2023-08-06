@@ -6,7 +6,6 @@ import {
   AiFillHeart,
 } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
-// import "./likeed.css";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetUserLikedServicesQuery } from "../../features/services/servicesApi";
@@ -48,7 +47,7 @@ function AgencyLike(props) {
   }
 
   if (!isLoading && !isError && data?.data?.length > 0) {
-    content = data?.data.map((service, index) => (
+    content = data?.data.map((service) => (
       <ServiceItem key={service?._id} service={service} />
     ));
   }

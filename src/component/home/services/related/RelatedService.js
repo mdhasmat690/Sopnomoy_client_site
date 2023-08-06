@@ -2,10 +2,9 @@ import React, { memo, useRef, useState } from "react";
 
 import { useGetRelatedServicesQuery } from "../../../../features/services/servicesApi";
 import ServiceLodear from "../../../../pages/ui/ServiceLodear";
-import ServiceItem from "../ServiceItem";
-import { useDispatch, useSelector } from "react-redux";
+
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
+
 import { Link } from "react-router-dom";
 import RelatedServiceItem from "./RelatedServiceItem";
 

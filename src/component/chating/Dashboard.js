@@ -29,17 +29,6 @@ function Dashboard() {
   }, [socket]);
 
   const { data: loginUserData } = useGetUserDataQuery(user);
-  // const loginUser = loginUserData?.data;
-
-  // const participantUser =
-  //       info.receiver.email !== loggedInUser.email
-  //           ? info.receiver
-  //           : info.sender;
-
-  // const { data: conversionData, refetch } = useConversionQuery({
-  //   // user: loginUser?.email,
-  //   // serviceUser: servicesUser?.email,
-  // });
 
   const {
     register,

@@ -1,13 +1,13 @@
 import React from "react";
 import {
   AiFillFacebook,
-  AiFillLinkedin,
   AiOutlineLink,
   AiOutlineTwitter,
 } from "react-icons/ai";
 
 import { HiLocationMarker } from "react-icons/hi";
 import { TiContacts } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
@@ -54,9 +54,11 @@ function About() {
           <h1 className="text-[#0d0c22] text-[16] font-bold leading-[1em]">
             Biography
           </h1>
-          <h1 className="text-[#ea4c89] hover:text-[#f082ac] cursor-pointer text-[14px] font-[500] mt-5 leading-[20px]">
-            Add Bio
-          </h1>
+          <Link to={"/account/editProfile"}>
+            <h1 className="text-[#ea4c89] hover:text-[#f082ac] cursor-pointer text-[14px] font-[500] mt-5 leading-[20px]">
+              Add Bio
+            </h1>
+          </Link>
         </div>
         <div className="hidden md:block">
           <div className="flex">

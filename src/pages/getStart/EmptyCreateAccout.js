@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function EmptyCreateAccout(props) {
-  const { user, isLoading } = useSelector((state) => state?.auth);
+  const { user } = useSelector((state) => state?.auth);
   return (
     <div className="w-[100] h-[300px] bg-[#ebe2e3] flex justify-center items-center">
       {user?.email ? (

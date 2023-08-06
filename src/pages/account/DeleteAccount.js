@@ -1,9 +1,9 @@
 import React from "react";
 
-function DeleteAccount(props) {
+function DeleteAccount() {
   return (
     <div className="bg-[#f8f8f9]">
-      <div className="w-[32%] mx-auto  py-28  ">
+      <div className="w-[90%] md:w-[32%] mx-auto  py-28  ">
         <div className="shadow-2xl rounded-b-[8px]">
           <img
             className="rounded-t-[8px] "

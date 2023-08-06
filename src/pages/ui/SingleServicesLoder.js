@@ -1,6 +1,6 @@
 import React from "react";
 
-function SingleServicesLoder(props) {
+function SingleServicesLoder() {
   return (
     <>
       <div className="w-[60%] mx-auto animate-pulse my-14">

@@ -1,22 +1,23 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ContributeStory from "./ContributeStory";
 import { useGetBlogQuery } from "../../features/blog/blogApi";
 import moment from "moment/moment";
+import { useSelector } from "react-redux";
 
 function Stories() {
   const { data } = useGetBlogQuery();
+  const { user } = useSelector((state) => state?.auth);
+  const userEmail = user?.email;
 
-  console.log(data);
   const navigate = useNavigate();
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
-    /*  if (!userEmail) {
+    if (!userEmail) {
       return navigate("/signUp");
-    } */
+    }
     setIsOpen(true);
   }
 
@@ -35,7 +36,7 @@ function Stories() {
       <div className="w-[90%] mx-auto">
         <div>
           <h1 className="text-[4vw] font-[700] leading-[4vw] my-5">
-            Courtside: <br /> The Dribbble Blog
+            Courtside: <br /> The Sopnomoy Blog
           </h1>
         </div>
 

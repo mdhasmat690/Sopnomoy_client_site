@@ -7,7 +7,6 @@ function SingleJob() {
   const { id } = useParams();
 
   const { data } = useGetSingleJobsQuery(id);
-  console.log(data ? "true" : "false");
 
   return (
     <>
@@ -57,10 +56,6 @@ function SingleJob() {
               {" "}
               {data?.companyName}
             </h1>
-            {/* <h1 className="text-[16px] font-[400]  text-center my-3">
-              {" "}
-              Visit Website
-            </h1> */}
             {data && (
               <>
                 <Link

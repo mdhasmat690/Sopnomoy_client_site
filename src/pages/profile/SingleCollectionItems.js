@@ -1,15 +1,9 @@
 import React, { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  AiFillEye,
-  AiFillFileAdd,
-  AiFillFolderAdd,
-  AiFillHeart,
-} from "react-icons/ai";
+import { AiFillEye, AiFillFolderAdd, AiFillHeart } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import Modal from "react-modal";
 
-//import styles 👇
 import "react-modern-drawer/dist/index.css";
 import {
   servicesApi,
@@ -99,7 +93,6 @@ function SingleCollectionItems({ service }) {
             style={{
               backgroundImage:
                 "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8))",
-              // "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1))",
               borderRadius: "8px",
             }}
             className="  pt-[32px]  h-[80px]"

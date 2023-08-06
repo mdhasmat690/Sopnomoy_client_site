@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { browserName, browserVersion, BrowserTypes } from "react-device-detect";
+import { browserName } from "react-device-detect";
 
 function Section() {
   const [data, setData] = useState("");

@@ -25,9 +25,9 @@ function PopularServices() {
   }
 
   if (!isLoading && !isError && services?.length > 0) {
-    const shuffledServices = [...services]?.sort(() => 0.5 - Math.random());
+    const newServices = [...services]?.sort(() => 0.5 - Math.random());
 
-    const randomServices = shuffledServices?.slice(0, 8);
+    const randomServices = newServices?.slice(0, 8);
 
     content = randomServices?.map((service, index) => (
       <ServiceItem key={index} service={service} />

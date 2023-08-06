@@ -1,14 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useNavigate,
-  Outlet,
-} from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import {
@@ -20,7 +12,6 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 function EditProfile() {
-  const navigate = useNavigate();
   const { email } = useSelector((state) => state?.auth?.user);
 
   const { data } = useGetUserDataQuery(email);
@@ -31,9 +22,9 @@ function EditProfile() {
 
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
 
@@ -169,7 +160,7 @@ function EditProfile() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="md:w-full  w-[90%]" onSubmit={handleSubmit(onSubmit)}>
         <div className="my-5">
           <label className="text-[14px] font-[600]">Name</label>
           <input
@@ -213,9 +204,6 @@ function EditProfile() {
             required
           />
         </div>
-        {/* <h1 className="text-red-700 my-2">
-          This field not working now we are working now
-        </h1> */}
 
         <div className="flex justify-end">
           {" "}

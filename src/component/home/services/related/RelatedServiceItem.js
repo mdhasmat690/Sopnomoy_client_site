@@ -28,11 +28,9 @@ function RelatedServiceItem({ service }) {
   const { user } = useSelector((state) => state?.auth);
   const userEmail = user?.email;
   const isLiked = service?.likesUser?.includes(userEmail);
-  // console.log("serviceItem", service?.likesUser);
   const navigate = useNavigate();
 
   const isCollection = service?.collection?.includes(userEmail);
-  // console.log("collection", isCollection);
   const [LikeSingleServices, { isLoading }] = useLikeSingleServicesMutation();
   const { data } = useGetUserLikedServicesQuery();
 
@@ -108,7 +106,6 @@ function RelatedServiceItem({ service }) {
                 style={{
                   backgroundImage:
                     "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8))",
-                  // "linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1))",
                   borderRadius: "8px",
                 }}
                 className="  pt-[32px]  h-[80px]"
@@ -173,27 +170,30 @@ function RelatedServiceItem({ service }) {
           </div>
           <div className=" w-[99%] mt-3 mx-auto flex justify-between items-center">
             <div style={{ alignItems: "center" }} className="flex">
-              {serviceUserInto?.data?.image ? (
-                <>
-                  {" "}
-                  <img
-                    src={serviceUserInto?.data?.image}
-                    className="w-[24px] h-[24px] rounded-[50%] mr-2"
-                    alt=""
-                  />
-                </>
-              ) : (
-                <>
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
-                    className="w-[24px] h-[24px] rounded-[50%] mr-2"
-                    alt=""
-                  />
-                </>
-              )}
-
+              <Link to={`/agency/${serviceUserInto?.data?.email}`}>
+                {serviceUserInto?.data?.image ? (
+                  <>
+                    {" "}
+                    <img
+                      src={serviceUserInto?.data?.image}
+                      className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                      alt=""
+                    />
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      className="w-[24px] h-[24px] rounded-[50%] mr-2"
+                      alt=""
+                    />
+                  </>
+                )}
+              </Link>
               <h1 className="mr-2 text-[14px] font-[500] leading-[20px]">
-                {serviceUserInto?.data?.displayName}
+                <Link to={`/agency/${serviceUserInto?.data?.email}`}>
+                  {serviceUserInto?.data?.displayName}
+                </Link>
               </h1>
               {false ? (
                 <>

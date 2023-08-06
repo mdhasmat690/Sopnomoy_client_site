@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useForm, Controller, useWatch } from "react-hook-form";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
@@ -17,9 +17,9 @@ function PostFrelance() {
   const { reDir } = useAuth();
   const {
     register,
-    formState: { errors },
+
     handleSubmit,
-    control,
+
     reset,
   } = useForm();
 
@@ -48,8 +48,6 @@ function PostFrelance() {
     });
   }
 
-  console.log(error?.error);
-
   return (
     <>
       <div className="border-t border-indigo-[#f3f3f4] w-[100%]  "></div>
@@ -59,7 +57,7 @@ function PostFrelance() {
             Discover the world’s <br /> top Designers & Creatives.
           </h1>
         </div>
-        <div className="  col-span-7 w-[60%] mx-auto">
+        <div className="  col-span-7 w-[90%] md:w-[60%] mx-auto">
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="my-6">
@@ -191,7 +189,3 @@ function PostFrelance() {
 }
 
 export default PostFrelance;
-
-/* sopnomoydb@admin */
-/* zX4x7atTfJyQoIeU */
-/* sopnomoydb  */

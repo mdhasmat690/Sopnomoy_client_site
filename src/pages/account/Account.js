@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import NaveBar from "../../component/home/NaveBar";
-import Footer from "../../component/home/Footer";
 import { Tooltip } from "react-tooltip";
 import { useSelector } from "react-redux";
 import { useGetUserDataQuery } from "../../features/auth/authApi";
@@ -82,7 +81,6 @@ function Account() {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
       <Tooltip
         anchorSelect=".my-anchor-element"
         content="We are busy now coming soon fixed it"
