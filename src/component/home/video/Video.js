@@ -84,7 +84,7 @@ function Video() {
               </h1>
               <h2 className="text-justify text-[16px] w-[90%] md:w-[50%]   mx-auto text-white leading-[25px] mt-5">
                 Millions of designers and agencies around the world showcase
-                their portfolio work on Dribbble - the home to the world’s best
+                their portfolio work on Sopnomoy - the home to the world’s best
                 design and creative .
               </h2>
             </div>

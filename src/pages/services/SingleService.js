@@ -143,7 +143,7 @@ function SingleService() {
             />
           ) : (
             <img
-              src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+              src="https://i.ibb.co/8bhRHSr/manIcone.png"
               alt="logo"
               className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%]"
             />
@@ -288,7 +288,7 @@ function SingleService() {
                 ) : (
                   <>
                     <img
-                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      src="https://i.ibb.co/8bhRHSr/manIcone.png"
                       alt="logo"
                       className="md:cursor-pointer h-[48px] w-[48px] rounded-[50%] mx-3 "
                     />

@@ -26,7 +26,7 @@ function WarmUp() {
 
             <div className="grid md:grid-cols-10">
               <h3 className="text-[#6e6d7a] font-bold  col-span-9">
-                by Dribbble on Jan 27, 2023
+                by Sopnomoy on Jan 27, 2023
               </h3>
               <h3 className="text-black text-[17px] font-[400]">
                 Over in 4 days
@@ -38,7 +38,7 @@ function WarmUp() {
         <div className="grid md:grid-cols-3 gap-4">
           <div className="col-span-2 ">
             <img
-              src="https://cdn.dribbble.com/userupload/4401007/file/original-8a0a45e500d63ffd14958dee6e3092f8.png?resize=802x600"
+              src="https://i.ibb.co/3StDjQG/h1.png"
               alt=""
               className="w-[100%]"
             />

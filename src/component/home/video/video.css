@@ -1,11 +1,11 @@
-.background_img{
+.background_img {
   /* background-image: */
-   /* background-attachment: fixed; */
-    height: 80vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-   background: #000000b3 url("https://i.ibb.co/2PwnGWT/cdn-dribbble-com-c33e424e99ba06e76cf74d3b8d9a3b02-mp4.gif");
-   background-blend-mode: darken;
-   
+  /* background-attachment: fixed; */
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: #000000b3
+    url("https://i.ibb.co/2PwnGWT/cdn-Sopnomoy-com-c33e424e99ba06e76cf74d3b8d9a3b02-mp4.gif");
+  background-blend-mode: darken;
 }

@@ -50,7 +50,7 @@ function Stories() {
                 Mid-Century Modern Graphic Design Inspiration
               </h1>
               <img
-                src="https://cdn.dribbble.com/users/938871/screenshots/17691736/is-it-friday_dribbble3.jpg"
+                src="https://i.ibb.co/4mZWqby/sleep.jpg"
                 className="w-[100%] h-[40vw] mt-3"
                 alt=""
               />
@@ -71,30 +71,6 @@ function Stories() {
                 </span>
               </h1>
               <div className="border-t-2 border-indigo-[#f3f3f4] w-[100%] my-5"></div>
-
-              {/*  <div className=" flex">
-                <img
-                  src="https://cdn.dribbble.com/uploads/43144/original/3c0b815faaccefbb2c55009848996fde.png?1670361214"
-                  alt=""
-                  className="w-[35%] rounded-md mr-5"
-                />
-
-                <div>
-                  <span className="text-[#dbdbde] text-[14] font-[500]">
-                    DEC 13, 2022
-                  </span>
-                  <h1
-                    onClick={() => navigate(`/blog/1`)}
-                    className="text-[24px] font-[500] cursor-pointer hover:text-[#ea4c89]"
-                  >
-                    7 critical business tools every designer needs in 2023
-                  </h1>
-                  <p className="text-[#dbdbde] text-[14] font-[400]">
-                    Discover a list of the most important business tools for
-                    designers to scale their brand in 2023 and beyond.
-                  </p>
-                </div>
-              </div> */}
 
               {data?.map((blog) => (
                 <>
@@ -133,7 +109,7 @@ function Stories() {
             <div>
               <h1 className="text-[18px] font-[700] leading-1">Overtime</h1>
               <h1 className="text-[#9e9ea7] font-[14px]">
-                The Dribbble Podcast
+                The Sopnomoy Podcast
               </h1>
               <h1 className="mt-2 text-[#ea4c89] font-[500]">
                 The Power of Play

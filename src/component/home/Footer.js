@@ -20,7 +20,7 @@ function Footer(props) {
             </div>
 
             <h1 className="text-[#3d3d4e] md:w-[50vh] w-[30vh]">
-              Dribbble is the world’s leading community for creatives to share,
+              Sopnomoy is the world’s leading community for creatives to share,
               grow, and get hired.
             </h1>
             <div className="flex mt-3 w-[100%] text-[#3d3d4e]">
@@ -67,7 +67,7 @@ function Footer(props) {
             <h1 className="text-[16px] font-[600] leading-3 py-3">
               Design assets
             </h1>
-            <h1 className="py-2">Dribbble Marketplace</h1>
+            <h1 className="py-2">Sopnomoy Marketplace</h1>
             <h1 className="py-2">Creative Market</h1>
             <h1 className="py-2">Fontspring</h1>
             <h1 className="py-2">Font Squirrel</h1>

@@ -77,7 +77,7 @@ function Login(props) {
           <div className="  w-[65%] mx-auto mt-10 flex justify-center">
             <div>
               <h1 className="text-black text-[30px] leading-[23px] font-[700] mb-9">
-                Sign in to Dribbble
+                Sign in to Sopnomoy
               </h1>
               <div className="mt-4 w-[270px] bg-[#1a73e8] rounded-sm">
                 <button

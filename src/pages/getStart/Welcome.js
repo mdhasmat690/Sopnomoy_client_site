@@ -8,7 +8,7 @@ function Welcome(props) {
       <div className="w-[90%] mx-auto flex justify-center">
         <div>
           <h1 className=" text-[40px] font-bold leading-[1.23em] text-center">
-            What brings you to Dribbble?
+            What brings you to Sopnomoy?
           </h1>
           <h5 className="text-[#6e6d7a] text-[16px] leading-[24px] my-3 text-center mb-16">
             Select the options that best describe you. Don’t worry, you can
@@ -18,7 +18,7 @@ function Welcome(props) {
             {/* dashboard post project */}
             <div className="  border-[1px] rounded-[18px] border-[#e7e7e9] p-3">
               <img
-                src="https://dribbble.com/assets/packs/media/onboarding/designer-3a947f92.png"
+                src="https://Sopnomoy.com/assets/packs/media/onboarding/designer-3a947f92.png"
                 alt=""
                 className="w-[100%] my-3"
               />
@@ -29,7 +29,7 @@ function Welcome(props) {
             <div className="  border-[1px] rounded-[18px] border-[#e7e7e9] p-3">
               <Link to={`/hiringWorkType`}>
                 <img
-                  src="https://dribbble.com/assets/packs/media/onboarding/designer-3a947f92.png"
+                  src="https://Sopnomoy.com/assets/packs/media/onboarding/designer-3a947f92.png"
                   alt=""
                   className="w-[100%] my-3"
                 />
@@ -41,7 +41,7 @@ function Welcome(props) {
             <div className="  border-[1px] rounded-[18px] border-[#e7e7e9] p-3">
               {/* home page or services project  */}
               <img
-                src="https://dribbble.com/assets/packs/media/onboarding/designer-3a947f92.png"
+                src="https://Sopnomoy.com/assets/packs/media/onboarding/designer-3a947f92.png"
                 alt=""
                 className="w-[100%] my-3"
               />

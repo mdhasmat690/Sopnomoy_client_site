@@ -16,6 +16,8 @@ function PaginatedItems({ itemsPerPage }) {
     isError,
   } = useGetGroupProjectsQuery(searchTag);
 
+  console.log(groupData);
+
   const items = groupData?.service;
   let content;
   if (isLoading) {

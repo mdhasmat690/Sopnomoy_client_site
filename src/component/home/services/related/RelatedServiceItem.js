@@ -177,7 +177,7 @@ function RelatedServiceItem({ service }) {
                 ) : (
                   <>
                     <img
-                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      src="https://i.ibb.co/8bhRHSr/manIcone.png"
                       className="w-[24px] h-[24px] rounded-[50%] mr-2"
                       alt=""
                     />

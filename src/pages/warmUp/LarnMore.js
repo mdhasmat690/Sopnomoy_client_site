@@ -20,7 +20,7 @@ function LarnMore() {
           <div className="flex items-center justify-center md:mb-0 sm:mb-14 p-4">
             <div className=" ">
               <h1 className="text-[40px] font-[700] leading-[1.2]  md:w-[330px] sm:w-[90%] mx-auto justify-center mt-10 text-justify">
-                Introducing Dribbble's Weekly Warm‑Up
+                Introducing Sopnomoy's Weekly Warm‑Up
               </h1>
 
               <h2 className="mx-auto text-justify md:w-[330px] sm:w-[90%] text-[18px] font-[700] leading-1 mt-7 ">
@@ -83,13 +83,13 @@ function LarnMore() {
               A
             </span>
             <h1 className="text-[#6e6d7a]">
-              lright Dribbblers, who’s ready to work up a sweat? If you’re
+              lright Sopnomoyrs, who’s ready to work up a sweat? If you’re
               searching for the creative equivalent of a light jog around the
               block, you’re in luck. We’re excited to kick off a new
             </h1>
           </div>
           <h1 className="text-[#6e6d7a] mt-[-5px]">
-            weekly design exercise for the Dribbble community –{" "}
+            weekly design exercise for the Sopnomoy community –{" "}
             <span className="text-[#6e6d7a] font-bold">
               THE WEEKLY WARM-UP.
             </span>
@@ -137,7 +137,7 @@ function LarnMore() {
         </div>
         <div className="md:w-[53%] sm:w-[80%] md:p-none sm:p-2 mx-auto text-justify mt-5">
           <h1 className="text-[#6e6d7a] mt-[-5px]">
-            So how will our Dribbble{" "}
+            So how will our Sopnomoy{" "}
             <span className="text-[#6e6d7a] font-bold"> Weekly Warm-Up </span>
             Each week we’ll post a new Shot prompt that will feature three
             components:
@@ -147,13 +147,13 @@ function LarnMore() {
               A{" "}
             </span>
             <h1 className="text-[#6e6d7a]">
-              lright Dribbblers, who’s ready to work up a sweat? If you’re
+              lright Sopnomoyrs, who’s ready to work up a sweat? If you’re
               searching for the creative equivalent of a light jog around the
               block, you’re in luck. We’re excited to kick off a new
             </h1>
           </div>
           <h1 className="text-[#6e6d7a] mt-[-5px]">
-            weekly design exercise for the Dribbble community –{" "}
+            weekly design exercise for the Sopnomoy community –{" "}
             <span className="text-[#6e6d7a] font-bold">
               THE WEEKLY WARM-UP.
             </span>

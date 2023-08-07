@@ -44,7 +44,7 @@ function DesginProjects() {
         </div>
       </div>
       <h1 className="text-center mt-24 w-[40%] mx-auto text-[32px] font-[700] leading-[38px]">
-        Let the opportunities come to you with Dribbble’s Pro Business
+        Let the opportunities come to you with Sopnomoy’s Pro Business
       </h1>
       <div className="grid md:grid-cols-2 gap-2 container mx-auto mt-12">
         <div>
@@ -56,7 +56,7 @@ function DesginProjects() {
         </div>
         <div className="ml-5">
           <h1 className="text-[20px] font-[400] leading-[32px] text-[#3d3d4e] w-[75%]">
-            Every day, clients turn to Dribbble to find help to bring their
+            Every day, clients turn to Sopnomoy to find help to bring their
             latest design projects to life.
           </h1>
           <h1 className="text-[20px] font-[400] leading-[32px] text-[#3d3d4e] w-[75%] my-4  first-letter:">
@@ -73,7 +73,7 @@ function DesginProjects() {
             <span className="text-[#ea4c89] hover:text-[#f082ac] cursor-pointer">
               Pitch
             </span>
-            , your own personalized video that lives on your Dribbble profile.
+            , your own personalized video that lives on your Sopnomoy profile.
           </h1>
           <h1 className="text-[20px] font-[400] leading-[32px] text-[#3d3d4e] w-[75%] my-4 ">
             Our goal is simple. We want to enable designers to have more time
@@ -102,7 +102,7 @@ function DesginProjects() {
             <span className="text-[#ea4c89] hover:text-[#f082ac] cursor-pointer">
               Pitch
             </span>
-            , your own personalized video that lives on your Dribbble profile.
+            , your own personalized video that lives on your Sopnomoy profile.
           </h1>
         </div>
         <div className=" ">

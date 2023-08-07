@@ -12,7 +12,7 @@ function SingleStory() {
       <div className="grid md:grid-cols-2   md:bg-[#fdf6f9] pb-10 sm:bg-white">
         <div className="bg-white">
           <img
-            src="https://cdn.dribbble.com/uploads/42946/original/f6bbcacc3ee1152e56d70a8a16efc92e.png?1669826212"
+            src="https://i.ibb.co/wMhWSFK/chat.png"
             className="  p-[10px] md:ml-[100px] mt-10 sm:ml-auto"
             alt=""
           />
@@ -129,7 +129,7 @@ function SingleStory() {
             </span>
             his article was written by Ana Tomašić, Head of People & Culture at
             Balkan Brothers — a full-service creative agency and veteran
-            Dribbble community member. Thanks to Balkan Brothers for sponsoring
+            Sopnomoy community member. Thanks to Balkan Brothers for sponsoring
             this blog post! As the world increasingly becomes more connected,
             companies look for ways to tap into new markets and expand their
             customer base. One way they’re doing this is by becoming more
@@ -175,7 +175,7 @@ function SingleStory() {
         <div className="grid md:grid-cols-2 my-10">
           <div>
             <img
-              src="https://cdn.dribbble.com/users/207046/screenshots/17556986/bb_illustration_white_1x.png"
+              src="https://i.ibb.co/Sx68jTL/h2.png"
               className="border border-indigo-[#f3f3f4] "
               alt=""
             />

@@ -26,7 +26,7 @@ function JobBoards() {
           <div className=" p-2">
             <div className="">
               <img
-                src="https://cdn.dribbble.com/assets/landing-pages/jobs/intro-image-4@1x-3b1d7c10941d88202358069e0349c3009cb11e70bb957a7e8991e94586ef14f0.png"
+                src="https://i.ibb.co/z2NjDVP/lokking.png"
                 alt=""
                 className="md:ml-[590px] sm:ml-none   sm:mx-auto hidden md:block md:mt-24 absolute "
               />
@@ -38,7 +38,7 @@ function JobBoards() {
                     The #1 Job Board for Graphic Design Jobs
                   </h1>
                   <p className="text-[20px] font-[400] leading-[32px] text-[#3d3d4e] w-[80%] my-10">
-                    Dribbble is the heart of the design community and the best
+                    Sopnomoy is the heart of the design community and the best
                     resource to discover and connect with designers and jobs
                     worldwide.
                   </p>
@@ -59,7 +59,7 @@ function JobBoards() {
               </div>
               <div className="">
                 <img
-                  src="https://cdn.dribbble.com/assets/landing-pages/jobs/jobs-intro-image-625w-5c9f35c258e4dcb234a71984e697362ca7f15df8a3a05c0ee19a9d2e59d35387.webp"
+                  src="https://i.ibb.co/y4MjGWr/job4.webp"
                   alt=""
                   className="rounded-[32px] w-full"
                 />

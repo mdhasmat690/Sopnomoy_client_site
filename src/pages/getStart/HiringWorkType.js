@@ -19,7 +19,7 @@ function HiringWorkType(props) {
             <Link to={`/hiringFreelance`}>
               <div className="  border-[1px] rounded-[18px] border-[#e7e7e9]  hover:border-[#ea4c89] p-2 cursor-pointer">
                 <img
-                  src="https://dribbble.com/assets/packs/media/onboarding/designer-3a947f92.png"
+                  src="https://Sopnomoy.com/assets/packs/media/onboarding/designer-3a947f92.png"
                   alt=""
                   className="w-[50%] mx-auto my-8"
                 />
@@ -35,7 +35,7 @@ function HiringWorkType(props) {
             </Link>
             <div className="  border-[1px] rounded-[18px]  border-[#e7e7e9] hover:border-[#ea4c89]  p-2 cursor-pointer">
               <img
-                src="https://dribbble.com/assets/packs/media/onboarding/designer-3a947f92.png"
+                src="https://Sopnomoy.com/assets/packs/media/onboarding/designer-3a947f92.png"
                 alt=""
                 className="w-[50%] mx-auto my-8"
               />
@@ -43,7 +43,7 @@ function HiringWorkType(props) {
                 <h1 className="text-[20px] font-bold text-center mb-3">
                   A full-time role
                 </h1>
-                {/* https://dribbble.com/hiring */}
+                {/* https://Sopnomoy.com/hiring */}
                 <h3 className="text-[#6e6d7a] text-[16px] text-center">
                   A full-time team member to join your team.
                 </h3>

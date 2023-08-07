@@ -41,8 +41,7 @@ function PostJob() {
   }
 
   const divStyle = {
-    backgroundImage:
-      "url('https://cdn.dribbble.com/users/708424/screenshots/9783292/media/19ab09c437d4806bbdb2fa396821c7b1.png?resize=1600x')",
+    backgroundImage: "url('https://i.ibb.co/5hYBq8t/postbg.png')",
     width: "100%",
     height: "400px",
     backgroundSize: "cover",

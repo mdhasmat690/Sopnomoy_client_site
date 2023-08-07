@@ -85,7 +85,7 @@ const NaveBar = () => {
                   ) : (
                     <img
                       className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
-                      src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                      src="https://i.ibb.co/8bhRHSr/manIcone.png"
                       alt=""
                     />
                   )}
@@ -259,7 +259,7 @@ const NaveBar = () => {
                         ) : (
                           <img
                             className="ml-5 w-[42px] h-[42px] rounded-[50%] text-[#6a6d7a]"
-                            src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+                            src="https://i.ibb.co/8bhRHSr/manIcone.png"
                             alt=""
                           />
                         )}
