@@ -4,13 +4,13 @@ export const messagesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getMessages: builder.query({
       query: (id) => ({
-        url: `/message/${id}`,
+        url: `/chat/message/${id}`,
       }),
       providesTags: ["messagePost"],
     }),
     postMessage: builder.mutation({
       query: (data) => ({
-        url: "/message",
+        url: "/chat/message",
         method: "POST",
         body: data,
       }),

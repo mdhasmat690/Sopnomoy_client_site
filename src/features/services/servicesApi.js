@@ -5,7 +5,7 @@ export const servicesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     postProject: builder.mutation({
       query: (data) => ({
-        url: "/postProject",
+        url: "/tools/postProject",
         method: "POST",
         body: data,
       }),
@@ -13,14 +13,14 @@ export const servicesApi = apiSlice.injectEndpoints({
     }),
     DeleteProject: builder.mutation({
       query: (id) => ({
-        url: `/postProject/${id}`,
+        url: `/tools/postProject/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["services"],
     }),
     updateServiceCollection: builder.mutation({
       query: (data) => ({
-        url: "/postProject",
+        url: "/tools/postProject",
         method: "PUT",
         body: data,
       }),
@@ -28,7 +28,7 @@ export const servicesApi = apiSlice.injectEndpoints({
     }),
     likeSingleServices: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/postProject/${id}`,
+        url: `/tools/postProject/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -45,14 +45,14 @@ export const servicesApi = apiSlice.injectEndpoints({
     /*  */
     watchPost: builder.mutation({
       query: (id) => ({
-        url: `/postProject/${id}`,
+        url: `/tools/postProject/${id}`,
         method: "PUT",
       }),
       invalidatesTags: ["watch"],
     }),
     likePost: builder.mutation({
       query: (data) => ({
-        url: "/like",
+        url: "/tools/like",
         method: "POST",
         body: data,
       }),
@@ -60,7 +60,7 @@ export const servicesApi = apiSlice.injectEndpoints({
     }),
     createCollection: builder.mutation({
       query: (data) => ({
-        url: "/collection",
+        url: "/tools/collection",
         method: "POST",
         body: data,
       }),
@@ -78,31 +78,31 @@ export const servicesApi = apiSlice.injectEndpoints({
     }),
     getServices: builder.query({
       query: () => ({
-        url: "/postProject",
+        url: "/tools/postProject",
       }),
       providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getGroupProjects: builder.query({
       query: (name) => ({
-        url: `/getProjectType?name=${name}`,
+        url: `/tools/getProjectType?name=${name}`,
       }),
       providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getSingleServices: builder.query({
       query: (id) => ({
-        url: `/postProject/${id}`,
+        url: `/tools/postProject/${id}`,
       }),
       providesTags: ["likes", "serviceUPCollection"],
     }),
     getRelatedServices: builder.query({
       query: (email) => ({
-        url: `/postProject/related/${email}`,
+        url: `/tools/postProject/related/${email}`,
       }),
       providesTags: ["services", "likes", "watch", "serviceUPCollection"],
     }),
     getUserLikedServices: builder.query({
       query: (email) => ({
-        url: `/like/${email}`,
+        url: `/tools/like/${email}`,
       }),
       providesTags: ["services", "likes", "watch"],
     }),

@@ -207,7 +207,7 @@ function EditProfile() {
         <div className="flex justify-end">
           {" "}
           <button
-            className={`my-anchor-element text-white rounded-md   bg-[#ea4c89] px-3 py-2 
+            className={` text-white rounded-md   bg-[#ea4c89] px-3 py-2 
                     cursor-pointer`}
             type="submit"
           >

@@ -17,8 +17,6 @@ function Login(props) {
     data,
     isLoading: userFetchIsloading,
     isSuccess,
-    fulfilledTimeStamp,
-    isFetching,
   } = useGetUserDataQuery(userEmail);
 
   const location = useLocation();
@@ -42,8 +40,6 @@ function Login(props) {
   const googleLoginHandle = () => {
     dispatch(googleLogin());
   };
-
-  console.log(location?.state?.from, "eita state");
 
   if (user?.email) {
     if (location?.state?.from) {

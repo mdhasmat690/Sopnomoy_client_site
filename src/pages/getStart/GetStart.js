@@ -4,10 +4,15 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthContext";
-import { useUserRegisterMutation } from "../../features/auth/authApi";
+import {
+  useGetUserDataQuery,
+  useUserRegisterMutation,
+} from "../../features/auth/authApi";
 
 function GetStart(props) {
   const { email, name } = useSelector((state) => state?.auth?.user);
+  const { data } = useGetUserDataQuery(email);
+
   const [userRegister, { isLoading, isSuccess, isError, error }] =
     useUserRegisterMutation();
 
@@ -23,24 +28,17 @@ function GetStart(props) {
 
   const navigate = useNavigate();
 
+  if (data?.data) {
+    return navigate("/welcome");
+  }
+
   const onSubmit = (data) => {
     data.email = email;
     data.displayName = name;
 
     const finalData = data;
     userRegister(finalData);
-    /*   fetch(`http://localhost:5000/api/v1/tools/${user.email}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((data) => {
-      if (data.status === 200) {
-        navigate(`/welcome`);
-      }
-    }); */
-    // reset();
+    reset();
   };
 
   if (isSuccess) {

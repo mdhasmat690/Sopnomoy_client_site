@@ -4,7 +4,7 @@ export const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     postBlog: builder.mutation({
       query: (data) => ({
-        url: "/blog/post",
+        url: "/blog/blog/post",
         method: "POST",
         body: data,
       }),
@@ -12,20 +12,20 @@ export const blogApi = apiSlice.injectEndpoints({
     }),
     deleteBlog: builder.mutation({
       query: (id) => ({
-        url: `/blog/${id}`,
+        url: `/blog/blog/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["blog"],
     }),
     getBlog: builder.query({
       query: () => ({
-        url: "/blog/post",
+        url: "/blog/blog/post",
       }),
       providesTags: ["blog"],
     }),
     getBlogEmail: builder.query({
       query: (email) => ({
-        url: `/blog/post?email=${email}`,
+        url: `/blog/blog/post?email=${email}`,
       }),
       providesTags: ["blog"],
     }),

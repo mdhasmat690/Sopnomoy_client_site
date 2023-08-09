@@ -3,15 +3,9 @@ import { messagesApi } from "../message/messagesApi";
 
 const conversationApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getConversions: builder.query({
-      query: (email) => ({
-        url: `/createConverSions/allConversion?email=${email}`,
-      }),
-      providesTags: ["conversionPost"],
-    }),
     addConversation: builder.mutation({
       query: ({ sender, data }) => ({
-        url: "/createConverSion",
+        url: "/chat/createConverSion",
         method: "POST",
         body: data,
       }),
@@ -41,7 +35,7 @@ const conversationApi = apiSlice.injectEndpoints({
 
     editConversation: builder.mutation({
       query: ({ id, data, sender }) => ({
-        url: `/createConverSion/${id}`,
+        url: `/chat/createConverSion/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -77,9 +71,15 @@ const conversationApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    getConversions: builder.query({
+      query: (email) => ({
+        url: `/chat/createConverSions/allConversion?email=${email}`,
+      }),
+      providesTags: ["conversionPost"],
+    }),
     conversion: builder.query({
       query: ({ user, serviceUser }) => ({
-        url: `/createConverSion?email=${user}-${serviceUser}`,
+        url: `/chat/createConverSion?email=${user}-${serviceUser}`,
       }),
     }),
   }),

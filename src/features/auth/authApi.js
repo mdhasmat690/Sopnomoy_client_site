@@ -5,13 +5,13 @@ const authApi = apiSlice.injectEndpoints({
     userRegister: builder.mutation({
       query: (data) => ({
         method: "POST",
-        url: "/users",
+        url: "/user",
         body: data,
       }),
     }),
     userUpdate: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/update/${id}`,
+        url: `/user/update/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -19,7 +19,7 @@ const authApi = apiSlice.injectEndpoints({
     }),
     getUserData: builder.query({
       query: (email) => ({
-        url: `/${email}`,
+        url: `/user/${email}`,
       }),
       providesTags: ["user"],
     }),

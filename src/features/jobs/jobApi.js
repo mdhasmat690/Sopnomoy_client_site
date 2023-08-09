@@ -4,7 +4,7 @@ export const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     postJob: builder.mutation({
       query: (data) => ({
-        url: "/job/post",
+        url: "/job/job/post",
         method: "POST",
         body: data,
       }),
@@ -19,13 +19,13 @@ export const blogApi = apiSlice.injectEndpoints({
     }), */
     getJobs: builder.query({
       query: () => ({
-        url: "/job/post",
+        url: "/job/job/post",
       }),
       providesTags: ["Job"],
     }),
     getSingleJobs: builder.query({
       query: (id) => ({
-        url: `/job/post/${id}`,
+        url: `/job/job/post/${id}`,
       }),
       providesTags: ["Job"],
     }),
