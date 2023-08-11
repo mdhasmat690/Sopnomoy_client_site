@@ -16,14 +16,6 @@ function Dashboard() {
   const [editConversation] = useEditConversationMutation();
   const messages = data?.result;
 
-  const socket = io("http://localhost:5000");
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected to server!");
-    });
-  }, [socket]);
-
   const {
     register,
 

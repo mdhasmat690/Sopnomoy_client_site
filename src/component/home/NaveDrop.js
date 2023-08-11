@@ -34,14 +34,14 @@ function NaveDrop() {
                       <div key={index} className="flex flex-col py-2 group">
                         <div className="flex  items-center justify-between">
                           <div className="text-left">
-                            <h1 className="text-[16px] text-black">
-                              <Link to={mysublinks.link}>
+                            <Link to={mysublinks.link}>
+                              <h1 className="text-[16px] text-black">
                                 {mysublinks.name}
-                              </Link>
-                            </h1>
-                            <h1 className="text-[14px] text-[#6e6d7a] ">
-                              {mysublinks.desc}
-                            </h1>
+                              </h1>
+                              <h1 className="text-[14px] text-[#6e6d7a] ">
+                                {mysublinks.desc}
+                              </h1>
+                            </Link>
                           </div>
                           <div className="hidden group-hover:md:block hover:md:block">
                             <img src={mysublinks.img} alt="" />

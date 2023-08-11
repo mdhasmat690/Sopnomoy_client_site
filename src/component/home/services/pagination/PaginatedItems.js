@@ -16,8 +16,6 @@ function PaginatedItems({ itemsPerPage }) {
     isError,
   } = useGetGroupProjectsQuery(searchTag);
 
-  console.log(groupData);
-
   const items = groupData?.service;
   let content;
   if (isLoading) {
@@ -105,21 +103,6 @@ function PaginatedItems({ itemsPerPage }) {
             />
           </>
         )}
-      </div>
-
-      <div>
-        <div className="flex items-center justify-center my-10 mx-auto">
-          {!user?.email && (
-            <>
-              <button className="md:ml-5 w-[50%] md:w-[20%] text-white rounded-lg bg-[#ea4c89] p-2 hover:bg-[#f082ac]">
-                <Link to={`/signUp`}>Sign Up To Continue</Link>
-              </button>
-              <button className="text-[#ea4c89] hover:text-[#f082ac] ml-10">
-                <Link to={`/login`}>Or Sign In</Link>
-              </button>
-            </>
-          )}
-        </div>
       </div>
     </>
   );

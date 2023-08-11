@@ -18,7 +18,7 @@ import { useGetUserDataQuery } from "../../features/auth/authApi";
 function Works() {
   const { email: user } = useSelector((state) => state?.auth?.user);
   const { data: serviceUserInto } = useGetUserDataQuery(user);
-  console.log(serviceUserInto?.data);
+
   const { data, isLoading, isError } = useGetRelatedServicesQuery(user);
 
   const [deleteProject] = useDeleteProjectMutation();
@@ -93,13 +93,16 @@ function Works() {
                   {service?.productName?.length >= 18 ? <>...</> : <></>}
                 </p>
 
-                <div onClick={() => deleteClick(service)} className=" flex">
-                  <span className="mr-3 bg-white text-red-600 p-2 rounded-[7px] cursor-pointer">
+                <div className=" flex">
+                  <button
+                    onClick={() => deleteClick(service)}
+                    className="mr-3 bg-white text-red-600 p-2 rounded-[7px] cursor-pointer"
+                  >
                     {" "}
                     <AiFillDelete className="text-[20px]" />
-                  </span>
+                  </button>
                   <button
-                    type="submit"
+                    type="button"
                     disabled={isLoading}
                     //  onClick={() => handleSubmit(service)}
                     className=" bg-white  p-2 rounded-[7px] cursor-pointer"

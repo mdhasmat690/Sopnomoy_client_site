@@ -3,6 +3,7 @@ import { MdLocationOn } from "react-icons/md";
 import { useGetJobsQuery } from "../../features/jobs/jobApi";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
+import Support from "../../component/home/support/Support";
 
 function JobBoards() {
   const { data } = useGetJobsQuery();
@@ -340,160 +341,8 @@ function JobBoards() {
       </div>
 
       <br />
-      <br />
-      <br />
-      <hr />
-      <br />
-      <br />
 
-      <br />
-      <br />
-      <div className="grid md:grid-cols-3 gap-1 w-[90%] mx-auto  my-9">
-        <div className="col-span-2">
-          <div className="flex md:grid md:grid-cols-2 gap-1 item-center flex-col-reverse	 ">
-            <div>
-              <div className="flex    md:flex-row flex-col md:mt-0 mt-4">
-                <div>
-                  <img
-                    className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                    src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3 mt-0 md:mt-[-10px] flex    ">
-                  <div>
-                    <h1 className="text-[20px] font-bold pb-2 md:text-left text-center">
-                      Dedicated Team
-                    </h1>
-                    <div class="border-t border-black w-[20%]  mb-3 md:mx-0 mx-auto"></div>
-                    <h1 className="md:text-left text-center  w-[70%] md:w-[100%] md:mx-0 mx-auto">
-                      Professional employes are there for you to pick the most
-                      amazing and fresh fruits.
-                    </h1>
-                  </div>
-                </div>
-              </div>
-              <div className="flex    md:flex-row flex-col md:mt-5 mt-4">
-                <div>
-                  <img
-                    className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                    src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3 mt-0 md:mt-[-10px] flex    ">
-                  <div>
-                    <h1 className="text-[20px] font-bold pb-2 md:text-left text-center">
-                      Dedicated Team
-                    </h1>
-                    <div class="border-t border-black w-[20%]  mb-3 md:mx-0 mx-auto"></div>
-                    <h1 className="md:text-left text-center  w-[70%] md:w-[100%] md:mx-0 mx-auto">
-                      Professional employes are there for you to pick the most
-                      amazing and fresh fruits.
-                    </h1>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex    md:flex-row flex-col md:mt-5 mt-4">
-                <div>
-                  <img
-                    className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                    src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3 mt-0 md:mt-[-10px] flex    ">
-                  <div>
-                    <h1 className="text-[20px] font-bold pb-2 md:text-left text-center">
-                      Dedicated Team
-                    </h1>
-                    <div class="border-t border-black w-[20%]  mb-3 md:mx-0 mx-auto"></div>
-                    <h1 className="md:text-left text-center  w-[70%] md:w-[100%] md:mx-0 mx-auto">
-                      Professional employes are there for you to pick the most
-                      amazing and fresh fruits.
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <img
-                className="w-[70%] mx-auto"
-                src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-end">
-          <div>
-            <div className="flex    md:flex-row-reverse flex-col md:mt-0 mt-4">
-              <div>
-                <img
-                  className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                  src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt=""
-                />
-              </div>
-              <div className="mr-3 mt-0 md:mt-[-10px] flex justify-end  ">
-                <div className="">
-                  <h1 className="text-[20px] font-bold pb-2 md:text-end text-center ">
-                    Dedicated Team
-                  </h1>
-                  <div class="border-t border-black w-[20%] md:ml-auto md:mx-0 mx-auto  mb-3 "></div>
-                  <h1 className=" md:text-end md:mx-0  mx-auto text-center   w-[70%]   md:w-[100%] ">
-                    Professional employes are there for you to pick the most
-                    amazing and fresh fruits.
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="flex    md:flex-row-reverse flex-col md:mt-5 mt-4">
-              <div>
-                <img
-                  className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                  src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt=""
-                />
-              </div>
-              <div className="mr-3 mt-0 md:mt-[-10px] flex justify-end  ">
-                <div className="">
-                  <h1 className="text-[20px] font-bold pb-2 md:text-end text-center ">
-                    Dedicated Team
-                  </h1>
-                  <div class="border-t border-black w-[20%] md:ml-auto md:mx-0 mx-auto  mb-3 "></div>
-                  <h1 className=" md:text-end md:mx-0  mx-auto text-center   w-[70%]   md:w-[100%] ">
-                    Professional employes are there for you to pick the most
-                    amazing and fresh fruits.
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="flex    md:flex-row-reverse flex-col md:mt-5 mt-4">
-              <div>
-                <img
-                  className="mx-auto w-[40px] h-[30px] rounded-[50%] mb-5 md:md-0"
-                  src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9zZSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt=""
-                />
-              </div>
-              <div className="mr-3 mt-0 md:mt-[-10px] flex justify-end  ">
-                <div className="">
-                  <h1 className="text-[20px] font-bold pb-2 md:text-end text-center ">
-                    Dedicated Team
-                  </h1>
-                  <div class="border-t border-black w-[20%] md:ml-auto md:mx-0 mx-auto  mb-3 "></div>
-                  <h1 className=" md:text-end md:mx-0  mx-auto text-center  w-[70%] md:w-[100%] ">
-                    Professional employes are there for you to pick the most
-                    amazing and fresh fruits.
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Support />
     </>
   );
 }

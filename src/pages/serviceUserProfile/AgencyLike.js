@@ -7,8 +7,6 @@ import ServiceItem from "../../component/home/services/ServiceItem";
 function AgencyLike() {
   const { agencyId } = useParams();
   const { data, isLoading, isError } = useGetUserLikedServicesQuery(agencyId);
-  console.log(data, "data");
-  console.log(data?.data);
 
   let content = null;
 

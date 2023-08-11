@@ -35,7 +35,6 @@ function ChatUi() {
         } = conversation?.users?.find(
           (participant) => participant.email !== email
         );
-        console.log("okay it is outlet", Outlet);
 
         return (
           <Link to={`/message/${_id}`} key={_id}>

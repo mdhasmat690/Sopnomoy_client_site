@@ -1,6 +1,7 @@
 import React from "react";
 import Video from "./video/Video";
 import PaginatedItems from "./services/pagination/PaginatedItems";
+import Support from "./support/Support";
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
 
       <>
         <PaginatedItems itemsPerPage={12} />
+        <Support />
       </>
     </div>
   );

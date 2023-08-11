@@ -40,13 +40,15 @@ function HiringWorkType(props) {
                 className="w-[50%] mx-auto my-8"
               />
               <div className="w-[80%] mx-auto">
-                <h1 className="text-[20px] font-bold text-center mb-3">
-                  A full-time role
-                </h1>
-                {/* https://Sopnomoy.com/hiring */}
-                <h3 className="text-[#6e6d7a] text-[16px] text-center">
-                  A full-time team member to join your team.
-                </h3>
+                <Link to={"/JobBoards"}>
+                  <h1 className="text-[20px] font-bold text-center mb-3">
+                    A full-time role
+                  </h1>
+                  {/* https://Sopnomoy.com/hiring */}
+                  <h3 className="text-[#6e6d7a] text-[16px] text-center">
+                    A full-time team member to join your team.
+                  </h3>
+                </Link>
               </div>
             </div>
           </div>

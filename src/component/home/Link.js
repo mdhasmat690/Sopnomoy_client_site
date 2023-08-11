@@ -4,12 +4,6 @@ export const links = [
     submenu: true,
     sublinks: [
       {
-        name: "Explore Design work",
-        desc: "Trending Designs to inspire",
-        img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
-        link: "/",
-      },
-      {
         name: "New & Noteworthy",
         desc: "Up-and-coming designers",
         img: "https://i.ibb.co/jvP3cr2/svgexport-3.png",
@@ -45,12 +39,7 @@ export const links = [
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
         link: "/JobBoards",
       },
-      {
-        name: "Freelance Projects",
-        desc: "An exclusive list for contract work",
-        img: "https://i.ibb.co/jvP3cr2/svgexport-3.png",
-        link: "/",
-      },
+
       {
         name: "Want Freelance design projects",
         desc: "Get new leads in your inbox every day",
@@ -63,6 +52,12 @@ export const links = [
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
         link: "/blog",
       },
+      {
+        name: "Freelance Projects",
+        desc: "this route test purpose we are working",
+        img: "https://i.ibb.co/jvP3cr2/svgexport-3.png",
+        link: "/",
+      },
     ],
   },
   {
@@ -71,25 +66,25 @@ export const links = [
     sublinks: [
       {
         name: "Job Board",
-        desc: "Find your dream design job",
+        desc: "this route test purpose we are working",
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
         link: "/",
       },
       {
         name: "Freelance Projects",
-        desc: "An exclusive list for contract work",
+        desc: "this route test purpose we are working",
         img: "https://i.ibb.co/jvP3cr2/svgexport-3.png",
         link: "/",
       },
       {
         name: "Want Freelance design projects",
-        desc: "Get new leads in your inbox every day",
+        desc: "this route test purpose we are working",
         img: "https://i.ibb.co/wNbZs5R/svgexport-7.png",
         link: "/desginProjects",
       },
       {
         name: "Personalize your profile with video",
-        desc: "Interviews, tutorials, and more",
+        desc: "this route test purpose we are working",
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
         link: "/blog",
       },
@@ -100,16 +95,16 @@ export const links = [
     submenu: true,
     sublinks: [
       {
-        name: "Job Board",
+        name: "Post Job",
         desc: "Find your dream design job",
         img: "https://i.ibb.co/dfr43Hp/svgexport-9.png",
-        link: "/",
+        link: "/postJob",
       },
       {
-        name: "Freelance Projects",
+        name: "Post Blog",
         desc: "An exclusive list for contract work",
         img: "https://i.ibb.co/jvP3cr2/svgexport-3.png",
-        link: "/",
+        link: "/blog",
       },
       {
         name: "Want Freelance design projects",

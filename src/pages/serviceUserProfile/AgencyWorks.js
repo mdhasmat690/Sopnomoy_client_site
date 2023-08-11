@@ -10,7 +10,6 @@ function AgencyWorks() {
   const { agencyId } = useParams();
 
   const { data, isLoading, isError } = useGetRelatedServicesQuery(agencyId);
-  console.log(data);
 
   let content = null;
 

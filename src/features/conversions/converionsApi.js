@@ -63,7 +63,7 @@ const conversationApi = apiSlice.injectEndpoints({
             ).unwrap();
           }
         } catch (error) {
-          console.log(error);
+          console.log("error");
         } finally {
           dispatch(
             apiSlice.util.invalidateTags(["messagePost", "conversionPost"])

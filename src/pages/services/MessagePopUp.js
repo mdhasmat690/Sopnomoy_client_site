@@ -23,6 +23,9 @@ function MessagePopUp({
   const { data: loginUserData } = useGetUserDataQuery(user);
   const loginUser = loginUserData?.data;
 
+  // if (loginUser?.email == servicesUserInfo?.email) {
+  // }
+
   const { data: conversionData, refetch } = useConversionQuery({
     user: loginUser?.email,
     serviceUser: servicesUserInfo?.email,
@@ -41,6 +44,10 @@ function MessagePopUp({
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (message) => {
+    if (loginUser?.email == servicesUserInfo?.email) {
+      return alert("you can not send message your self");
+    }
+
     if (loginUser?.email && servicesUserInfo?.email) {
       if (conversionData?.result.length > 0) {
         editConversation({

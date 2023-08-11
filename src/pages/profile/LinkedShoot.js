@@ -9,7 +9,6 @@ import ServiceItem from "../../component/home/services/ServiceItem";
 function LinkedShoot(props) {
   const { email: user } = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isError } = useGetUserLikedServicesQuery(user);
-  console.log(data?.data);
 
   let content = null;
 

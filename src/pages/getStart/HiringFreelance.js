@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 
-function HiringFreelance(props) {
+function HiringFreelance() {
   return (
     <div>
       <br />
       <div className="w-[80%] mx-auto flex justify-end">
-        <button className=" h-[48px] w-[48px] p-4 bg-[#f3f4f4] text-[#6e6d7a] rounded-[8px]">
-          <IoMdClose />
-        </button>
+        <Link to={"/"}>
+          <button className=" h-[48px] w-[48px] p-4 bg-[#f3f4f4] text-[#6e6d7a] rounded-[8px]">
+            <IoMdClose />
+          </button>
+        </Link>
       </div>
       <div className="w-[90%] mx-auto flex justify-center">
         <div>

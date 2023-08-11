@@ -30,11 +30,13 @@ const NaveBar = () => {
     <nav className="bg-[white] xl:container mx-auto   z-50  ">
       <div className="flex items-center font-medium justify-between">
         <div className="z-50 p-5 md:w-auto w-full flex items-center justify-between">
-          <img
-            src="https://img.freepik.com/free-vector/letter-h-with-blossoms_53876-66878.jpg?size=626&ext=jpg&ga=GA1.2.1738658831.1683692513&semt=ais"
-            alt="logo"
-            className="md:cursor-pointer h-10 w-10 rounded-[50%]"
-          />
+          <Link to="/">
+            <img
+              src="https://img.freepik.com/free-vector/letter-h-with-blossoms_53876-66878.jpg?size=626&ext=jpg&ga=GA1.2.1738658831.1683692513&semt=ais"
+              alt="logo"
+              className="md:cursor-pointer h-10 w-10 rounded-[50%]"
+            />
+          </Link>
 
           <ul className="md:flex hidden  items-center text-[#6e6d7a] font-[500] ">
             <NaveDrop />

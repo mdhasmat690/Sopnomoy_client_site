@@ -14,9 +14,9 @@ function WarmUp() {
           <div>
             {" "}
             <img
-              src="https://i.ibb.co/z8S8RST/about.jpg"
+              src="https://img.freepik.com/free-vector/letter-h-with-blossoms_53876-66878.jpg?size=626&ext=jpg&ga=GA1.2.1738658831.1683692513&semt=ais"
               alt="logo"
-              className="md:cursor-pointer h-12 mr-4"
+              className="md:cursor-pointer h-12 mr-4 rounded-[50%]"
             />
           </div>
           <div>

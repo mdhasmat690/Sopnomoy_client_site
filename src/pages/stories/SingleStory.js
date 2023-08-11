@@ -214,6 +214,7 @@ function SingleStory() {
             everyone has the same rights and opportunities.
           </h2>
         </div>
+        <br />
       </div>
     </div>
   );

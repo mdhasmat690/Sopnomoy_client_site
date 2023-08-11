@@ -20,9 +20,6 @@ function SignUp() {
     isFetching,
   } = useGetUserDataQuery(userEmail);
 
-  // console.log(data, isLoading, isSuccess, fulfilledTimeStamp, isFetching);
-  /* {success: true, data: {…}} false true 1680769336709 false correct */
-  /*                  undefined false false undefined false */
   const {
     register,
     formState: { errors },
