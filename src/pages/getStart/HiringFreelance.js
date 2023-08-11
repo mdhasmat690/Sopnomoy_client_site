@@ -24,7 +24,6 @@ function HiringFreelance() {
           <br />
 
           <div className="grid md:grid-cols-2 gap-4 w-[80%] mx-auto justify-center mb-16">
-            {/* https://Sopnomoy.com/freelance-jobs?onboarding=true */}
             <Link to={"/hiringFreelance"}>
               <div className="  border-[1px] rounded-[18px] border-[#e7e7e9]  hover:border-[#ea4c89] p-2 cursor-pointer">
                 <img
